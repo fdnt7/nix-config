@@ -1,0 +1,284 @@
+# vim:ft=dircolors
+# (This is not a dircolors file but it helps to highlight colors and comments)
+
+# default values from dircolors
+# (entries with a leading # are not implemented in lf)
+#no     00              # NORMAL
+fi      00              # FILE
+#rs     0               # RESET
+di      01;34           # DIR
+ln      01;36           # LINK
+#mh     00              # MULTIHARDLINK
+pi      40;33           # FIFO
+so      01;35           # SOCK
+#do     01;35           # DOOR
+bd      40;33;01        # BLK
+cd      40;33;01        # CHR
+or      40;31;01        # ORPHAN
+#mi     00              # MISSING
+su      37;41           # SETUID
+sg      30;43           # SETGID
+#ca     30;41           # CAPABILITY
+tw      30;42           # STICKY_OTHER_WRITABLE
+ow      34;42           # OTHER_WRITABLE
+st      37;44           # STICKY
+ex      01;32           # EXEC
+
+# default values from lf (with matching order)
+# ln      01;36   # LINK
+# or      31;01   # ORPHAN
+# tw      01;34   # STICKY_OTHER_WRITABLE
+# ow      01;34   # OTHER_WRITABLE
+# st      01;34   # STICKY
+# di      01;34   # DIR
+# pi      33      # FIFO
+# so      01;35   # SOCK
+# bd      33;01   # BLK
+# cd      33;01   # CHR
+# su      01;32   # SETUID
+# sg      01;32   # SETGID
+# ex      01;32   # EXEC
+# fi      00      # FILE
+
+## file types (with matching order)
+#ln      01;36   # LINK
+#or      40;31;01   # ORPHAN
+#tw      30;42      # STICKY_OTHER_WRITABLE
+#ow      34;42      # OTHER_WRITABLE
+#st      37;44   # STICKY
+#di      01;34   # DIR
+#pi      40;33      # FIFO
+#so      01;35   # SOCK
+#bd      40;33;01   # BLK
+#cd      40;33;01   # CHR
+#su      37;41   # SETUID
+#sg      30;43   # SETGID
+#ex      01;32   # EXEC
+#fi      00      # FILE
+
+# archives or compressed (dircolors defaults)
+*.tar   01;31
+*.tgz   01;31
+*.arc   01;31
+*.arj   01;31
+*.taz   01;31
+*.lha   01;31
+*.lz4   01;31
+*.lzh   01;31
+*.lzma  01;31
+*.tlz   01;31
+*.txz   01;31
+*.tzo   01;31
+*.t7z   01;31
+*.zip   01;31
+*.z     01;31
+*.dz    01;31
+*.gz    01;31
+*.lrz   01;31
+*.lz    01;31
+*.lzo   01;31
+*.xz    01;31
+*.zst   01;31
+*.tzst  01;31
+*.bz2   01;31
+*.bz    01;31
+*.tbz   01;31
+*.tbz2  01;31
+*.tz    01;31
+*.deb   01;31
+*.rpm   01;31
+*.jar   01;31
+*.war   01;31
+*.ear   01;31
+*.sar   01;31
+*.rar   01;31
+*.alz   01;31
+*.ace   01;31
+*.zoo   01;31
+*.cpio  01;31
+*.7z    01;31
+*.rz    01;31
+*.cab   01;31
+*.wim   01;31
+*.swm   01;31
+*.dwm   01;31
+*.esd   01;31
+
+# image formats (dircolors defaults)
+*.avif  35
+*.jpg   35
+*.jpeg  35
+*.mjpg  35
+*.mjpeg 35
+*.gif   35
+*.bmp   35
+*.pbm   35
+*.pgm   35
+*.ppm   35
+*.tga   35
+*.xbm   35
+*.tif   35
+*.tiff  35
+*.png   35
+*.svg   35
+*.svgz  35
+*.mng   35
+*.pcx   35
+*.jfif  35
+*.arw   35
+*.cbr   35
+*.cbz   35
+*.cr2   35
+*.dvi   35
+*.eps   35
+*.heif  35
+*.ico   35
+*.nef   35
+*.orf   35
+*.pnm   35
+*.ps    35
+*.raw   35
+*.stl   35
+*.webp  35
+*.xcf   35
+*.psd   35
+*.xpm   35
+
+# video formats
+*.mov   95  
+*.mpg   95
+*.mpeg  95
+*.m2v   95
+*.mkv   95
+*.webm  95
+*.ogm   95
+*.mp4   95
+*.m4v   95
+*.mp4v  95
+*.vob   95
+*.qt    95
+*.nuv   95
+*.wmv   95
+*.asf   95
+*.rm    95
+*.rmvb  95
+*.flc   95
+*.avi   95
+*.fli   95
+*.flv   95
+*.gl    95
+*.dl    95
+*.xwd   95
+*.yuv   95
+*.cgm   95
+*.emf   95
+*.ogv   95
+*.ogx   95
+*.heic  95
+*.m2ts  95
+
+# audio formats (dircolors defaults)
+*.aac   00;36
+*.au    00;36
+*.flac  00;36
+*.m4a   00;36
+*.mid   00;36
+*.midi  00;36
+*.mka   00;36
+*.mp3   00;36
+*.mpc   00;36
+*.ogg   00;36
+*.ra    00;36
+*.wav   00;36
+*.oga   00;36
+*.opus  00;36
+*.spx   00;36
+*.xspf  00;36
+
+# document formats
+*.djvu  32
+*.doc   32
+*.docx  32
+*.dvi   32
+*.eml   32
+*.eps   32
+*.fotd  32
+*.key   32
+*.odp   32
+*.odt   32
+*.pdf   32
+*.ppt   32
+*.pptx  32
+*.rtf   32
+*.xls   32
+*.xlsx  32
+
+# cryptography formats
+*.asc          92
+*.enc          92
+*.gpg          92
+*.p12          92
+*.pfx          92
+*.pgp          92
+*.sig          92
+*.signature    92
+*.lock         92
+
+# immediate formats
+*build.gradle     33
+*Cargo.toml       33
+*CMakeLists.txt   33
+*Dockerfile       33
+*Justfile         33
+*Makefile         33
+*Rakefile         33
+*SConstruct       33
+*README.md        33
+
+*.cmd	01;32
+*.exe	01;32
+*.com	01;32
+*.btm	01;32
+*.bat	01;32
+
+*~		00;90
+*.bak 		00;90
+*.crdownload 	00;90
+*.dpkg-dist 	00;90
+*.dpkg-new 	00;90
+*.dpkg-old 	00;90
+*.dpkg-tmp 	00;90
+*.old 		00;90
+*.orig 		00;90
+*.part 		00;90
+*.rej 		00;90
+*.rpmnew 	00;90
+*.rpmorig 	00;90
+*.rpmsave 	00;90
+*.swp 		00;90
+*.tmp 		00;90
+*.ucf-dist 	00;90
+*.ucf-new 	00;90
+*.ucf-old 	00;90
+*.swn         90
+*.swo         90
+*.bk          90
+*.~           90
+
+.cache/			 01;02;34
+.config/		 01;02;34
+.icons/			 01;02;34
+.local/			 01;02;34
+.mozilla/		 01;02;34
+.pki/			 01;02;34
+.ssh/			 01;02;34
+.steam/			 01;02;34
+.SteamCloud/		 01;02;34
+.muse-sounds-manager/	 01;02;34
+.vscode/ 		 01;02;34
+.dup/	 		 01;02;34
+.priv/	 		 01;02;34
+.hid/	 		 01;02;34
+.nsfw/	 		 01;02;34
+.old/	 		 01;02;34
+.trash/	 		 01;02;34
