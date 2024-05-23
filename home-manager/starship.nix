@@ -25,7 +25,7 @@
       status = {
         disabled = false;
         style = "bold dimmed red";
-        symbol = "!";
+        symbol = "";
         success_symbol = "";
         not_executable_symbol = "x";
         not_found_symbol = "?";
@@ -97,16 +97,16 @@
 
       git_status = {
         style = "dimmed cyan";
-        format = "([$ahead_behind$staged$modified$untracked$renamed$deleted$conflicted$stashed]($style))";
-        conflicted = "[=](bright-magenta)";
-        ahead = "[⇡[$\{count}](bold white)](green)";
-        behind = "[⇣[$\{count}](bold white](red)";
-        diverged = "[⇡[$\{ahead_count}](regular white)⇣[$\{behind_count}](regular white)](bright-magenta)";
-        untracked = "[?](bright-yellow)";
-        stashed = "[\$](white)";
+        format = "([$ahead_behind$staged$modified$untracked$renamed$deleted$conflicted$stashed]($style) )";
+        conflicted = "[=](magenta)";
+        ahead = "[⇡[$\{count}](bold bright-green)](green)";
+        behind = "[⇣[$\{count}](bold bright-red)](red)";
+        diverged = "[⇣[$\{ahead_count}](regular bright-green)⇡[$\{behind_count}](regular bright-red)](bright-magenta)";
+        untracked = "[?](green)";
+        stashed = "[\\$](white)";
         modified = "[!](yellow)";
-        staged = "[+[$count](bold white)](bright-cyan)";
-        renamed = "[»](bright-blue)";
+        staged = "[+[$count](bold bright-cyan)](cyan)";
+        renamed = "[»](blue)";
         deleted = "[✕](red)";
       };
 

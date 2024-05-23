@@ -2,17 +2,74 @@
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 {
   inputs,
-  lib,
   config,
   pkgs,
   ...
-}: {
+}: let
+  genericPackages = with pkgs; [
+    nh
+    nix-output-monitor
+    nvd
+    devenv
+    alejandra
+
+    discord
+    vesktop
+
+    grim
+    slurp
+    wl-clipboard
+    jq
+    libnotify
+    grimblast
+
+    libsForQt5.dolphin
+    libsForQt5.kdegraphics-thumbnailers
+    libsForQt5.kimageformats
+    libheif
+    resvg
+    libsForQt5.ffmpegthumbs
+    nufraw-thumbnailer
+    taglib
+    libsForQt5.kio-extras
+
+    pavucontrol
+    playerctl
+    jamesdsp
+    musescore
+    audacity
+
+    xdg-ninja
+    python311Packages.ipython
+    colordiff
+    ripgrep
+    du-dust
+    python3
+    brightnessctl
+    zoxide
+    wget
+    qt5ct
+    catppuccin-kvantum
+    xwaylandvideobridge
+    oculante
+    swww
+    kitty-img
+    brave
+    zed-editor
+    sweet-nova
+    bc
+    hyprpicker
+  ];
+in {
   # You can import other home-manager modules here
   imports = [
     # If you want to use home-manager modules from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModule
 
     # You can also split up your configuration and import pieces of it here:
+    ./xdg.nix
+    ./theming.nix
+
     ./git.nix
     ./cava.nix
     ./btop.nix
@@ -20,24 +77,31 @@
     ./rofi.nix
     ./starship.nix
     ./fish.nix
+    ./zsh.nix
     ./kitty.nix
     ./alacritty.nix
     ./spicetify.nix
-    ./hyfetch.nix
     ./gaming.nix
     ./nixvim.nix
     ./vscode.nix
-    ./fastfetch.nix
+    ./bat.nix
+    ./fd.nix
+    ./firefox.nix
+    ./foot.nix
+    ./gpg.nix
+    ./htop.nix
+    ./mpv.nix
+    ./wezterm.nix
+    ./yazi/yazi.nix
+    ./fastfetch/fastfetch.nix
+    ./waybar/waybar.nix
+    ./swaync/swaync.nix
+    ./lf/lf.nix
+    ./fonts/fonts.nix
     ./hypr/hyprland/hyprland.nix
     ./hypr/hyprlock/hyprlock.nix
     ./hypr/hypridle/hypridle.nix
     #./hypr/hyprcursor/hyprcursor.nix
-    ./waybar/waybar.nix
-    ./swaync/swaync.nix
-    ./lf/lf.nix
-
-    ./xdg.nix
-    ./theming.nix
   ];
 
   nixpkgs = {
@@ -72,86 +136,19 @@
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
     stateVersion = "23.11";
     # Add stuff for your user as you see fit:
-    packages = with pkgs; [
-      (import ../scripts/home-manager-switch-flake.nix {inherit pkgs config;})
-      (import ../scripts/nix-flake-update.nix {inherit pkgs config;})
-      (import ../scripts/nixos-rebuild-flake.nix {inherit pkgs config;})
-      (nerdfonts.override {fonts = ["JetBrainsMono"];})
+    packages =
+      [
+        (import ../scripts/home-manager-switch-flake.nix {inherit pkgs config;})
+        (import ../scripts/nix-flake-update.nix {inherit pkgs config;})
+        (import ../scripts/nixos-rebuild-flake.nix {inherit pkgs config;})
 
-      inputs.muse-sounds-manager.packages.x86_64-linux.muse-sounds-manager
-
-      discord
-      vesktop
-
-      sweet-nova
-      alejandra
-      bc
-
-      hyprpicker
-
-      grim
-      slurp
-      wl-clipboard
-      jq
-      libnotify
-      grimblast
-
-      swww
-      kitty-img
-
-      brave
-
-      zed-editor
-
-      libsForQt5.dolphin
-      libsForQt5.kdegraphics-thumbnailers
-      libsForQt5.kimageformats
-      libheif
-      resvg
-      libsForQt5.ffmpegthumbs
-      nufraw-thumbnailer
-      taglib
-      libsForQt5.kio-extras
-
-      xdg-ninja
-      python311Packages.ipython
-      colordiff
-      ripgrep
-      du-dust
-      bat
-      rustup
-      python3
-      pavucontrol
-      brightnessctl
-      bat-extras.batman
-      bat-extras.batpipe
-      zoxide
-      wget
-      qt5ct
-      musescore
-      catppuccin-kvantum
-      xwaylandvideobridge
-      playerctl
-      oculante
-
-      nh
-      nix-output-monitor
-      nvd
-    ];
+        inputs.muse-sounds-manager.packages.x86_64-linux.muse-sounds-manager
+      ]
+      ++ genericPackages;
   };
 
-  # Enable home-manager and git
-  programs = {
-    home-manager.enable = true;
-
-    htop.enable = true;
-    fd.enable = true;
-    firefox.enable = true;
-    gpg = {
-      enable = true;
-      homedir = "${config.xdg.dataHome}/gnupg";
-    };
-  };
+  # Enable home-manager
+  programs.home-manager.enable = true;
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
@@ -166,6 +163,4 @@
       pinentryPackage = pkgs.pinentry-curses;
     };
   };
-
-  fonts.fontconfig.enable = true;
 }

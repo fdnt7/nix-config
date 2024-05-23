@@ -1,6 +1,6 @@
 {...}: {
   programs.alacritty = {
-    enable = true;
+    enable = false;
     settings = {
       window = {
         opacity = 0.67;

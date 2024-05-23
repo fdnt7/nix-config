@@ -10,11 +10,11 @@
   # You can import other NixOS modules here
   imports = [
     # If you want to use modules from other flakes (such as nixos-hardware):
-    # inputs.hardware.nixosModules.common-cpu-amd
-    # inputs.hardware.nixosModules.common-ssd
+    inputs.hardware.nixosModules.common-cpu-amd
+    inputs.hardware.nixosModules.common-pc-laptop-ssd
 
     # You can also split up your configuration and import pieces of it here:
-    # ./users.nix
+    # ./stylix.nix
 
     # Import your generated (nixos-generate-config) hardware configuration
     ./hardware-configuration.nix
@@ -50,6 +50,18 @@
       flake-registry = "";
       # Workaround for https://github.com/NixOS/nix/issues/9574
       nix-path = config.nix.nixPath;
+
+      trusted-users = ["root" "fdnt"];
+      substituters = [
+        "https://devenv.cachix.org"
+        "https://yazi.cachix.org"
+        "https://catppuccin.cachix.org"
+      ];
+      trusted-public-keys = [
+        "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
+        "yazi.cachix.org-1:Dcdz63NZKfvUCbDGngQDAZq6kOroIrFoyO064uvLh8k="
+        "catppuccin.cachix.org-1:noG/4HkbhJb+lUAdKrph6LaozJvAeEEZj4N732IysmU="
+      ];
     };
     # Opinionated: disable channels
     channel.enable = false;
@@ -198,12 +210,13 @@
       IPYTHONDIR = "$XDG_CONFIG_HOME/ipython";
       WAKATIME_HOME = "$XDG_CONFIG_HOME/wakatime";
       CARGO_HOME = "$XDG_DATA_HOME/cargo";
+      ZDOTDIR = "$XDG_CONFIG_HOME/zsh";
     };
     variables = {
       EDITOR = "nvim";
     };
     systemPackages = with pkgs; [
-      #      libsForQt5.polkit-kde-agent
+      lxqt.lxqt-policykit
       lf
       ctpv
       starship
@@ -213,11 +226,22 @@
       #      libsForQt5.qt5.qtgraphicaleffects
       nix-diff
     ];
+    pathsToLink = ["/share/zsh"];
   };
 
   fonts = {
-    enableDefaultPackages = true;
+    enableDefaultPackages = false;
     packages = with pkgs; [
+      dejavu_fonts
+      freefont_ttf
+      gyre-fonts
+      liberation_ttf
+      unifont
+      #noto-fonts-color-emoji
+
+      noto-fonts
+      noto-fonts-cjk
+      twemoji-color-font
       ubuntu_font_family
       tlwg
       (nerdfonts.override {
@@ -229,9 +253,13 @@
 
     fontconfig = {
       defaultFonts = {
-        serif = ["Ubuntu"];
-        sansSerif = ["Ubuntu"];
-        monospace = ["JetBrainsMono Nerd Font"];
+        emoji = [
+          "Segoe UI Emoji"
+          "Twitter Color Emoji"
+        ];
+        serif = ["Ubuntu" "Kinnari"];
+        sansSerif = ["Ubuntu" "Garuda"];
+        monospace = ["JetBrainsMono Nerd Font" "Tlwg Typewriter"];
       };
     };
   };
@@ -240,6 +268,14 @@
     portal = {
       enable = true;
       extraPortals = [pkgs.xdg-desktop-portal-gtk];
+    };
+  };
+  virtualisation.docker = {
+    enable = true;
+    storageDriver = "btrfs";
+    rootless = {
+      enable = true;
+      setSocketVariable = true;
     };
   };
 }

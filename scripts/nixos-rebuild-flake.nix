@@ -10,9 +10,9 @@
 in
   pkgs.writeShellScriptBin "nixos-rebuild-flake" ''
     (cd ${FLAKE_DIR} &&
-    ${ALEJANDRA} . &> /dev/null &&
+    ${ALEJANDRA} . &&
     ${GIT} --no-pager diff --minimal &&
     ${GIT} add . &&
-    ${NH} os $1 > /dev/null &&
+    ${NH} os $1 &&
     ${GIT} commit -m "os: $(nixos-rebuild list-generations | ${RG} current)")
   ''

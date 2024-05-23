@@ -7,9 +7,11 @@
 
     # Home manager
     #home-manager.url = "github:nix-community/home-manager/release-23.11";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hardware.url = "github:NixOS/nixos-hardware/master";
     spicetify-nix.url = "github:the-argus/spicetify-nix";
     nixvim = {
       url = "github:nix-community/nixvim";
@@ -19,6 +21,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     muse-sounds-manager.url = "github:thilobillerbeck/muse-sounds-manager-nix";
+    #stylix.url = "github:danth/stylix";
+    catppuccin.url = "github:catppuccin/nix";
+    #wezterm.url = "github:wez/wezterm?dir=nix";
+    yazi.url = "github:sxyazi/yazi";
   };
 
   outputs = {
@@ -35,7 +41,9 @@
       cuties-only = nixpkgs.lib.nixosSystem {
         specialArgs = {inherit inputs outputs;};
         # > Our main nixos configuration file <
-        modules = [./nixos/configuration.nix];
+        modules = [
+          ./nixos/configuration.nix
+        ];
       };
     };
 
