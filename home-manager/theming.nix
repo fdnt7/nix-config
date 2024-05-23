@@ -1,8 +1,12 @@
 {
   config,
+  inputs,
   pkgs,
   ...
 }: {
+  imports = [inputs.catppuccin.homeManagerModules.catppuccin];
+  catppuccin.flavor = "mocha";
+
   home.pointerCursor = {
     gtk.enable = true;
     # x11.enable = true;
@@ -10,6 +14,7 @@
     name = "Bibata-Modern-Classic";
     size = 20;
   };
+
   gtk = {
     gtk2 = {
       configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
@@ -27,6 +32,7 @@
       name = "Papirus-Dark";
     };
   };
+
   qt = {
     enable = true;
     platformTheme.name = "qtct";

@@ -35,13 +35,36 @@
           rust-analyzer.enable = true;
           nixd.enable = true;
           jsonls.enable = true;
+          pyright = {
+            enable = true;
+          };
+          lua-ls.enable = true;
         };
       };
       telescope.enable = true;
       oil.enable = true;
       treesitter.enable = true;
       luasnip.enable = true;
-      neocord.enable = true;
+      neocord = {
+        enable = false;
+        settings = {
+          editing_text = "✏️ %s";
+          reading_text = "🔎 %s";
+          termiinal = "⌨️ Terminal";
+          workspace_text = "🗃️ %s";
+        };
+      };
+      presence-nvim = {
+        enable = true;
+        editingText = "✏️ %s";
+        fileExplorerText = "📂 %s";
+        gitCommitText = "✅ Committing Changes";
+        pluginManagerText = "🧩 Managing Plugins";
+        readingText = "🔎 %s";
+        workspaceText = "🗃️ %s";
+        mainImage = "file";
+        neovimImageText = "E-girl's Code Editor";
+      };
       nvim-colorizer = {
         enable = true;
         userDefaultOptions = {

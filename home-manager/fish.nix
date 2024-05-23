@@ -1,13 +1,12 @@
 {pkgs, ...}: {
   programs.fish = {
     enable = true;
+    catppuccin.enable = true;
     interactiveShellInit = "fastfetch --config small";
     shellAbbrs = {
-      l = "lf";
+      l = "yy";
       s = "sudo";
       f = "fastfetch";
-      ff = "fastfetch";
-      hf = "hyfetch";
       py = "python";
       rs = "evcxr";
       pg = "psql";
@@ -57,11 +56,15 @@
       vv = "sudoedit";
       "v." = {
         setCursor = true;
+        expansion = "vim $FLAKE/nixos/%";
+      };
+      "vc." = {
+        setCursor = true;
         expansion = "vim $FLAKE/home-manager/%";
       };
       vf = "vim $FLAKE/flake.nix";
-      vh = "vim $FLAKE/home-manager/home.nix";
-      vhh = "vim $FLAKE/home-manager/home.nix && home-manager-switch-flake";
+      vc = "vim $FLAKE/home-manager/home.nix";
+      vcb = "vim $FLAKE/home-manager/btop.nix";
       vcv = "vim $FLAKE/home-manager/nixvim.nix";
       vcc = "vim $FLAKE/home-manager/vscode.nix";
       vcf = "vim $FLAKE/home-manager/fish.nix";
@@ -70,35 +73,43 @@
       vca = "vim $FLAKE/home-manager/alacritty.nix";
       vcs = "vim $FLAKE/home-manager/starship.nix";
       vcx = "vim $FLAKE/home-manager/xdg.nix";
-      vcff = "vim $FLAKE/home-manager/fastfetch.nix";
+      vct = "vim $FLAKE/home-manager/fastfetch/fastfetch.nix";
+      vco = "vim $FLAKE/home-manager/foot.nix";
+      vcy = "vim $FLAKE/home-manager/yazi/yazi.nix";
       vch = "vim $FLAKE/home-manager/hypr/hyprland/hyprland.nix";
       vchc = "vim $FLAKE/home-manager/hypr/hyprcursor/hyprcursor.nix";
       vchse = "vim $FLAKE/home-manager/hypr/hyprland/scripts/exec-once.nix";
-      vchi = "vim $FLAKE/home-manager/hypr/hypridle/hypridle.conf";
-      vchl = "vim $FLAKE/home-manager/hypr/hyprlock/hyprlock.conf";
+      vchi = "vim $FLAKE/home-manager/hypr/hypridle/hypridle.nix";
+      vchl = "vim $FLAKE/home-manager/hypr/hyprlock/hyprlock.nix";
       vcl = "vim $FLAKE/home-manager/lf/lf.nix";
       vclc = "vim $FLAKE/home-manager/lf/colours";
       vcli = "vim $FLAKE/home-manager/lf/icons";
       vcw = "vim $FLAKE/home-manager/waybar/waybar.nix";
       vcws = "vim $FLAKE/home-manager/waybar/style.css";
 
-      vc = "vim $FLAKE/nixos/configuration.nix";
-      vw = "vim $FLAKE/nixos/hardware-configuration.nix";
-      vcu = "vim $FLAKE/nixos/configuration.nix && nixos-rebuild-flake switch";
-      vct = "vim $FLAKE/nixos/configuration.nix && nixos-rebuild-flake test";
-      vwu = "vim $FLAKE/nixos/hardware-configuration.nix && nixos-rebuild-flake test";
+      vn = "vim $FLAKE/nixos/configuration.nix";
+      vh = "vim $FLAKE/nixos/hardware-configuration.nix";
 
-      a = "nixos-rebuild-flake switch";
+      vcH = "vim $FLAKE/home-manager/home.nix && home-manager-switch-flake";
+      vnW = "vim $FLAKE/nixos/configuration.nix && nixos-rebuild-flake switch";
+      vnT = "vim $FLAKE/nixos/configuration.nix && nixos-rebuild-flake test";
+      vhT = "vim $FLAKE/nixos/hardware-configuration.nix && nixos-rebuild-flake test";
+
+      w = "nixos-rebuild-flake switch";
       t = "nixos-rebuild-flake test";
       b = "nixos-rebuild-flake boot";
       u = "nix-flake-update";
       h = "home-manager-switch-flake";
+
       p = "nh search";
-      n = "nix-shell -p";
+      n = "nix-shell --run fish";
+      np = "nix-shell --run fish -p";
+      nd = "nix develop";
 
       m = "man";
       mh = "man home-configuration.nix";
       mc = "man configuration.nix";
+      mn = "man nixvim";
 
       ":q" = "exit";
       ":wq" = "exit";
@@ -127,6 +138,18 @@
       visudo = "sudoedit /etc/sudoers";
 
       wget = "wget -c --hsts-file=$XDG_DATA_HOME/wget-hsts";
+    };
+    functions = {
+      yy = {
+        body = ''
+          set tmp (mktemp -t "yazi-cwd.XXXXXX")
+          yazi $argv --cwd-file="$tmp"
+          if set cwd (cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+          	cd -- "$cwd"
+          end
+          rm -f -- "$tmp"
+        '';
+      };
     };
     shellInit = ''
       set fish_greeting

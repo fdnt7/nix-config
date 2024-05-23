@@ -19,7 +19,7 @@ in {
 
       input = {
         kb_layout = "us,th";
-        kb_options = "caps:escape_shifted_capslock,grp:win_escape_toggle";
+        kb_options = "caps:escape_shifted_capslock,grp:win_space_toggle";
         #kb_options = "caps:swapescape,grp:win_escape_toggle";
         numlock_by_default = true;
         repeat_rate = 40;
@@ -127,8 +127,12 @@ in {
         "float, class:^(oculante)$"
         "float, class:^(pix)$"
         "float, class:^(swayimg_.*)$"
+        "float, class:^(mscore4portable)$"
+        "float, class:^(Muse Sounds Manager)$"
+        "float, class:^(jamesdsp)$"
 
         "noblur, class:^(Xdg-desktop-portal-gtk)$"
+        "noblur, class:^(MuseScore4)$"
 
         "noborder, class:^(Xdg-desktop-portal-gtk)$"
 
@@ -141,6 +145,8 @@ in {
         "workspace special:music, class:^(jamesdsp)$"
 
         "workspace special:scratch, class:^(Alacritty)$"
+        "workspace special:scratch, class:^(org.wezfurlong.wezterm)$"
+        "workspace special:scratch, class:^(foot)$"
         "workspace special:scratch, class:^(kitty)$"
       ];
 
@@ -161,7 +167,7 @@ in {
       "$sws_3" = "equal";
       "$sws_4" = "BackSpace";
 
-      "$term" = "alacritty";
+      "$term" = "foot";
       "$term_alt" = "kitty";
 
       bindr = [

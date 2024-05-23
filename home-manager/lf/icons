@@ -169,7 +169,7 @@ fi      󰈔       # FILE
 *dropbox                
 *.ds_store              
 *.gitconfig             
-*.gitignore             
+*.gitignore             
 *.gitattributes         
 *.gitlab-ci.yml         
 *.bashrc                
@@ -378,11 +378,35 @@ Vagrantfile             
 *.xspf  󰝚
 
 # other formats
-*.pdf   
+*.pdf   	
+*.AppImage	
 
 *.manpath	
 *.steampath	
 *.steampid	
+*.codespellrc	󰓆
+*.env		
+*.envrc		󰌪
+
+*.devenv.flake.nix	󰾍
+
+*Cargo.toml	󱢜
+*Cargo.lock	󱢜
+*devenv.nix	󰾍
+*devenv.yaml	󰾍
+*devenv.lock	󰾍
+*flake.lock	
+
+.cargo/		󱣘
+.devenv/	󱇚
+.git/		
+.github/	
+
+assets/		
+database/	
+preset/		󰲃
+scripts/	󰯃
+target/		󰓾
 
 bin/	
 boot/	󰤆
@@ -394,6 +418,7 @@ lib/	
 lib64/	
 mnt/	
 nix/	󱄅
+opt/	󰩦
 proc/	
 root/	󱇐
 run/	
@@ -417,17 +442,19 @@ icons/		󰇲
 
 .muse-sounds-manager/	󰙽
 
+.cargo/		󱣘
+
 store/	
 win/	󰝘
 
-Applications/	
+Applications/	󰏖
 Documents/	󱔘
 Downloads/	󱃩
 Music/		󰼄
 Pictures/	󰋯
 Videos/		󰪐
 Games/		󰺷
-Code/		
+Code/		
 Screenshots/	󰹑
 Wallpapers/	󰸉
 
