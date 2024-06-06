@@ -1,7 +1,12 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   home.packages = [pkgs.libappindicator pkgs.wttrbar];
   programs.waybar = {
     enable = true;
+    package = inputs.waybar.packages.${pkgs.system}.default;
     settings = {
       main = {
         layer = "top";
@@ -18,6 +23,7 @@
 
         modules-right = [
           "tray"
+          "custom/separator"
           "custom/wttr"
           "hyprland/submap"
           "hyprland/language"
@@ -97,8 +103,6 @@
 
         "hyprland/submap" = {
           format = "  {}";
-          always-on = true;
-          default-submap = "-";
         };
 
         "hyprland/language" = {
@@ -115,9 +119,16 @@
 
         network = {
           format = "{ifname}";
-          format-wifi = "  {bandwidthTotalBits:>}";
-          format-ethernet = "󰈀  {signalStrength}%";
-          format-disconnected = " -";
+          #format-wifi = "{icon}  {bandwidthTotalBits:>}";
+          format-wifi = "{icon}  {signalStrength:>}%";
+          format-ethernet = "{icon}  {signalStrength}%";
+          format-disconnected = "{icon} -";
+          format-icons = {
+            wifi = ["󰤯" "󰤟" "󰤢" "󰤥" "󰤨"];
+            linked = "󰄡";
+            ethernet = ["󰣾" "󰣴" "󰣶" "󰣸" "󰣺"];
+            disconnected = "";
+          };
           tooltip-format = "{ifname} via {gwaddr}";
           tooltip-format-wifi = "{essid}  {bandwidthUpBits:>}  {bandwidthDownBits:>}";
           tooltip-format-ethernet = "{ifname}";
@@ -185,6 +196,11 @@
             locked = "x";
             unlocked = "-";
           };
+        };
+
+        "custom/separator" = {
+          tooltip = false;
+          format = "󰇝";
         };
 
         "custom/swaync" = {

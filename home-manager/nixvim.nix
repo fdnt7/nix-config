@@ -15,6 +15,7 @@
       termguicolors = true;
       shiftwidth = 2;
     };
+
     colorschemes.catppuccin = {
       enable = true;
       settings = {
@@ -22,13 +23,16 @@
         flavour = "mocha";
       };
     };
+
     plugins = {
       bufferline = {
         enable = true;
       };
+
       lualine = {
         enable = true;
       };
+
       lsp = {
         enable = true;
         servers = {
@@ -38,9 +42,17 @@
           pyright = {
             enable = true;
           };
+
+          cssls = {
+            enable = true;
+          };
+
           lua-ls.enable = true;
+
+          clangd.enable = true;
         };
       };
+
       telescope.enable = true;
       oil.enable = true;
       treesitter.enable = true;
@@ -54,6 +66,7 @@
           workspace_text = "🗃️ %s";
         };
       };
+
       presence-nvim = {
         enable = true;
         editingText = "✏️ %s";
@@ -65,6 +78,7 @@
         mainImage = "file";
         neovimImageText = "E-girl's Code Editor";
       };
+
       nvim-colorizer = {
         enable = true;
         userDefaultOptions = {
@@ -75,6 +89,7 @@
           css_fn = true;
         };
       };
+
       cmp = {
         enable = true;
         settings = {
@@ -84,9 +99,20 @@
             {name = "buffer";}
             {name = "luasnip";}
           ];
+
+          mapping = {
+            "<C-Space>" = "cmp.mapping.complete()";
+            "<C-d>" = "cmp.mapping.scroll_docs(-4)";
+            "<C-e>" = "cmp.mapping.close()";
+            "<C-f>" = "cmp.mapping.scroll_docs(4)";
+            "<CR>" = "cmp.mapping.confirm({ select = true })";
+            "<S-Tab>" = "cmp.mapping(cmp.mapping.select_prev_item(), {'i', 's'})";
+            "<Tab>" = "cmp.mapping(cmp.mapping.select_next_item(), {'i', 's'})";
+          };
         };
       };
     };
+
     extraPlugins = [pkgs.vimPlugins.vim-wakatime];
   };
 }

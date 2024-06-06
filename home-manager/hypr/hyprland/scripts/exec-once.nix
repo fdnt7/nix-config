@@ -1,12 +1,10 @@
 {pkgs}: let
-  SWWW = "${pkgs.swww}/bin/swww";
-  SWWW-DAEMON = "${pkgs.swww}/bin/swww-daemon";
   JAMESDSP = "${pkgs.jamesdsp}/bin/jamesdsp";
+  SWWW-DAEMON = "${pkgs.swww}/bin/swww-daemon";
+  SWWW-NEXT = "${import ../scripts/swww-next.nix {inherit pkgs;}}/bin/swww-next";
 in
   pkgs.writeShellScriptBin "exec-once" ''
-    BACKGROUND=$(find $XDG_WALLPAPERS_DIR/Pixel/Animated -type f | shuf -n 1)
-
     ${SWWW-DAEMON} &
-    ${SWWW} img $BACKGROUND -t grow --transition-step 255 --transition-duration 1 --transition-fps 165 &
-    ${JAMESDSP} &
+    ${SWWW-NEXT} &
+    sleep 1 && ${JAMESDSP} -t &
   ''

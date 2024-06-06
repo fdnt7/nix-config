@@ -12,7 +12,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hardware.url = "github:NixOS/nixos-hardware/master";
-    spicetify-nix.url = "github:the-argus/spicetify-nix";
+    spicetify-nix = {
+      url = "github:the-argus/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixvim = {
       url = "github:nix-community/nixvim";
       # If you are not running an unstable channel of nixpkgs, select the corresponding branch of nixvim.
@@ -20,11 +23,25 @@
 
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    muse-sounds-manager.url = "github:thilobillerbeck/muse-sounds-manager-nix";
+    muse-sounds-manager = {
+      url = "github:thilobillerbeck/muse-sounds-manager-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     #stylix.url = "github:danth/stylix";
     catppuccin.url = "github:catppuccin/nix";
     #wezterm.url = "github:wez/wezterm?dir=nix";
-    yazi.url = "github:sxyazi/yazi";
+    yazi = {
+      url = "github:sxyazi/yazi";
+      #inputs.nixpkgs.follows = "nixpkgs";
+    };
+    waybar = {
+      url = "github:Alexays/Waybar";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprlock = {
+      url = "github:hyprwm/hyprlock";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
