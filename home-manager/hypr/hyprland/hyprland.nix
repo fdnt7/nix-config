@@ -1,8 +1,14 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  inputs,
+  ...
+}: let
 in {
   home.packages = [
-    (import scripts/exec-once.nix {inherit pkgs;})
-    (import scripts/toggle-touchpad.nix {inherit pkgs;})
+    (import ./scripts/exec-once.nix {inherit pkgs;})
+    (import ./scripts/toggle-touchpad.nix {inherit pkgs;})
+    (import ./scripts/swww-next.nix {inherit pkgs;})
+    (import ./scripts/lock.nix {inherit inputs pkgs;})
   ];
   xdg.configFile = {
     #"hypr/hyprland/icons".source = ./icons;
@@ -115,8 +121,11 @@ in {
       windowrulev2 = [
         "suppressevent maximize, class:.*"
 
+        "pin, class:^(pinentry-qt)$"
+
         "workspace 1, class:^(brave-browser(-nightly)?)$"
         "workspace 1, class:^(firefox)$"
+        "workspace 1, class:^(Vivaldi-stable)$"
         "workspace 3, class:^(Code)$"
         "workspace 5, class:^(Gimp)$"
         "workspace 5, class:^(krita)$"
@@ -130,6 +139,8 @@ in {
         "float, class:^(mscore4portable)$"
         "float, class:^(Muse Sounds Manager)$"
         "float, class:^(jamesdsp)$"
+        "float, class:^(pavucontrol)$"
+        "float, class:^(mpv)$"
 
         "noblur, class:^(Xdg-desktop-portal-gtk)$"
         "noblur, class:^(MuseScore4)$"
@@ -140,9 +151,11 @@ in {
 
         "workspace special:chat, class:^(vesktop)$"
         "workspace special:chat, class:^(discord)$"
+        "workspace special:chat, class:^(de.shorsh.discord-screenaudio)$"
 
         "workspace special:music, class:^(Spotify)$"
         "workspace special:music, class:^(jamesdsp)$"
+        "workspace special:music, class:^(pavucontrol)$"
 
         "workspace special:scratch, class:^(Alacritty)$"
         "workspace special:scratch, class:^(org.wezfurlong.wezterm)$"
@@ -227,13 +240,16 @@ in {
           "$mod, j, movefocus, d"
           "$mod, k, movefocus, u"
           "$mod, l, movefocus, r"
-          "$mod SHIFT, l, exec, hyprlock"
+          "$mod SHIFT, l, exec, lock"
+          "$mod CTRL, s, exec, swww-next"
 
           "$mod ALT, s, exec, spotify"
           "$mod ALT, f, exec, dolphin"
           "$mod ALT, m, exec, mscore"
           "$mod ALT, z, exec, zed"
           "$mod ALT, c, exec, code"
+          "$mod ALT, v, exec, pavucontrol"
+          "$mod ALT, j, exec, jamesdsp"
 
           "$mod, Return, exec, $term"
           "$mod, Shift_R, exec, $term_alt"
@@ -292,6 +308,10 @@ in {
         bind=, v     , submap, reset
         bind=, d     , exec  , discord
         bind=, d     , submap, reset
+        bind=, s     , exec  , discord-screenaudio
+        bind=, s     , submap, reset
+        bind=, c     , exec  , discordcanary
+        bind=, c     , submap, reset
         bind=, escape, submap, reset
       submap=reset
 
@@ -301,6 +321,17 @@ in {
         bind=, b     , submap, reset
         bind=, f     , exec  , firefox
         bind=, f     , submap, reset
+        bind=, v     , exec  , vivaldi
+        bind=, v     , submap, reset
+        bind=, escape, submap, reset
+      submap=reset
+
+      bind=$mod, q, submap, power
+      submap=power
+        bind=, s     , exec  , poweroff
+        bind=, s     , submap, reset
+        bind=, r     , exec  , reboot
+        bind=, r     , submap, reset
         bind=, escape, submap, reset
       submap=reset
     '';

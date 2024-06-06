@@ -63,7 +63,7 @@
         expansion = "vim $FLAKE/home-manager/%";
       };
       vf = "vim $FLAKE/flake.nix";
-      vc = "vim $FLAKE/home-manager/home.nix";
+      vh = "vim $FLAKE/home-manager/home.nix";
       vcb = "vim $FLAKE/home-manager/btop.nix";
       vcv = "vim $FLAKE/home-manager/nixvim.nix";
       vcc = "vim $FLAKE/home-manager/vscode.nix";
@@ -76,6 +76,8 @@
       vct = "vim $FLAKE/home-manager/fastfetch/fastfetch.nix";
       vco = "vim $FLAKE/home-manager/foot.nix";
       vcy = "vim $FLAKE/home-manager/yazi/yazi.nix";
+      vcyi = "vim $FLAKE/home-manager/yazi/init.lua";
+      vcyt = "vim $FLAKE/home-manager/yazi/theme.toml";
       vch = "vim $FLAKE/home-manager/hypr/hyprland/hyprland.nix";
       vchc = "vim $FLAKE/home-manager/hypr/hyprcursor/hyprcursor.nix";
       vchse = "vim $FLAKE/home-manager/hypr/hyprland/scripts/exec-once.nix";
@@ -87,19 +89,21 @@
       vcw = "vim $FLAKE/home-manager/waybar/waybar.nix";
       vcws = "vim $FLAKE/home-manager/waybar/style.css";
 
-      vn = "vim $FLAKE/nixos/configuration.nix";
-      vh = "vim $FLAKE/nixos/hardware-configuration.nix";
+      vc = "vim $FLAKE/nixos/configuration.nix";
+      vw = "vim $FLAKE/nixos/hardware-configuration.nix";
 
-      vcH = "vim $FLAKE/home-manager/home.nix && home-manager-switch-flake";
-      vnW = "vim $FLAKE/nixos/configuration.nix && nixos-rebuild-flake switch";
-      vnT = "vim $FLAKE/nixos/configuration.nix && nixos-rebuild-flake test";
-      vhT = "vim $FLAKE/nixos/hardware-configuration.nix && nixos-rebuild-flake test";
+      vhH = "vim $FLAKE/home-manager/home.nix && home-manager-switch-flake";
+      vcW = "vim $FLAKE/nixos/configuration.nix && nixos-rebuild-flake switch";
+      vcT = "vim $FLAKE/nixos/configuration.nix && nixos-rebuild-flake test";
+      vwT = "vim $FLAKE/nixos/hardware-configuration.nix && nixos-rebuild-flake test";
 
-      w = "nixos-rebuild-flake switch";
-      t = "nixos-rebuild-flake test";
-      b = "nixos-rebuild-flake boot";
+      cs = "nixos-rebuild-flake switch";
+      ct = "nixos-rebuild-flake test";
+      cb = "nixos-rebuild-flake boot";
       u = "nix-flake-update";
       h = "home-manager-switch-flake";
+      c = "nh clean all -k 3";
+      o = "nix store optimise";
 
       p = "nh search";
       n = "nix-shell --run fish";
@@ -110,6 +114,12 @@
       mh = "man home-configuration.nix";
       mc = "man configuration.nix";
       mn = "man nixvim";
+
+      ds = "devenv shell";
+      dp = "devenv up";
+
+      w = "wget";
+      r = "rg";
 
       ":q" = "exit";
       ":wq" = "exit";

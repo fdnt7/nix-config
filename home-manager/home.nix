@@ -14,6 +14,8 @@
     alejandra
 
     discord
+    discord-canary
+    discord-screenaudio
     vesktop
 
     grim
@@ -55,10 +57,13 @@
     swww
     kitty-img
     brave
+    vivaldi
     zed-editor
     sweet-nova
     bc
     hyprpicker
+    upscayl
+    pinta
   ];
 in {
   # You can import other home-manager modules here
@@ -92,6 +97,7 @@ in {
     ./htop.nix
     ./mpv.nix
     ./wezterm.nix
+    ./obs.nix
     ./yazi/yazi.nix
     ./fastfetch/fastfetch.nix
     ./waybar/waybar.nix
@@ -142,7 +148,7 @@ in {
         (import ../scripts/nix-flake-update.nix {inherit pkgs config;})
         (import ../scripts/nixos-rebuild-flake.nix {inherit pkgs config;})
 
-        inputs.muse-sounds-manager.packages.x86_64-linux.muse-sounds-manager
+        inputs.muse-sounds-manager.packages.${pkgs.system}.muse-sounds-manager
       ]
       ++ genericPackages;
   };
@@ -156,11 +162,12 @@ in {
   services = {
     playerctld.enable = false;
     swayosd.enable = true;
-    network-manager-applet.enable = true;
+    network-manager-applet.enable = false;
     gpg-agent = {
       enable = true;
       enableFishIntegration = true;
-      pinentryPackage = pkgs.pinentry-curses;
+      pinentryPackage = pkgs.pinentry-qt;
     };
+    ssh-agent.enable = true;
   };
 }

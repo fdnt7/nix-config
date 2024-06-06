@@ -1,11 +1,16 @@
-{...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
   programs.hyprlock = {
     enable = true;
+    package = inputs.hyprlock.packages.${pkgs.system}.default;
     settings = {
       background = [
         {
           monitor = "";
-          path = "$XDG_WALLPAPERS_DIR/Pixel/1138740.png";
+          path = "$XDG_STATE_HOME/hyprlock-background";
           blur_passes = 1;
           blur_size = 8;
           brightness = 0.5;
@@ -33,7 +38,7 @@
           font_size = 32;
           font_family = "JetBrainsMono Nerd Font";
 
-          position = "-32, 16";
+          position = "-32, 72";
           halign = "right";
           valign = "bottom";
         }

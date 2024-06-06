@@ -75,7 +75,10 @@
     '';
   };
 
-  networking.hostName = "cuties-only";
+  networking = {
+    hostName = "cuties-only";
+    #nameservers = ["94.140.14.14" "1.1.1.1" "9.9.9.9"];
+  };
 
   users.users = {
     fdnt = {
@@ -116,6 +119,14 @@
         efiSupport = true;
         useOSProber = true;
       };
+    };
+    binfmt.registrations.appimage = {
+      wrapInterpreterInShell = false;
+      interpreter = "${pkgs.appimage-run}/bin/appimage-run";
+      recognitionType = "magic";
+      offset = 0;
+      mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
+      magicOrExtension = ''\x7fELF....AI\x02'';
     };
   };
   networking.networkmanager.enable = true;

@@ -86,3 +86,11 @@ function Header:render(area)
     ui.Paragraph(area, { right }):align(ui.Paragraph.RIGHT),
   }
 end
+
+local old_file_icon = File.icon
+function File:icon(file)
+  if file.url == Url(os.getenv("HOME")) then
+    return { ui.Span("  ") }
+  end
+  return old_file_icon(self, file)
+end
