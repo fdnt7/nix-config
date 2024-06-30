@@ -2,6 +2,7 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 {
+  inputs,
   config,
   lib,
   pkgs,
@@ -10,6 +11,10 @@
 }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
+
+    # If you want to use modules from other flakes (such as nixos-hardware):
+    inputs.hardware.nixosModules.common-cpu-amd
+    inputs.hardware.nixosModules.common-pc-laptop-ssd
   ];
 
   boot = {
@@ -72,7 +77,6 @@
     };
     opengl = {
       enable = true;
-      driSupport = true;
       driSupport32Bit = true;
     };
   };

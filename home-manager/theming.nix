@@ -7,6 +7,14 @@
   imports = [inputs.catppuccin.homeManagerModules.catppuccin];
   catppuccin.flavor = "mocha";
 
+  xdg = {
+    configFile = {
+      "Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini {}).generate "kvantum.kvconfig" {
+        General.theme = "Sweet";
+      };
+    };
+  };
+
   home.pointerCursor = {
     gtk.enable = true;
     # x11.enable = true;

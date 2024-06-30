@@ -1,8 +1,23 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
+  nixpkgs.overlays = [
+    inputs.nix-your-shell.overlays.default
+  ];
+
+  home.packages = [
+    pkgs.nix-your-shell
+  ];
+
   programs.fish = {
     enable = true;
     catppuccin.enable = true;
-    interactiveShellInit = "fastfetch --config small";
+    interactiveShellInit = ''
+      fastfetch --config small
+      nix-your-shell fish | source
+    '';
     shellAbbrs = {
       l = "yy";
       s = "sudo";
@@ -12,12 +27,14 @@
       pg = "psql";
       ht = "htop";
       bt = "btop";
+      co = "code";
       pk = "pkill";
       swi = "swww img";
       hpc = "hyprctl clients";
 
       cg = "cargo";
       cgc = "cargo check";
+      cgcl = "cargo clippy";
       cgl = "cargo clean";
       cgf = "cargo fmt";
       cgr = "cargo run";
@@ -64,30 +81,30 @@
       };
       vf = "vim $FLAKE/flake.nix";
       vh = "vim $FLAKE/home-manager/home.nix";
-      vcb = "vim $FLAKE/home-manager/btop.nix";
-      vcv = "vim $FLAKE/home-manager/nixvim.nix";
-      vcc = "vim $FLAKE/home-manager/vscode.nix";
-      vcf = "vim $FLAKE/home-manager/fish.nix";
-      vcg = "vim $FLAKE/home-manager/git.nix";
-      vck = "vim $FLAKE/home-manager/kitty.nix";
-      vca = "vim $FLAKE/home-manager/alacritty.nix";
-      vcs = "vim $FLAKE/home-manager/starship.nix";
       vcx = "vim $FLAKE/home-manager/xdg.nix";
-      vct = "vim $FLAKE/home-manager/fastfetch/fastfetch.nix";
-      vco = "vim $FLAKE/home-manager/foot.nix";
-      vcy = "vim $FLAKE/home-manager/yazi/yazi.nix";
-      vcyi = "vim $FLAKE/home-manager/yazi/init.lua";
-      vcyt = "vim $FLAKE/home-manager/yazi/theme.toml";
-      vch = "vim $FLAKE/home-manager/hypr/hyprland/hyprland.nix";
-      vchc = "vim $FLAKE/home-manager/hypr/hyprcursor/hyprcursor.nix";
-      vchse = "vim $FLAKE/home-manager/hypr/hyprland/scripts/exec-once.nix";
-      vchi = "vim $FLAKE/home-manager/hypr/hypridle/hypridle.nix";
-      vchl = "vim $FLAKE/home-manager/hypr/hyprlock/hyprlock.nix";
-      vcl = "vim $FLAKE/home-manager/lf/lf.nix";
-      vclc = "vim $FLAKE/home-manager/lf/colours";
-      vcli = "vim $FLAKE/home-manager/lf/icons";
-      vcw = "vim $FLAKE/home-manager/waybar/waybar.nix";
-      vcws = "vim $FLAKE/home-manager/waybar/style.css";
+      vcb = "vim $FLAKE/home-manager/programs/btop.nix";
+      vcv = "vim $FLAKE/home-manager/programs/nixvim.nix";
+      vcc = "vim $FLAKE/home-manager/programs/vscode.nix";
+      vcf = "vim $FLAKE/home-manager/programs/fish.nix";
+      vcg = "vim $FLAKE/home-manager/programs/git.nix";
+      vck = "vim $FLAKE/home-manager/programs/kitty.nix";
+      vca = "vim $FLAKE/home-manager/programs/alacritty.nix";
+      vcs = "vim $FLAKE/home-manager/programs/starship.nix";
+      vct = "vim $FLAKE/home-manager/programs/fastfetch/fastfetch.nix";
+      vco = "vim $FLAKE/home-manager/programs/foot.nix";
+      vcy = "vim $FLAKE/home-manager/programs/yazi/yazi.nix";
+      vcyi = "vim $FLAKE/home-manager/programs/yazi/init.lua";
+      vcyt = "vim $FLAKE/home-manager/programs/yazi/theme.toml";
+      vch = "vim $FLAKE/home-manager/programs/hypr/hyprland/hyprland.nix";
+      vchc = "vim $FLAKE/home-manager/programs/hypr/hyprcursor/hyprcursor.nix";
+      vchse = "vim $FLAKE/home-manager/programs/hypr/hyprland/scripts/exec-once.nix";
+      vchi = "vim $FLAKE/home-manager/programs/hypr/hypridle/hypridle.nix";
+      vchl = "vim $FLAKE/home-manager/programs/hypr/hyprlock/hyprlock.nix";
+      vcl = "vim $FLAKE/home-manager/programs/lf/lf.nix";
+      vclc = "vim $FLAKE/home-manager/programs/lf/colours";
+      vcli = "vim $FLAKE/home-manager/programs/lf/icons";
+      vcw = "vim $FLAKE/home-manager/programs/waybar/waybar.nix";
+      vcws = "vim $FLAKE/home-manager/programs/waybar/style.css";
 
       vc = "vim $FLAKE/nixos/configuration.nix";
       vw = "vim $FLAKE/nixos/hardware-configuration.nix";
@@ -106,9 +123,11 @@
       o = "nix store optimise";
 
       p = "nh search";
-      n = "nix-shell --run fish";
-      np = "nix-shell --run fish -p";
+      n = "nix-shell";
+      np = "nix-shell -p";
       nd = "nix develop";
+      ndi = "nix develop --impure";
+      nfu = "nix flake update";
 
       m = "man";
       mh = "man home-configuration.nix";
@@ -120,6 +139,17 @@
 
       w = "wget";
       r = "rg";
+      t = "time";
+
+      g = "git";
+      gm = "git merge";
+      gp = "git push";
+      gr = "git reset";
+      gc = "git commit";
+      gl = "git log";
+      gd = "git diff";
+      gs = "git status";
+      gb = "git branch";
 
       ":q" = "exit";
       ":wq" = "exit";

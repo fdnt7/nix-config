@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{config, ...}: {
   xdg = {
     userDirs = {
       enable = true;
@@ -13,11 +9,6 @@
         XDG_APPLICATIONS_DIR = "${config.home.homeDirectory}/Applications";
         XDG_SCREENSHOTS_DIR = "${config.home.homeDirectory}/Pictures/Screenshots";
         XDG_WALLPAPERS_DIR = "${config.home.homeDirectory}/Pictures/Wallpapers";
-      };
-    };
-    configFile = {
-      "Kvantum/kvantum.kvconfig".source = (pkgs.formats.ini {}).generate "kvantum.kvconfig" {
-        General.theme = "Sweet";
       };
     };
     mimeApps = {

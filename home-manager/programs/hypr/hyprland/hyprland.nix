@@ -73,11 +73,11 @@ in {
           enabled = true;
           font_family = "JetBrainsMono Nerd Font";
           font_size = 9;
-          height = 12;
-          "col.active" = "rgba(855b4088)";
-          "col.inactive" = "rgba(3d2d1744)";
-          "col.locked_active" = "rgba(f57d9588)";
-          "col.locked_inactive" = "rgba(40162244)";
+          height = 15;
+          "col.active" = "rgb(3d2d17)";
+          "col.inactive" = "rgb(000000)";
+          "col.locked_active" = "rgb(401622)";
+          "col.locked_inactive" = "rgb(000000)";
         };
       };
 
@@ -141,6 +141,7 @@ in {
         "float, class:^(jamesdsp)$"
         "float, class:^(pavucontrol)$"
         "float, class:^(mpv)$"
+        "float, class:^(nm-connection-editor)$"
 
         "noblur, class:^(Xdg-desktop-portal-gtk)$"
         "noblur, class:^(MuseScore4)$"
@@ -224,24 +225,43 @@ in {
           "$mod, q, exec,"
           "$mod SHIFT, q, exit"
           "$mod, w, killactive"
+          "$mod, e, swapnext"
+          "$mod SHIFT, e, swapnext, prev"
           "$mod, r, exec, rofi -show run -show-icons"
           "$mod, t, pseudo"
+          "$mod           , y, cyclenext, tiled"
+          "$mod SHIFT     , y, cyclenext, prev tiled"
+          "$mod CTRL      , y, cyclenext, floating"
+          "$mod CTRL SHIFT, y, cyclenext, floating"
+          "$mod, u, moveoutofgroup"
           "$mod, i, pin"
           "$mod, o, toggleopaque"
           "$mod, bracketleft , alterzorder, bottom"
           "$mod, bracketright, alterzorder, top"
+
           "$mod, a, exec, rofi -show drun -show-icons"
           "$mod, s, togglesplit"
           "$mod, f, togglefloating"
           "$mod SHIFT, f, fullscreen"
+          "$mod CTRL SHIFT, f, fakefullscreen"
           "$mod, g, togglegroup"
           "$mod SHIFT, g, lockactivegroup, toggle"
           "$mod, h, movefocus, l"
           "$mod, j, movefocus, d"
           "$mod, k, movefocus, u"
           "$mod, l, movefocus, r"
-          "$mod SHIFT, l, exec, lock"
+          "$mod SHIFT, h, swapwindow, l"
+          "$mod SHIFT, j, swapwindow, d"
+          "$mod SHIFT, k, swapwindow, u"
+          "$mod SHIFT, l, swapwindow, r"
+          "$mod CTRL SHIFT, h, moveintogroup, l"
+          "$mod CTRL SHIFT, j, moveintogroup, d"
+          "$mod CTRL SHIFT, k, moveintogroup, u"
+          "$mod CTRL SHIFT, l, moveintogroup, r"
+          "$mod, semicolon, exec, lock"
           "$mod CTRL, s, exec, swww-next"
+
+          "$mod, c, centerwindow"
 
           "$mod ALT, s, exec, spotify"
           "$mod ALT, f, exec, dolphin"
@@ -257,14 +277,18 @@ in {
           "$mod, mouse_down, workspace, e+1"
           "$mod, mouse_up, workspace, e-1"
 
-          "$mod, $sws_1, togglespecialworkspace, scratch"
-          "$mod SHIFT, $sws_1, movetoworkspace, special:scratch"
-          "$mod, $sws_2, togglespecialworkspace, minimised"
-          "$mod SHIFT, $sws_2, movetoworkspace, special:minimised"
-          "$mod, $sws_3, togglespecialworkspace, music"
-          "$mod SHIFT, $sws_3, movetoworkspace, special:music"
-          "$mod, $sws_4, togglespecialworkspace, chat"
-          "$mod SHIFT, $sws_4, movetoworkspace, special:chat"
+          "$mod      , $sws_1, togglespecialworkspace, scratch"
+          "$mod CTRL , $sws_1, movetoworkspace       , special:scratch"
+          "$mod SHIFT, $sws_1, movetoworkspacesilent, special:scratch"
+          "$mod      , $sws_2, togglespecialworkspace, minimised"
+          "$mod CTRL , $sws_2, movetoworkspace       , special:minimised"
+          "$mod SHIFT, $sws_2, movetoworkspacesilent, special:minimised"
+          "$mod      , $sws_3, togglespecialworkspace, music"
+          "$mod CTRL , $sws_3, movetoworkspace       , special:music"
+          "$mod SHIFT, $sws_3, movetoworkspacesilent, special:music"
+          "$mod      , $sws_4, togglespecialworkspace, chat"
+          "$mod CTRL , $sws_4, movetoworkspace       , special:chat"
+          "$mod SHIFT, $sws_4, movetoworkspacesilent, special:chat"
         ]
         ++ (
           builtins.concatLists (builtins.genList (
@@ -274,8 +298,9 @@ in {
                 in
                   builtins.toString (x + 1 - (c * 10));
               in [
-                "$mod, ${ws}, workspace, ${toString (x + 1)}"
-                "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+                "$mod      , ${ws}, workspace            , ${toString (x + 1)}"
+                "$mod CTRL , ${ws}, movetoworkspace      , ${toString (x + 1)}"
+                "$mod SHIFT, ${ws}, movetoworkspacesilent, ${toString (x + 1)}"
               ]
             )
             10)
@@ -332,6 +357,13 @@ in {
         bind=, s     , submap, reset
         bind=, r     , exec  , reboot
         bind=, r     , submap, reset
+        bind=, escape, submap, reset
+      submap=reset
+
+      bind=$mod, d, submap, develop
+      submap=develop
+        bind=, l     , exec  , nix-develop-lyra
+        bind=, l     , submap, reset
         bind=, escape, submap, reset
       submap=reset
     '';
