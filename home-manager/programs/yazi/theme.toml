@@ -14,6 +14,10 @@ progress_error  = { fg = "red"  , bg = "black" }
 [manager]
 preview_hovered = { reversed = true }
 
+count_copied   = { fg = "black", bg = "green" }
+count_cut      = { fg = "black", bg = "red" }
+count_selected = { fg = "black", bg = "yellow" }
+
 [filetype]
 rules = [
   { mime = "image/*", fg = "magenta"      },
@@ -63,6 +67,8 @@ rules = [
   { name = "*mix.exs"          , fg = "yellow" }, 
   { name = "*bsconfig.json"    , fg = "yellow" }, 
   { name = "*tsconfig.json"    , fg = "yellow" },
+  { name = "*README.md"        , fg = "yellow" },
+  { name = "*flake.nix"        , fg = "yellow" },
   
   { name = "*.{class,o,hi,ko,pyc,elc,zwc,jar}", fg = "lightyellow" },
 
@@ -184,16 +190,16 @@ prepend_files = [
 ]
 
 conds = [
-  { cond = "block"       , text = "", fg = "yellow"     , bold = true },
-  { cond = "char"        , text = "󱊞", fg = "yellow"     , bold = true },
-  { cond = "fifo"        , text = "󰟥", fg = "lightyellow", bold = true },
-  { cond = "link & dir"  , text = "", fg = "lightcyan"  , bold = true },
-  { cond = "link"        , text = "󰌹", fg = "cyan"       , bold = true },
-  { cond = "orphan"      , text = "󰌺", fg = "red"        , bold = true },
-  { cond = "sock"        , text = "󰐧", fg = "magenta"    , bold = true },
-  { cond = "sticky & dir", text = "", fg = "lightblue"  , bold = true },
-  { cond = "sticky"      , text = "󱍤", fg = "lightblue"                },
-  { cond = "dir"         , text = "", fg = "blue"       , bold = true },
-  { cond = "exec"        , text = "", fg = "green"      , bold = true }, 
-  { cond = "!dir"        , text = "󰈔", fg = "white"                    }	
+  { if = "block"       , text = "", fg = "yellow"     , bold = true },
+  { if = "char"        , text = "󱊞", fg = "yellow"     , bold = true },
+  { if = "fifo"        , text = "󰟥", fg = "lightyellow", bold = true },
+  { if = "link & dir"  , text = "", fg = "lightcyan"  , bold = true },
+  { if = "link"        , text = "󰌹", fg = "cyan"       , bold = true },
+  { if = "orphan"      , text = "󰌺", fg = "red"        , bold = true },
+  { if = "sock"        , text = "󰐧", fg = "magenta"    , bold = true },
+  { if = "sticky & dir", text = "", fg = "lightblue"  , bold = true },
+  { if = "sticky"      , text = "󱍤", fg = "lightblue"                },
+  { if = "dir"         , text = "", fg = "blue"       , bold = true },
+  { if = "exec"        , text = "", fg = "green"      , bold = true }, 
+  { if = "!dir"        , text = "󰈔", fg = "white"                    }	
 ]

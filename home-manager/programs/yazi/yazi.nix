@@ -26,8 +26,8 @@
   hexyl_plug = pkgs.fetchFromGitHub {
     owner = "Reledia";
     repo = "hexyl.yazi";
-    rev = "f71d9d936be1bd064f267e0d36550949901719d5";
-    hash = "sha256-JYj8j0MRDoLBzBtMyY4DJkNdzI4h/HIkoRT3s2onDvs=";
+    rev = "64daf93a67d75eff871befe52d9013687171ffad";
+    hash = "sha256-B2L3/Q1g0NOO6XEMIMGBC/wItbNgBVpbaMMhiXOYcrI=";
   };
 
   exifaudio = pkgs.fetchFromGitHub {
