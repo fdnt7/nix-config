@@ -1,7 +1,7 @@
-{...}: {
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
+{pkgs, ...}: {
+  environment.systemPackages = [pkgs.alsa-utils];
 
+  hardware.pulseaudio.enable = false;
   services.pipewire = {
     enable = true;
     alsa.enable = true;

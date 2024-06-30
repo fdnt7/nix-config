@@ -14,10 +14,13 @@
 
     hardware.url = "github:NixOS/nixos-hardware/master";
 
-    spicetify-nix = {
-      url = "github:the-argus/spicetify-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nur.url = "github:nix-community/NUR";
+
+    # spicetify-nix = {
+    #   # url = "github:the-argus/spicetify-nix";
+    #   url = "github:A1ca7raz/spicetify-nix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     nixvim = {
       url = "github:nix-community/nixvim";

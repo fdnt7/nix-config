@@ -14,14 +14,15 @@
       WAKATIME_HOME = "$XDG_CONFIG_HOME/wakatime";
       CARGO_HOME = "$XDG_DATA_HOME/cargo";
       ZDOTDIR = "$XDG_CONFIG_HOME/zsh";
+      _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java";
     };
     variables = {
       EDITOR = "nvim";
     };
     systemPackages = with pkgs; [
       lxqt.lxqt-policykit
-      lf
-      ctpv
+      # lf
+      # ctpv
       starship
       tree
       home-manager

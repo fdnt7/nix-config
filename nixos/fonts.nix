@@ -13,7 +13,7 @@
       noto-fonts-cjk
       twemoji-color-font
       ubuntu_font_family
-      tlwg
+      #tlwg
       (nerdfonts.override {
         fonts = [
           "JetBrainsMono"
@@ -27,8 +27,8 @@
           "Segoe UI Emoji"
           "Twitter Color Emoji"
         ];
-        serif = ["Ubuntu" "Kinnari"];
-        sansSerif = ["Ubuntu" "Garuda"];
+        serif = ["Noto Serif" "Noto Serif Thai"];
+        sansSerif = ["Noto Sans" "Noto Sans Thai"];
         monospace = ["JetBrainsMono Nerd Font" "Tlwg Typewriter"];
       };
     };

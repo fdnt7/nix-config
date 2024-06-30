@@ -36,7 +36,11 @@
       lsp = {
         enable = true;
         servers = {
-          rust-analyzer.enable = true;
+          rust-analyzer = {
+            enable = true;
+            installCargo = false;
+            installRustc = false;
+          };
           nixd.enable = true;
           jsonls.enable = true;
           pyright = {
