@@ -24,7 +24,8 @@
     };
     kernelModules = ["kvm-amd"];
     extraModulePackages = [];
-    kernelPackages = pkgs.linuxPackages_latest;
+    # kernelPackages = pkgs.linuxPackages_latest;
+    kernelPackages = pkgs.linuxPackages_6_9;
   };
 
   fileSystems = {
@@ -75,9 +76,9 @@
       enable = true;
       daemon.enable = true;
     };
-    opengl = {
+    graphics = {
       enable = true;
-      driSupport32Bit = true;
+      enable32Bit = true;
     };
   };
 

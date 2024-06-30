@@ -23,6 +23,7 @@
       s = "sudo";
       f = "fastfetch";
       py = "python";
+      ipy = "ipython";
       rs = "evcxr";
       pg = "psql";
       ht = "htop";
@@ -162,7 +163,6 @@
       fgrep = "fgrep --color=auto";
       man = "batman";
       evcxr = "irust";
-      python = "ipython";
       #psql = "pgcli";
       df = "df -hPT";
       mount = "mount | column -t";
@@ -180,16 +180,6 @@
       wget = "wget -c --hsts-file=$XDG_DATA_HOME/wget-hsts";
     };
     functions = {
-      yy = {
-        body = ''
-          set tmp (mktemp -t "yazi-cwd.XXXXXX")
-          yazi $argv --cwd-file="$tmp"
-          if set cwd (cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
-          	cd -- "$cwd"
-          end
-          rm -f -- "$tmp"
-        '';
-      };
     };
     shellInit = ''
       set fish_greeting

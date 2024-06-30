@@ -19,18 +19,20 @@
     ./nixvim.nix
     ./obs.nix
     ./rofi.nix
-    ./spicetify.nix
+    # ./spicetify.nix
+    ./spotify-adblock.nix
     ./starship.nix
     ./vscode.nix
     ./wezterm.nix
     ./zsh.nix
+    ./nix-index.nix
 
     ./fastfetch/fastfetch.nix
     ./hypr/hypridle/hypridle.nix
     ./hypr/hyprland/hyprland.nix
     ./hypr/hyprlock/hyprlock.nix
     #    ./hypr/hyprcursor/hyprcursor.nix
-    ./lf/lf.nix
+    # ./lf/lf.nix
     ./swaync/swaync.nix
     ./waybar/waybar.nix
     ./yazi/yazi.nix

@@ -159,6 +159,7 @@ dirs = [
   { name = ".SteamCloud"         , text = "", fg = "lightblack" },
   { name = ".vscode"             , text = "󰨞", fg = "lightblack" },
   { name = ".muse-sounds-manager", text = "󰙽", fg = "lightblack" },
+  { name = ".java"		 , text = "", fg = "lightblack" },
 
   { name = ".cargo" , text = "󱣘", fg = "yellow" },
   { name = ".devenv", text = "󱇚", fg = "blue" },

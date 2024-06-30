@@ -3,6 +3,13 @@
   pkgs,
   ...
 }: let
+  plugs = pkgs.fetchFromGitHub {
+    owner = "yazi-rs";
+    repo = "plugins";
+    rev = "3783ea0";
+    hash = "sha256-otOGaTg4DQaTnpezkAVbTq509US/efN0elosUZbzxeU=";
+  };
+
   # starship = pkgs.fetchFromGitHub {
   #   owner = "Rolv-Apneseth";
   #   repo = "starship.yazi";
@@ -44,12 +51,12 @@
     hash = "sha256-J3vR9q4xHjJt56nlfd+c8FrmMVvLO78GiwSNcLkM4OU=";
   };
 
-  torrent-preview = pkgs.fetchFromGitHub {
-    owner = "kirasok";
-    repo = "torrent-preview.yazi";
-    rev = "76970b6f9d6f3031e9cd57c8595a53e9f9f48c18";
-    hash = "sha256-QPdtoCU7CyS7sx1aoGHNHv1NxWMA/SxSuy+2SLDdCeU=";
-  };
+  # torrent-preview = pkgs.fetchFromGitHub {
+  #   owner = "kirasok";
+  #   repo = "torrent-preview.yazi";
+  #   rev = "76970b6f9d6f3031e9cd57c8595a53e9f9f48c18";
+  #   hash = "sha256-QPdtoCU7CyS7sx1aoGHNHv1NxWMA/SxSuy+2SLDdCeU=";
+  # };
 
   mime_plug = pkgs.fetchFromGitHub {
     owner = "DreamMaoMao";
@@ -59,29 +66,92 @@
   };
 in {
   home.packages = with pkgs; [
+    file
+    ffmpegthumbnailer
+    unar
+    jq
+    poppler
+    fzf
+
     glow
     miller
     hexyl
     exiftool
     ouch
-    transmission
+    # transmission
   ];
-  xdg.configFile = {
-    "yazi/init.lua".source = ./init.lua;
-    "yazi/plugins/glow.yazi".source = "${glow_plug}";
-    "yazi/plugins/miller.yazi".source = "${miller_plug}";
-    "yazi/plugins/hexyl.yazi".source = "${hexyl_plug}";
-    "yazi/plugins/exifaudio.yazi".source = "${exifaudio}";
-    "yazi/plugins/ouch.yazi".source = "${ouch_plug}";
-    "yazi/plugins/torrent-preview.yazi".source = "${torrent-preview}";
-    "yazi/plugins/mime.yazi".source = "${mime_plug}";
-    # "yazi/plugins/starship.yazi".source = "${starship}";
-  };
-
   programs.yazi = {
     enable = true;
+    initLua = ./init.lua;
     package = inputs.yazi.packages.${pkgs.system}.default;
     enableFishIntegration = true;
+    plugins = {
+      full-border = "${plugs}/full-border.yazi";
+      chmod = "${plugs}/chmod.yazi";
+      max-preview = "${plugs}/max-preview.yazi";
+      hide-preview = "${plugs}/hide-preview.yazi";
+      smart-filter = "${plugs}/smart-filter.yazi";
+      jump-to-char = "${plugs}/jump-to-char.yazi";
+      diff = "${plugs}/diff.yazi";
+
+      glow = glow_plug;
+      miller = miller_plug;
+      hexyl = hexyl_plug;
+      exifaudio = exifaudio;
+      ouch = ouch_plug;
+      mime = mime_plug;
+    };
+    keymap = {
+      manager.prepend_keymap = [
+        {
+          on = ["<C-s>"];
+          run = ''shell "$SHELL" --block --confirm'';
+          desc = "Open shell here";
+        }
+
+        {
+          on = ["y"];
+          run = [''shell 'for path in "$@"; do echo "file://$path"; done | wl-copy -t text/uri-list' --confirm'' "yank"];
+        }
+
+        # Plugins
+        {
+          on = ["c" "m"];
+          run = "plugin chmod";
+          desc = "Chmod on selected files";
+        }
+
+        {
+          on = "T";
+          run = "plugin --sync max-preview";
+          desc = "Maximize or restore preview";
+        }
+
+        {
+          on = "Y";
+          run = "plugin --sync hide-preview";
+          desc = "Hide or show preview";
+        }
+
+        {
+          on = "F";
+          run = "plugin smart-filter";
+          desc = "Smart filter";
+        }
+
+        {
+          on = "f";
+          run = "plugin jump-to-char";
+          desc = "Jump to char";
+        }
+
+        {
+          on = "<C-d>";
+          run = "plugin diff";
+          desc = "Diff the selected with the hovered file";
+        }
+      ];
+    };
     settings = {
       manager = {
         show_symlink = false;
