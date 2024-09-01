@@ -31,10 +31,11 @@
   };
 
   hexyl_plug = pkgs.fetchFromGitHub {
-    owner = "Reledia";
+    # owner = "Reledia";
+    owner = "fdnt7";
     repo = "hexyl.yazi";
-    rev = "64daf93a67d75eff871befe52d9013687171ffad";
-    hash = "sha256-B2L3/Q1g0NOO6XEMIMGBC/wItbNgBVpbaMMhiXOYcrI=";
+    rev = "98ef41d1efd832de3037cb00836d3da3149ea6e5";
+    hash = "sha256-A3zWyq4kr/EFXRupoU++y7qOW23ETICA2QgRzPQPWog=";
   };
 
   exifaudio = pkgs.fetchFromGitHub {

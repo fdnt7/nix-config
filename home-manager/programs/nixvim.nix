@@ -42,14 +42,12 @@
             installRustc = false;
           };
           nixd.enable = true;
-          jsonls.enable = true;
+          #jsonls.enable = true;
           pyright = {
             enable = true;
           };
 
-          cssls = {
-            enable = true;
-          };
+          #cssls.enable = true;
 
           lua-ls.enable = true;
 

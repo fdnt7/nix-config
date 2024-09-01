@@ -8,7 +8,7 @@ in
   pkgs.writeShellScriptBin "nix-flake-update" ''
     (cd ${FLAKE_DIR} &&
     nix flake update &&
-    ${GIT} --no-pager diff --minimal &&
+    ${GIT} diff --minimal &&
     ${GIT} add flake.lock &&
     ${GIT} commit -m update)
   ''

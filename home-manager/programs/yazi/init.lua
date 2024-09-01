@@ -34,3 +34,11 @@ Header:children_add(function()
 	end
 	return ui.Span(ya.user_name() .. "@" .. ya.host_name() .. ":"):fg("blue")
 end, 500, Header.LEFT)
+
+local old_entity_icon = Entity.icon
+function Entity:icon()
+  if self._file.url == Url(os.getenv("HOME")) then
+    return ui.Line(" 󰋕 ")
+  end
+  return old_entity_icon(self)
+end

@@ -10,7 +10,7 @@ in
   pkgs.writeShellScriptBin "home-manager-switch-flake" ''
     (cd ${FLAKE_DIR} &&
     ${ALEJANDRA} . &&
-    ${GIT} --no-pager diff --minimal &&
+    ${GIT} diff --minimal &&
     ${GIT} add . &&
     ${NH} home switch &&
     ${GIT} commit -m "home: $(readlink ${config.xdg.stateHome}/nix/profiles/home-manager | cut -d "-" -f 3)")

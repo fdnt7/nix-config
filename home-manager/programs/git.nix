@@ -7,5 +7,6 @@
       key = "F912A6385DDD1E38";
       signByDefault = true;
     };
+    delta.enable = true;
   };
 }

@@ -9,5 +9,6 @@
       };
     };
     printing.enable = true;
+    cloudflare-warp.enable = true;
   };
 }
