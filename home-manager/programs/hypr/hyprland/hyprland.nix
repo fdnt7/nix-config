@@ -44,7 +44,7 @@ in {
         border_size = 1;
         "col.active_border" = "rgb(AEFFFC) rgb(C4A3EF) rgb(F1C3ED) 30deg";
         layout = "dwindle";
-        allow_tearing = true;
+        #allow_tearing = true;
       };
 
       decoration = {
@@ -127,6 +127,7 @@ in {
         "workspace 1, class:^(firefox)$"
         "workspace 1, class:^(Vivaldi-stable)$"
         "workspace 3, class:^(Code)$"
+        "workspace 3, class:^(dev.zed.Zed)$"
         "workspace 5, class:^(Gimp)$"
         "workspace 5, class:^(krita)$"
         "workspace 6, class:^(MuseScore4)$"
@@ -145,6 +146,7 @@ in {
 
         "noblur, class:^(Xdg-desktop-portal-gtk)$"
         "noblur, class:^(MuseScore4)$"
+        "noblur, class:^()$, title:^()$"
 
         "noborder, class:^(Xdg-desktop-portal-gtk)$"
 
@@ -235,7 +237,6 @@ in {
           "$mod CTRL SHIFT, y, cyclenext, floating"
           "$mod, u, moveoutofgroup"
           "$mod, i, pin"
-          "$mod, o, toggleopaque"
           "$mod, bracketleft , alterzorder, bottom"
           "$mod, bracketright, alterzorder, top"
 
@@ -243,7 +244,6 @@ in {
           "$mod, s, togglesplit"
           "$mod, f, togglefloating"
           "$mod SHIFT, f, fullscreen"
-          "$mod CTRL SHIFT, f, fakefullscreen"
           "$mod, g, togglegroup"
           "$mod SHIFT, g, lockactivegroup, toggle"
           "$mod, h, movefocus, l"

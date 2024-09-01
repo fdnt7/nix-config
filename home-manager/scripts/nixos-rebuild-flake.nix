@@ -11,7 +11,7 @@ in
   pkgs.writeShellScriptBin "nixos-rebuild-flake" ''
     (cd ${FLAKE_DIR} &&
     ${ALEJANDRA} . &&
-    ${GIT} --no-pager diff --minimal &&
+    ${GIT} diff --minimal &&
     ${GIT} add . &&
     ${NH} os $1 &&
     ${GIT} commit -m "os: $(nixos-rebuild list-generations | ${RG} current)")

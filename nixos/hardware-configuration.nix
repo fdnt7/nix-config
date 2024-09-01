@@ -13,8 +13,8 @@
     (modulesPath + "/installer/scan/not-detected.nix")
 
     # If you want to use modules from other flakes (such as nixos-hardware):
-    inputs.hardware.nixosModules.common-cpu-amd
-    inputs.hardware.nixosModules.common-pc-laptop-ssd
+    # inputs.hardware.nixosModules.common-cpu-amd
+    # inputs.hardware.nixosModules.common-pc-laptop-ssd
   ];
 
   boot = {
@@ -25,7 +25,7 @@
     kernelModules = ["kvm-amd"];
     extraModulePackages = [];
     # kernelPackages = pkgs.linuxPackages_latest;
-    kernelPackages = pkgs.linuxPackages_6_9;
+    kernelPackages = pkgs.linuxPackages_6_6;
   };
 
   fileSystems = {
@@ -47,7 +47,7 @@
     };
 
     "/mnt/win" = {
-      device = "/dev/disk/by-uuid/6E22B4D422B4A30F";
+      device = "/dev/disk/by-uuid/5E723E82723E5EC9";
       fsType = "ntfs-3g";
       options = ["rw" "uid=1000" "fmask=117" "dmask=007"];
     };
