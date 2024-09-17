@@ -34,11 +34,10 @@
     audacity
 
     xdg-ninja
-    python311Packages.ipython
-    colordiff
+    #python311Packages.ipython
+    #python3
     ripgrep
     du-dust
-    python3
     brightnessctl
     zoxide
     wget
@@ -51,6 +50,7 @@
     brave
     vivaldi
     zed-editor
+    #(zed-editor.fhsWithPackages (pkgs: [pkgs.zlib pkgs.pkg-config pkgs.openssl]))
     sweet-nova
     bc
     hyprpicker

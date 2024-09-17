@@ -133,6 +133,7 @@ in {
         "workspace 6, class:^(MuseScore4)$"
         "workspace 6, class:^(Muse Sounds Manager)$"
         "workspace 8, class:^(steam_app_)(\\d+)$"
+        "workspace 8, class:^(osu!)$"
 
         "float, class:^(oculante)$"
         "float, class:^(pix)$"
