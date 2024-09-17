@@ -1,6 +1,10 @@
 {...}: {
   programs = {
-    hyprland.enable = true;
+    hyprland = {
+      enable = true;
+      #package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      #portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    };
     fish.enable = true;
     git.enable = true;
     neovim.enable = true;

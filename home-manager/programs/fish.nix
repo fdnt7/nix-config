@@ -15,13 +15,17 @@
     enable = true;
     catppuccin.enable = true;
     interactiveShellInit = ''
-      fastfetch --config small
-      nix-your-shell fish | source
+           fastfetch --config small
+           nix-your-shell fish | source
+           if test -z "$IN_NIX_SHELL"
+      abbr f fastfetch
+           else
+      abbr f fastfetch --config kangel
+           end
     '';
     shellAbbrs = {
       l = "yy";
       s = "sudo";
-      f = "fastfetch";
       py = "python";
       ipy = "ipython";
       rs = "evcxr";
@@ -34,11 +38,15 @@
       hpc = "hyprctl clients";
 
       cg = "cargo";
+      cga = "cargo add";
       cgc = "cargo check";
       cgcl = "cargo clippy";
       cgl = "cargo clean";
       cgf = "cargo fmt";
       cgr = "cargo run";
+      cgu = "cargo update";
+      cguu = "cargo upgrade";
+      cgd = "cargo doc";
       cgb = "cargo build";
       cgbr = "cargo build --release";
       cgt = "cargo test";
@@ -145,12 +153,18 @@
       g = "git";
       gm = "git merge";
       gp = "git push";
-      gr = "git reset";
+      gpl = "git pull";
+      gr = "git revert";
+      gre = "git remote";
+      grr = "git reset";
       gc = "git commit";
+      gch = "git checkout";
       gl = "git log";
       gd = "git diff";
       gs = "git status";
       gb = "git branch";
+      ga = "git add";
+      "ga." = "git add .";
 
       ":q" = "exit";
       ":wq" = "exit";
@@ -158,7 +172,6 @@
     shellAliases = {
       ls = "eza -lah --icons --color=always --git --group-directories-first --color-scale";
 
-      diff = "colordiff";
       egrep = "egrep --color=auto";
       fgrep = "fgrep --color=auto";
       man = "batman";
