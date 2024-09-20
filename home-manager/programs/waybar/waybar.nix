@@ -6,7 +6,7 @@
   home.packages = [pkgs.libappindicator pkgs.wttrbar];
   programs.waybar = {
     enable = true;
-    package = inputs.waybar.packages.${pkgs.system}.default;
+    #package = inputs.waybar.packages.${pkgs.system}.default;
     settings = {
       main = {
         layer = "top";

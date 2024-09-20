@@ -23,6 +23,6 @@
       color13 = "#FFD6FF";
       color14 = "#B5FFF6";
     };
-    theme = "Catppuccin-Mocha";
+    themeFile = "Catppuccin-Mocha";
   };
 }

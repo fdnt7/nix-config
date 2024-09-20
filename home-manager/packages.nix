@@ -57,7 +57,6 @@
     upscayl
     pinta
     networkmanagerapplet
-
-    #inputs.muse-sounds-manager.packages.${pkgs.system}.muse-sounds-manager
+    muse-sounds-manager
   ];
 }
