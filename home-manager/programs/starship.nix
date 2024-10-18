@@ -7,7 +7,7 @@
       continuation_prompt = "";
 
       format = "$username$hostname$sudo$cmd_duration$status$shell$character ";
-      right_format = "$nix_shell$rust$package$git_status$git_branch$directory$time";
+      right_format = "$nix_shell$rust$c$python$lua$package$git_status$git_branch$directory$time";
 
       hostname = {
         disabled = true;
@@ -119,6 +119,21 @@
       rust = {
         format = "[$symbol($version)]($style) ";
         symbol = " ";
+      };
+
+      c = {
+        format = "[$symbol($version(-$name))]($style) ";
+        symbol = " ";
+      };
+
+      python = {
+        format = "[$symbol$pyenv_prefix($version)(\($virtualenv\))]($style) ";
+        symbol = "󰌠 ";
+      };
+
+      lua = {
+        format = "[$symbol($version)]($style) ";
+        symbol = " ";
       };
 
       nix_shell = {

@@ -6,21 +6,15 @@
   plugs = pkgs.fetchFromGitHub {
     owner = "yazi-rs";
     repo = "plugins";
-    rev = "3783ea0";
-    hash = "sha256-otOGaTg4DQaTnpezkAVbTq509US/efN0elosUZbzxeU=";
+    rev = "4f1d0ae0862f464e08f208f1807fcafcd8778e16";
+    hash = "sha256-+d7D6nq/oOzcsvvH0MHmLUDkxAtand+IXKQ730m4Ifs=";
   };
 
-  # starship = pkgs.fetchFromGitHub {
-  #   owner = "Rolv-Apneseth";
-  #   repo = "starship.yazi";
-  #   rev = "6197e4c";
-  #   hash = "sha256-oHoBq7BESjGeKsaBnDt0TXV78ggGCdYndLpcwwQ8Zts=";
-  # };
   glow_plug = pkgs.fetchFromGitHub {
     owner = "Reledia";
     repo = "glow.yazi";
-    rev = "536185a4e60ac0adc11d238881e78678fdf084ff";
-    hash = "sha256-NcMbYjek99XgWFlebU+8jv338Vk1hm5+oW5gwH+3ZbI=";
+    rev = "f52b3822c98dfa84998cc3140803a0704faa515d";
+    hash = "sha256-bqaFqjlQ/VgMdt2VVjEI8cIkA9THjOZDgNspNicxlbc=";
   };
 
   miller_plug = pkgs.fetchFromGitHub {
@@ -34,15 +28,15 @@
     # owner = "Reledia";
     owner = "fdnt7";
     repo = "hexyl.yazi";
-    rev = "98ef41d1efd832de3037cb00836d3da3149ea6e5";
-    hash = "sha256-A3zWyq4kr/EFXRupoU++y7qOW23ETICA2QgRzPQPWog=";
+    rev = "9bb85fe6cfe7617883d2d9921167fab323b2ea21";
+    hash = "sha256-rseEV3+fyaSCz5e8msXLyyHujak3cRUUwqGuyaO8QGE=";
   };
 
   exifaudio = pkgs.fetchFromGitHub {
     owner = "Sonico98";
     repo = "exifaudio.yazi";
-    rev = "94329ead8b3a6d3faa2d4975930a3d0378980c7a";
-    hash = "sha256-jz6fVtcLHw9lsxFWECbuxE7tEBttE08Fl4oJSTifaEc=";
+    rev = "d75db468e89ab379992c21cb745ca7920d5f409f";
+    hash = "sha256-ECo0rTDF+oqRtRsqrhBuVdZtEpJShRk/XXhPwEy4cfE=";
   };
 
   ouch_plug = pkgs.fetchFromGitHub {
@@ -52,19 +46,18 @@
     hash = "sha256-J3vR9q4xHjJt56nlfd+c8FrmMVvLO78GiwSNcLkM4OU=";
   };
 
-  # torrent-preview = pkgs.fetchFromGitHub {
-  #   owner = "kirasok";
-  #   repo = "torrent-preview.yazi";
-  #   rev = "76970b6f9d6f3031e9cd57c8595a53e9f9f48c18";
-  #   hash = "sha256-QPdtoCU7CyS7sx1aoGHNHv1NxWMA/SxSuy+2SLDdCeU=";
-  # };
-
-  mime_plug = pkgs.fetchFromGitHub {
-    owner = "DreamMaoMao";
-    repo = "mime.yazi";
-    rev = "49303d8fb60f61e91dfe355febe59332e813a6da";
-    hash = "sha256-MEfD9mE3PPUmw5HsSRaCWbknc/wYGwHRyHV+0S1ux5E=";
+  torrent-preview_plug = pkgs.fetchFromGitHub {
+    owner = "kirasok";
+    repo = "torrent-preview.yazi";
+    rev = "76970b6f9d6f3031e9cd57c8595a53e9f9f48c18";
+    hash = "sha256-QPdtoCU7CyS7sx1aoGHNHv1NxWMA/SxSuy+2SLDdCeU=";
   };
+  #mediainfo_plug = pkgs.fetchFromGitHub {
+  #  owner = "Ape";
+  #  repo = "mediainfo.yazi";
+  #  rev = "c69314e80f5b45fe87a0e06a10d064ed54110439";
+  #  hash = "sha256-8xdBPdKSiwB7iRU8DJdTHY+BjfR9D3FtyVtDL9tNiy4=";
+  #};
 in {
   home.packages = with pkgs; [
     file
@@ -79,7 +72,9 @@ in {
     hexyl
     exiftool
     ouch
-    # transmission
+    transmission_4
+    #mediainfo
+    ffmpeg
   ];
   programs.yazi = {
     enable = true;
@@ -94,13 +89,15 @@ in {
       smart-filter = "${plugs}/smart-filter.yazi";
       jump-to-char = "${plugs}/jump-to-char.yazi";
       diff = "${plugs}/diff.yazi";
+      git = "${plugs}/git.yazi";
 
       glow = glow_plug;
       miller = miller_plug;
       hexyl = hexyl_plug;
       exifaudio = exifaudio;
       ouch = ouch_plug;
-      mime = mime_plug;
+      torrent-preview = torrent-preview_plug;
+      #mediainfo = mediainfo_plug;
     };
     keymap = {
       manager.prepend_keymap = [
@@ -203,11 +200,34 @@ in {
             mime = "application/x-bittorrent";
             run = "torrent-preview";
           }
+
+          #{
+          #  mime = "{image,audio,video}/*";
+          #  run = "mediainfo";
+          #}
+          #{
+          #  mime = "application/x-subrip";
+          #  run = "mediainfo";
+          #}
         ];
         append_previewers = [
           {
             name = "*";
             run = "hexyl";
+          }
+        ];
+
+        prepend_fetchers = [
+          {
+            id = "git";
+            name = "*";
+            run = "git";
+          }
+
+          {
+            id = "git";
+            name = "*/";
+            run = "git";
           }
         ];
       };
