@@ -48,7 +48,6 @@
     swww
     kitty-img
     brave
-    vivaldi
     zed-editor
     #(zed-editor.fhsWithPackages (pkgs: [pkgs.zlib pkgs.pkg-config pkgs.openssl]))
     sweet-nova

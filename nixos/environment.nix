@@ -31,6 +31,6 @@
       nix-diff
     ];
     pathsToLink = ["/share/zsh"];
-    enableAllTerminfo = true;
+    #enableAllTerminfo = true;
   };
 }

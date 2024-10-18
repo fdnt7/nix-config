@@ -36,7 +36,7 @@
       lsp = {
         enable = true;
         servers = {
-          rust-analyzer = {
+          rust_analyzer = {
             enable = true;
             installCargo = false;
             installRustc = false;
@@ -49,7 +49,7 @@
 
           #cssls.enable = true;
 
-          lua-ls.enable = true;
+          lua_ls.enable = true;
 
           clangd.enable = true;
         };

@@ -36,6 +36,7 @@
       pk = "pkill";
       swi = "swww img";
       hpc = "hyprctl clients";
+      ze = "zeditor";
 
       cg = "cargo";
       cga = "cargo add";
