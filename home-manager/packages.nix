@@ -41,7 +41,7 @@
     brightnessctl
     zoxide
     wget
-    qt5ct
+    libsForQt5.qt5ct
     catppuccin-kvantum
     xwaylandvideobridge
     oculante

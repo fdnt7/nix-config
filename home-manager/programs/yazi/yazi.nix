@@ -42,8 +42,8 @@
   ouch_plug = pkgs.fetchFromGitHub {
     owner = "ndtoan96";
     repo = "ouch.yazi";
-    rev = "694d149be5f96eaa0af68d677c17d11d2017c976";
-    hash = "sha256-J3vR9q4xHjJt56nlfd+c8FrmMVvLO78GiwSNcLkM4OU=";
+    rev = "d13f7c08cdebcfaadf38c3eb9999639ddd89201c";
+    hash = "sha256-Ii0gowsx6fegFNaOtThAbKaKa2WF1uavgzeONRPaQGU=";
   };
 
   torrent-preview_plug = pkgs.fetchFromGitHub {

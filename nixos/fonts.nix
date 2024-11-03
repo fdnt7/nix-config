@@ -10,7 +10,7 @@
       #noto-fonts-color-emoji
 
       noto-fonts
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       twemoji-color-font
       ubuntu_font_family
       #tlwg
