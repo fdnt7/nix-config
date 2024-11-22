@@ -9,6 +9,7 @@ in {
     (import ./scripts/toggle-touchpad.nix {inherit pkgs;})
     (import ./scripts/swww-next.nix {inherit pkgs;})
     (import ./scripts/lock.nix {inherit inputs pkgs;})
+    pkgs.hyprpolkitagent
   ];
   xdg.configFile = {
     #"hypr/hyprland/icons".source = ./icons;
@@ -56,10 +57,13 @@ in {
           special = false;
         };
 
-        drop_shadow = false;
-        shadow_range = 4;
-        shadow_render_power = 3;
-        "col.shadow" = "rgba(1a1a1aee)";
+        shadow = {
+          enabled = false;
+          range = 4;
+          render_power = 3;
+          color = "rgba(1a1a1aee)";
+        };
+
         dim_special = 0.5;
         #inactive_opacity = 0.8;
       };
@@ -100,7 +104,6 @@ in {
       dwindle = {
         pseudotile = true;
         preserve_split = true;
-        no_gaps_when_only = true;
         #special_scale_factor = 0.95;
       };
 
@@ -117,6 +120,11 @@ in {
         name = "asuf1204:00-2808:0202-touchpad";
         enabled = "$LAPTOP_TOUCHPAD_ENABLED";
       };
+
+      workspace = [
+        "w[tv1], gapsout:0, gapsin:0"
+        "f[1], gapsout:0, gapsin:0"
+      ];
 
       windowrulev2 = [
         "suppressevent maximize, class:.*"
@@ -165,6 +173,11 @@ in {
         "workspace special:scratch, class:^(org.wezfurlong.wezterm)$"
         "workspace special:scratch, class:^(foot)$"
         "workspace special:scratch, class:^(kitty)$"
+
+        "bordersize 0, floating:0, onworkspace:w[tv1]"
+        "rounding 0, floating:0, onworkspace:w[tv1]"
+        "bordersize 0, floating:0, onworkspace:f[1]"
+        "rounding 0, floating:0, onworkspace:f[1]"
       ];
 
       layerrule = [
