@@ -5,7 +5,7 @@
     ./alacritty.nix
     ./bat.nix
     ./btop.nix
-    ./cava.nix
+    #./cava.nix
     ./eza.nix
     ./fd.nix
     ./firefox.nix
