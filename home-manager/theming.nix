@@ -18,8 +18,10 @@
   home.pointerCursor = {
     gtk.enable = true;
     # x11.enable = true;
-    package = pkgs.bibata-cursors;
-    name = "Bibata-Modern-Classic";
+    #package = pkgs.bibata-cursors;
+    #name = "Bibata-Modern-Classic";
+    package = pkgs.posy-cursors;
+    name = "Posy_Cursor";
     size = 20;
   };
 

@@ -20,7 +20,7 @@
     ./locale.nix
     ./programs.nix
     ./security.nix
-    ./virtualisation.nix
+    ./virtualisation/virtualisation.nix
     ./services.nix
     ./sddm/sddm.nix
     ./xdg.nix
