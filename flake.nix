@@ -6,31 +6,28 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # Home manager
-    #home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager = {
       url = "github:nix-community/home-manager";
+      #url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hardware.url = "github:NixOS/nixos-hardware/master";
 
-    nur.url = "github:nix-community/NUR";
+    #nur = {
+    #  url = "github:nix-community/NUR";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
 
-    # spicetify-nix = {
-    #   # url = "github:the-argus/spicetify-nix";
-    #   url = "github:A1ca7raz/spicetify-nix";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nixvim = {
       url = "github:nix-community/nixvim";
       #inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    # muse-sounds-manager = {
-    #   url = "github:thilobillerbeck/muse-sounds-manager-nix";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
 
     #stylix.url = "github:danth/stylix";
     catppuccin.url = "github:catppuccin/nix";

@@ -6,6 +6,7 @@
     ./gaming.nix
     ./services.nix
     ./packages.nix
+    ./dconf.nix
 
     ./programs/programs.nix
     ./scripts/scripts.nix

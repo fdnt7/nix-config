@@ -13,8 +13,8 @@
   glow_plug = pkgs.fetchFromGitHub {
     owner = "Reledia";
     repo = "glow.yazi";
-    rev = "388e847dca6497cf5903f26ca3b87485b2de4680";
-    hash = "sha256-fKJ5ld5xc6HsM/h5j73GABB5i3nmcwWCs+QSdDPA9cU=";
+    rev = "c2ed51ed8c4ba965b793adab5868a307ab375c8a";
+    hash = "sha256-hY390F6/bkQ6qN2FZEn0k+j+XfaERJiAo/E3xXYRB70=";
   };
 
   miller_plug = pkgs.fetchFromGitHub {
@@ -28,8 +28,8 @@
     # owner = "Reledia";
     owner = "fdnt7";
     repo = "hexyl.yazi";
-    rev = "9bb85fe6cfe7617883d2d9921167fab323b2ea21";
-    hash = "sha256-rseEV3+fyaSCz5e8msXLyyHujak3cRUUwqGuyaO8QGE=";
+    rev = "39d3d4e23ad7cec8888f648ddf55af4386950ce7";
+    hash = "sha256-nsnnL3GluKk/p1dQZTZ/RwQPlAmTBu9mQzHz1g7K0Ww=";
   };
 
   exifaudio = pkgs.fetchFromGitHub {

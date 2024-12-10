@@ -14,11 +14,7 @@
       twemoji-color-font
       ubuntu_font_family
       #tlwg
-      (nerdfonts.override {
-        fonts = [
-          "JetBrainsMono"
-        ];
-      })
+      nerd-fonts.jetbrains-mono
     ];
 
     fontconfig = {
