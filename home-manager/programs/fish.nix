@@ -11,9 +11,9 @@
     pkgs.nix-your-shell
   ];
 
+  catppuccin.fish.enable = true;
   programs.fish = {
     enable = true;
-    catppuccin.enable = true;
     interactiveShellInit = ''
            fastfetch --config small
            nix-your-shell fish | source
@@ -25,6 +25,7 @@
     '';
     shellAbbrs = {
       l = "yy";
+      #l = "lf";
       s = "sudo";
       py = "python";
       ipy = "ipython";
@@ -175,7 +176,7 @@
 
       egrep = "egrep --color=auto";
       fgrep = "fgrep --color=auto";
-      man = "batman";
+      #man = "batman"; # bat-extras broken
       evcxr = "irust";
       #psql = "pgcli";
       df = "df -hPT";
@@ -198,7 +199,7 @@
     shellInit = ''
       set fish_greeting
       zoxide init fish | source
-      eval (batpipe)
+      #eval (batpipe) # bat-extras broken
     '';
     shellInitLast = "${pkgs.starship}/bin/starship init fish | source";
   };

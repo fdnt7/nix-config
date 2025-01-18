@@ -1,10 +1,10 @@
 {...}: {
+  catppuccin.cava = {
+    enable = true;
+    transparent = true;
+  };
   programs.cava = {
     enable = true;
-    catppuccin = {
-      enable = true;
-      transparent = true;
-    };
     settings = {
       general = {
         framerate = 165;
