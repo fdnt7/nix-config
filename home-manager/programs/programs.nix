@@ -31,11 +31,12 @@
     ./hypr/hypridle/hypridle.nix
     ./hypr/hyprland/hyprland.nix
     ./hypr/hyprlock/hyprlock.nix
-    ./hypr/hyprcursor.nix
-    #    ./hypr/hyprcursor/hyprcursor.nix
-    # ./lf/lf.nix
+    ./hypr/hyprsunset.nix
+    #./hypr/hyprcursor/hyprcursor.nix
+    #./lf/lf.nix
     ./swaync/swaync.nix
     ./waybar/waybar.nix
     ./yazi/yazi.nix
+    ./musescore/musescore.nix
   ];
 }

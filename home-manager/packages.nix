@@ -30,7 +30,6 @@
     pavucontrol
     playerctl
     jamesdsp
-    musescore
     audacity
 
     xdg-ninja

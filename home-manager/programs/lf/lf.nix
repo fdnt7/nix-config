@@ -1,24 +1,30 @@
 {pkgs, ...}: {
-  home.packages = [
-    pkgs.chafa
-    pkgs.libsixel
-    pkgs.poppler_utils
-    pkgs.atool
-    pkgs.ffmpeg
-    pkgs.colordiff
-    pkgs.fontforge
-    pkgs.elinks
-    pkgs.libreoffice
-    pkgs.imagemagick
-    pkgs.ffmpegthumbnailer
-    pkgs.mdcat
+  home.packages = with pkgs; [
+    chafa
+    libsixel
+    poppler_utils
+    atool
+    ffmpeg
+    colordiff
+    fontforge
+    elinks
+    libreoffice
+    imagemagick
+    ffmpegthumbnailer
+    mdcat
+    ctpv
   ];
 
   xdg = {
     configFile = {
       "lf/icons".source = ./icons;
       "lf/colors".source = ./colours;
-      #"ctpv/config".text = "set chafasixel";
+      "ctpv/config".text = ''
+        	set chafasixel
+        	preview image image/* {{
+        	chafa -s "''${w}x''${h}" -f sixels --polite on "$f"
+        }}
+      '';
     };
   };
 
