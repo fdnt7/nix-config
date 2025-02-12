@@ -198,7 +198,7 @@ in {
       "$sws_4" = "BackSpace";
 
       "$term" = "foot";
-      "$term_alt" = "kitty";
+      "$term_alt" = "alacritty";
 
       bindr = [
         "MOD2, Num_Lock , exec, swayosd-client --num-lock"

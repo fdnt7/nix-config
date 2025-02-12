@@ -2,7 +2,6 @@
   imports = [
     ./home-manager.nix
 
-    ./alacritty.nix
     ./bat.nix
     ./btop.nix
     ./cava.nix
@@ -14,7 +13,7 @@
     ./git.nix
     ./gpg.nix
     ./htop.nix
-    ./kitty.nix
+    #./kitty.nix
     ./mpv.nix
     ./nixvim.nix
     ./obs.nix
@@ -27,13 +26,15 @@
     ./zsh.nix
     ./nix-index.nix
 
+    ./zed-editor/zed-editor.nix
+    #./alacritty/alacritty.nix
+    #./lf/lf.nix
     ./fastfetch/fastfetch.nix
     ./hypr/hypridle/hypridle.nix
     ./hypr/hyprland/hyprland.nix
     ./hypr/hyprlock/hyprlock.nix
     ./hypr/hyprsunset.nix
     #./hypr/hyprcursor/hyprcursor.nix
-    #./lf/lf.nix
     ./swaync/swaync.nix
     ./waybar/waybar.nix
     ./yazi/yazi.nix

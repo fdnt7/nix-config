@@ -51,6 +51,11 @@
       url = "github:MercuryTechnologies/nix-your-shell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    tsutsumi = {
+      url = "github:Fuwn/tsutsumi";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

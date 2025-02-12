@@ -1,5 +1,6 @@
 {
   inputs,
+  lib,
   pkgs,
   ...
 }: {
@@ -114,19 +115,58 @@
           };
         };
       };
-    };
 
-    extraPlugins = [pkgs.vimPlugins.vim-wakatime];
-    extraConfigLua = ''
-      for _, method in ipairs({ 'textDocument/diagnostic', 'workspace/diagnostic' }) do
-        local default_diagnostic_handler = vim.lsp.handlers[method]
-        vim.lsp.handlers[method] = function(err, result, context, config)
-          if err ~= nil and err.code == -32802 then
-            return
-          end
-          return default_diagnostic_handler(err, result, context, config)
-        end
-      end
-    ''; # workaround for https://github.com/neovim/neovim/issues/30985
+      wakatime.enable = true;
+
+      conform-nvim = {
+        enable = true;
+        settings = {
+          formatters_by_ft = {
+            bash = [
+              "shellcheck"
+              "shellharden"
+              "shfmt"
+            ];
+            cpp = ["clang_format"];
+            "_" = [
+              "squeeze_blanks"
+              "trim_whitespace"
+              "trim_newlines"
+            ];
+          };
+          format_on_save = {
+            lsp_format = "fallback";
+            timeout_ms = 500;
+          };
+          format_after_save = {
+            lsp_format = "fallback";
+          };
+          log_level = "warn";
+          notify_on_error = false;
+          notify_no_formatters = false;
+          formatters = {
+            shellcheck = {
+              command = lib.getExe pkgs.shellcheck;
+            };
+            shfmt = {
+              command = lib.getExe pkgs.shfmt;
+            };
+            shellharden = {
+              command = lib.getExe pkgs.shellharden;
+            };
+            squeeze_blanks = {
+              command = lib.getExe' pkgs.coreutils "cat";
+            };
+          };
+        };
+      };
+    };
+    autoCmd = [
+      #{
+      #  command = "!clang++ -Wall %";
+      #  event = ["BufWritePost"];
+      #  pattern = ["*.cpp"];
+      #}
+    ];
   };
 }

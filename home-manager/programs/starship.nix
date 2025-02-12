@@ -7,7 +7,7 @@
       continuation_prompt = "";
 
       format = "$username$hostname$sudo$cmd_duration$status$shell$character ";
-      right_format = "$nix_shell$rust$c$python$lua$package$git_status$git_branch$directory$time";
+      right_format = "$nix_shell$rust$custom$c$python$lua$package$git_status$git_branch$directory$time";
 
       hostname = {
         disabled = true;
@@ -123,7 +123,7 @@
 
       c = {
         format = "[$symbol($version(-$name))]($style) ";
-        symbol = " ";
+        symbol = " ";
       };
 
       python = {
@@ -142,6 +142,16 @@
         impure_msg = "[*](bold bright-red)";
         pure_msg = "[*](bold bright-green)";
         unknown_msg = "[?](bold yellow)";
+      };
+
+      custom.cpp = {
+        detect_extensions = ["cpp" "cc" "hpp"];
+        symbol = " ";
+        format = "[$symbol($output)]($style) ";
+        command = "clang++ --version | cut -d ' ' -f3 | head -n1";
+        style = "bold 149";
+        disabled = false;
+        ignore_timeout = false;
       };
     };
   };

@@ -6,15 +6,15 @@
   plugs = pkgs.fetchFromGitHub {
     owner = "yazi-rs";
     repo = "plugins";
-    rev = "e4aaf430ad7f81d2e358e3a60525c8ef3fa259fc";
-    hash = "sha256-dIj2YgLN04nFxmw7I/sdbJY2QCs+Nmb4eUtfLlPL53E=";
+    rev = "07258518f3bffe28d87977bc3e8a88e4b825291b";
+    hash = "sha256-axoMrOl0pdlyRgckFi4DiS+yBKAIHDhVeZQJINh8+wk=";
   };
 
   glow_plug = pkgs.fetchFromGitHub {
     owner = "Reledia";
     repo = "glow.yazi";
-    rev = "c2ed51ed8c4ba965b793adab5868a307ab375c8a";
-    hash = "sha256-hY390F6/bkQ6qN2FZEn0k+j+XfaERJiAo/E3xXYRB70=";
+    rev = "5ce76dc92ddd0dcef36e76c0986919fda3db3cf5";
+    hash = "sha256-UljcrXXO5DZbufRfavBkiNV3IGUNct31RxCujRzC9D4=";
   };
 
   miller_plug = pkgs.fetchFromGitHub {
@@ -24,40 +24,40 @@
     hash = "sha256-GXZZ/vI52rSw573hoMmspnuzFoBXDLcA0fqjF76CdnY=";
   };
 
-  hexyl_plug = pkgs.fetchFromGitHub {
-    # owner = "Reledia";
-    owner = "fdnt7";
-    repo = "hexyl.yazi";
-    rev = "39d3d4e23ad7cec8888f648ddf55af4386950ce7";
-    hash = "sha256-nsnnL3GluKk/p1dQZTZ/RwQPlAmTBu9mQzHz1g7K0Ww=";
-  };
+  #hexyl_plug = pkgs.fetchFromGitHub {
+  #  # owner = "Reledia";
+  #  owner = "fdnt7";
+  #  repo = "hexyl.yazi";
+  #  rev = "39d3d4e23ad7cec8888f648ddf55af4386950ce7";
+  #  hash = "sha256-nsnnL3GluKk/p1dQZTZ/RwQPlAmTBu9mQzHz1g7K0Ww=";
+  #};
 
   exifaudio = pkgs.fetchFromGitHub {
     owner = "Sonico98";
     repo = "exifaudio.yazi";
-    rev = "855ff055c11fb8f268b4c006a8bd59dd9bcf17a7";
-    hash = "sha256-8f1iG9RTLrso4S9mHYcm3dLKWXd/WyRzZn6KNckmiCc=";
+    rev = "d7946141c87a23dcc6fb3b2730a287faf3154593";
+    hash = "sha256-nXBxPG6PVi5vstvVMn8dtnelfCa329CTIOCdXruOxT4=";
   };
 
   ouch_plug = pkgs.fetchFromGitHub {
     owner = "ndtoan96";
     repo = "ouch.yazi";
-    rev = "db1488358941a2bc9918fa91c304d6724a0bb608";
-    hash = "sha256-fEfsHEddL7bg4z85UDppspVGlfUJIa7g11BwjHbufrE=";
+    rev = "ce6fb75431b9d0d88efc6ae92e8a8ebb9bc1864a";
+    hash = "sha256-oUEUGgeVbljQICB43v9DeEM3XWMAKt3Ll11IcLCS/PA=";
   };
 
   torrent-preview_plug = pkgs.fetchFromGitHub {
     owner = "kirasok";
     repo = "torrent-preview.yazi";
-    rev = "76970b6f9d6f3031e9cd57c8595a53e9f9f48c18";
-    hash = "sha256-QPdtoCU7CyS7sx1aoGHNHv1NxWMA/SxSuy+2SLDdCeU=";
+    rev = "169cafcb6f1b0aeef647c7598845e1e09651c3a8";
+    hash = "sha256-taLlWoC57h8N8Yj2wD/dY+piVPgNk1F85+QIuJfQRoQ=";
   };
-  #mediainfo_plug = pkgs.fetchFromGitHub {
-  #  owner = "Ape";
-  #  repo = "mediainfo.yazi";
-  #  rev = "c69314e80f5b45fe87a0e06a10d064ed54110439";
-  #  hash = "sha256-8xdBPdKSiwB7iRU8DJdTHY+BjfR9D3FtyVtDL9tNiy4=";
-  #};
+  mediainfo_plug = pkgs.fetchFromGitHub {
+    owner = "boydaihungst";
+    repo = "mediainfo.yazi";
+    rev = "50a37856e41feb20622de930411b73576c1de151";
+    hash = "sha256-KHZhJa9pg4wMAmyhHzmMxov2LuyhDjN3WeFm9Pw3Y6Y=";
+  };
 in {
   home.packages = with pkgs; [
     file
@@ -69,11 +69,11 @@ in {
 
     glow
     miller
-    hexyl
+    #hexyl
     exiftool
     ouch
     transmission_4
-    #mediainfo
+    mediainfo
     ffmpeg
   ];
   programs.yazi = {
@@ -93,11 +93,11 @@ in {
 
       glow = glow_plug;
       miller = miller_plug;
-      hexyl = hexyl_plug;
+      #hexyl = hexyl_plug;
       exifaudio = exifaudio;
       ouch = ouch_plug;
       torrent-preview = torrent-preview_plug;
-      #mediainfo = mediainfo_plug;
+      mediainfo = mediainfo_plug;
     };
     keymap = {
       manager.prepend_keymap = [
@@ -110,6 +110,17 @@ in {
         {
           on = ["y"];
           run = [''shell 'for path in "$@"; do echo "file://$path"; done | wl-copy -t text/uri-list' --confirm'' "yank"];
+        }
+
+        {
+          on = ["<C-e>"];
+          run = "seek 5";
+          desc = "glow.yazi scroll up";
+        }
+        {
+          on = ["<C-y>"];
+          run = "seek -5";
+          desc = "glow.yazi scroll down";
         }
 
         # Plugins
@@ -197,25 +208,25 @@ in {
           }
 
           {
-            mime = "application/x-bittorrent";
+            mime = "application/bittorrent";
             run = "torrent-preview";
           }
 
-          #{
-          #  mime = "{image,audio,video}/*";
-          #  run = "mediainfo";
-          #}
-          #{
-          #  mime = "application/x-subrip";
-          #  run = "mediainfo";
-          #}
-        ];
-        append_previewers = [
           {
-            name = "*";
-            run = "hexyl";
+            mime = "{image,audio,video}/*";
+            run = "mediainfo";
+          }
+          {
+            mime = "application/subrip";
+            run = "mediainfo";
           }
         ];
+        #append_previewers = [
+        #  {
+        #    name = "*";
+        #    run = "hexyl";
+        #  }
+        #];
 
         prepend_fetchers = [
           {
