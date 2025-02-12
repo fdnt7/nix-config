@@ -1,6 +1,7 @@
-{...}: {
+{pkgs, ...}: {
   programs.alacritty = {
-    enable = false;
+    enable = true;
+    package = pkgs.callPackage ./alacritty-sixel.nix {};
     settings = {
       window = {
         opacity = 0.67;

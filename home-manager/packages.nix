@@ -1,5 +1,9 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [
+{
+  #  inputs,
+  pkgs,
+  ...
+}: let
+  with_pkgs = with pkgs; [
     nh
     nix-output-monitor
     nvd
@@ -47,8 +51,6 @@
     swww
     kitty-img
     brave
-    zed-editor
-    #(zed-editor.fhsWithPackages (pkgs: [pkgs.zlib pkgs.pkg-config pkgs.openssl]))
     sweet-nova
     bc
     hyprpicker
@@ -56,5 +58,12 @@
     pinta
     networkmanagerapplet
     muse-sounds-manager
+    xournalpp
   ];
+in {
+  home.packages =
+    with_pkgs
+    ++ [
+      # ...
+    ];
 }
