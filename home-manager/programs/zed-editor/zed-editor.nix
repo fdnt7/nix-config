@@ -3,7 +3,10 @@
   pkgs,
   ...
 }: {
-  home.packages = [inputs.tsutsumi.packages.${pkgs.system}.wakatime-ls (pkgs.callPackage ./discord-presence.nix {})];
+  home.packages = [
+    inputs.tsutsumi.packages.${pkgs.system}.wakatime-ls
+    (pkgs.callPackage ./discord-presence.nix {})
+  ];
   programs.zed-editor = {
     enable = true;
     #package = (pkgs.zed-editor.fhsWithPackages (pkgs: [pkgs.zlib pkgs.pkg-config pkgs.openssl]));
@@ -36,7 +39,14 @@
       lsp = {
         rust-analyzer = {
           binary = {path_lookup = true;};
-          initialization_options = {check = {"command" = "clippy";};};
+          initialization_options = {
+            check = {
+              command = "clippy";
+            };
+            cargo = {
+              features = "all";
+            };
+          };
         };
       };
     };

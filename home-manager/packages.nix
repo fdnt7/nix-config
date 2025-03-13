@@ -46,7 +46,6 @@
     wget
     libsForQt5.qt5ct
     catppuccin-kvantum
-    xwaylandvideobridge
     oculante
     swww
     kitty-img
@@ -59,6 +58,7 @@
     networkmanagerapplet
     muse-sounds-manager
     xournalpp
+    libreoffice-qt-fresh
   ];
 in {
   home.packages =

@@ -13,8 +13,8 @@
   glow_plug = pkgs.fetchFromGitHub {
     owner = "Reledia";
     repo = "glow.yazi";
-    rev = "5ce76dc92ddd0dcef36e76c0986919fda3db3cf5";
-    hash = "sha256-UljcrXXO5DZbufRfavBkiNV3IGUNct31RxCujRzC9D4=";
+    rev = "c76bf4fb612079480d305fe6fe570bddfe4f99d3";
+    hash = "sha256-DPud1Mfagl2z490f5L69ZPnZmVCa0ROXtFeDbEegBBU=";
   };
 
   miller_plug = pkgs.fetchFromGitHub {
@@ -24,19 +24,19 @@
     hash = "sha256-GXZZ/vI52rSw573hoMmspnuzFoBXDLcA0fqjF76CdnY=";
   };
 
-  #hexyl_plug = pkgs.fetchFromGitHub {
-  #  # owner = "Reledia";
-  #  owner = "fdnt7";
-  #  repo = "hexyl.yazi";
-  #  rev = "39d3d4e23ad7cec8888f648ddf55af4386950ce7";
-  #  hash = "sha256-nsnnL3GluKk/p1dQZTZ/RwQPlAmTBu9mQzHz1g7K0Ww=";
-  #};
+  hexyl_plug = pkgs.fetchFromGitHub {
+    owner = "Reledia";
+    # owner = "fdnt7";
+    repo = "hexyl.yazi";
+    rev = "228a9ef2c509f43d8da1847463535adc5fd88794";
+    hash = "sha256-Xv1rfrwMNNDTgAuFLzpVrxytA2yX/CCexFt5QngaYDg=";
+  };
 
   exifaudio = pkgs.fetchFromGitHub {
     owner = "Sonico98";
     repo = "exifaudio.yazi";
-    rev = "d7946141c87a23dcc6fb3b2730a287faf3154593";
-    hash = "sha256-nXBxPG6PVi5vstvVMn8dtnelfCa329CTIOCdXruOxT4=";
+    rev = "4379fcfa2dbe0b81fde2dd67b9ac2e0e48331419";
+    hash = "sha256-CIimJU4KaKyaKBuiBvcRJUJqTG8pkGyytT6bPf/x8j8=";
   };
 
   ouch_plug = pkgs.fetchFromGitHub {
@@ -69,7 +69,7 @@ in {
 
     glow
     miller
-    #hexyl
+    hexyl
     exiftool
     ouch
     transmission_4
@@ -93,7 +93,7 @@ in {
 
       glow = glow_plug;
       miller = miller_plug;
-      #hexyl = hexyl_plug;
+      hexyl = hexyl_plug;
       exifaudio = exifaudio;
       ouch = ouch_plug;
       torrent-preview = torrent-preview_plug;
@@ -221,12 +221,12 @@ in {
             run = "mediainfo";
           }
         ];
-        #append_previewers = [
-        #  {
-        #    name = "*";
-        #    run = "hexyl";
-        #  }
-        #];
+        append_previewers = [
+          {
+            name = "*";
+            run = "hexyl";
+          }
+        ];
 
         prepend_fetchers = [
           {

@@ -15,6 +15,10 @@
       ubuntu_font_family
       #tlwg
       nerd-fonts.jetbrains-mono
+
+      (pkgs.callPackage
+        ./th-sarabun-new.nix
+        {})
     ];
 
     fontconfig = {

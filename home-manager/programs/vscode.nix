@@ -1,8 +1,8 @@
 {pkgs, ...}: {
   programs.vscode = {
     enable = true;
-    extensions = with pkgs.vscode-extensions; [
-      rust-lang.rust-analyzer
+    profiles.default.extensions = with pkgs.vscode-extensions; [
+      # rust-lang.rust-analyzer ## broken
       usernamehw.errorlens
       eamodio.gitlens
       wakatime.vscode-wakatime

@@ -16,12 +16,18 @@ in {
   };
   wayland.windowManager.hyprland = {
     enable = true;
+    package = null;
+    portalPackage = null;
     systemd = {
-      enable = true;
-      variables = ["--all"];
+      #enable = true;
+      #variables = ["--all"];
+      enable = false;
     };
     settings = {
-      monitor = ",preferred,auto,1";
+      monitor = [
+        "eDP-2,preferred,auto,1"
+        ",preferred,auto,1,mirror,eDP-2"
+      ];
       exec-once = "exec-once";
 
       input = {
