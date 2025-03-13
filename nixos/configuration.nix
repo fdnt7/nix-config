@@ -12,7 +12,7 @@
 
     ./boot.nix
     ./nix.nix
-    ./fonts.nix
+    ./fonts/fonts.nix
     ./sound.nix
     ./environment.nix
     ./networking.nix
