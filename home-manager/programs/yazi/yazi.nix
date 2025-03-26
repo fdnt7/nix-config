@@ -245,4 +245,6 @@ in {
     };
     theme = fromTOML (builtins.readFile ./theme.toml);
   };
+  catppuccin.glamour.enable = true;
+  catppuccin.fzf.enable = true;
 }

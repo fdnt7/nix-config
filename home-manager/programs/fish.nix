@@ -146,7 +146,7 @@
       mn = "man nixvim";
 
       ds = "devenv shell";
-      dp = "devenv up";
+      dp = "uwsm app -- devenv up";
 
       w = "wget";
       r = "rg";

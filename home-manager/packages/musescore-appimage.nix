@@ -1,9 +1,9 @@
 {pkgs}: let
   pname = "mscore";
-  version = "4.4.4";
+  version = "4.5.0";
   src = pkgs.fetchurl {
-    url = "https://cdn.jsdelivr.net/musescore/v${version}/MuseScore-Studio-${version}.243461245-x86_64.AppImage";
-    hash = "sha256-g5mb9mPqh5lDV2wIBugzFMKtjJzGuXm5mIZVvsyRBh4=";
+    url = "https://github.com/musescore/MuseScore/releases/download/v4.5/MuseScore-Studio-4.5.0.250721848-x86_64.AppImage";
+    hash = "sha256-rK1mcoarmetliOk3BPfMdI5/OBis0Tub33DHiBUpSDc=";
   };
   appimageContents = pkgs.appimageTools.extractType2 {inherit pname version src;};
 in
