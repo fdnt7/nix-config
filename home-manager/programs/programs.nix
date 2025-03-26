@@ -38,6 +38,5 @@
     ./swaync/swaync.nix
     ./waybar/waybar.nix
     ./yazi/yazi.nix
-    ./musescore/musescore.nix
   ];
 }

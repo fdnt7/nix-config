@@ -2,6 +2,7 @@
   imports = [
     ./nix.nix
     ./xdg.nix
+    ./qt.nix
     ./theming.nix
     ./gaming.nix
     ./services.nix
@@ -19,6 +20,6 @@
     sessionVariables.FLAKE = "${config.home.homeDirectory}/Documents/nix-config";
 
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-    stateVersion = "23.11";
+    stateVersion = "25.05";
   };
 }

@@ -6,10 +6,12 @@
       main = {
         font = "JetBrainsMono Nerd Font:size=11";
       };
+      # didn't use catppuccin.foot.enable because no transparent option
       colors = {
         alpha = 0.67;
         foreground = "cdd6f4";
-        background = "1e1e2e";
+        #background = "1e1e2e";
+        background = "000000";
 
         regular0 = "585b70";
         regular1 = "f38ba8";

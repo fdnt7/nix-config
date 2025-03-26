@@ -41,7 +41,7 @@
         padding = mkLiteral "0px 2px";
       };
       "element selected" = {
-        background-color = mkLiteral "#522349";
+        background-color = mkLiteral "#332349";
       };
 
       "element-text, element-icon" = {

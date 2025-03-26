@@ -1,8 +1,4 @@
-{
-  #  inputs,
-  pkgs,
-  ...
-}: let
+{pkgs, ...}: let
   with_pkgs = with pkgs; [
     nh
     nix-output-monitor
@@ -21,15 +17,10 @@
     libnotify
     grimblast
 
-    libsForQt5.dolphin
-    libsForQt5.kdegraphics-thumbnailers
-    libsForQt5.kimageformats
     libheif
     resvg
-    libsForQt5.ffmpegthumbs
     nufraw-thumbnailer
     taglib
-    libsForQt5.kio-extras
 
     pavucontrol
     playerctl
@@ -37,33 +28,31 @@
     audacity
 
     xdg-ninja
-    #python311Packages.ipython
-    #python3
     ripgrep
     du-dust
     brightnessctl
     zoxide
     wget
-    libsForQt5.qt5ct
-    catppuccin-kvantum
     oculante
     swww
     kitty-img
     brave
-    sweet-nova
     bc
     hyprpicker
     upscayl
     pinta
     networkmanagerapplet
-    muse-sounds-manager
     xournalpp
     libreoffice-qt-fresh
+
+    (pkgs.callPackage ./packages/runapp.nix {})
+    (pkgs.callPackage ./packages/chat.nix {})
+    (pkgs.callPackage ./packages/muse-sounds-manager-2.0.3.659.nix {})
+    (import ./packages/musescore-appimage.nix {inherit pkgs;})
   ];
 in {
   home.packages =
     with_pkgs
     ++ [
-      # ...
     ];
 }
