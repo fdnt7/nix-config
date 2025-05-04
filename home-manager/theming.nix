@@ -4,7 +4,7 @@
   pkgs,
   ...
 }: {
-  imports = [inputs.catppuccin.homeManagerModules.catppuccin];
+  imports = [inputs.catppuccin.homeModules.catppuccin];
   catppuccin.flavor = "mocha";
 
   dconf.settings = {

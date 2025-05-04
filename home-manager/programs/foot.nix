@@ -10,8 +10,8 @@
       colors = {
         alpha = 0.67;
         foreground = "cdd6f4";
-        #background = "1e1e2e";
-        background = "000000";
+        background = "1e1e2e";
+        #background = "000000";
 
         regular0 = "585b70";
         regular1 = "f38ba8";

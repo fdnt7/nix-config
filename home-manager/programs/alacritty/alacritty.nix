@@ -58,7 +58,7 @@
           background = "#f5e0dc";
         };
         normal = {
-          black = "#45475a";
+          black = "#585b70";
           red = "#f38ba8";
           green = "#a6e3a1";
           yellow = "#f9e2af";
@@ -68,24 +68,24 @@
           white = "#bac2de";
         };
         bright = {
-          black = "#585b70";
-          red = "#ffa0be";
-          green = "#baf8b7";
-          yellow = "#fff7c5";
-          blue = "#9dc9ff";
-          magenta = "#ffd7fd";
-          cyan = "#a8f7eb";
-          white = "#ced7f4";
+          black = "#82859a";
+          red = "#ffb5d2";
+          green = "#d0ffcb";
+          yellow = "#ffffd9";
+          blue = "#b3deff";
+          magenta = "#ffecff";
+          cyan = "#beffff";
+          white = "#e4ecff";
         };
         dim = {
-          black = "#313244";
-          red = "#df7692";
-          green = "#92ce8b";
-          yellow = "#e5cd99";
-          blue = "#759fe4";
-          magenta = "#e1add1";
-          cyan = "#80cdbf";
-          white = "#a6adc8";
+          black = "#2e3146";
+          red = "#c9617e";
+          green = "#7cb977";
+          yellow = "#cfb885";
+          blue = "#5f8ad0";
+          magenta = "#cb98bd";
+          cyan = "#6ab8ab";
+          white = "#9098b4";
         };
         indexed_colors = [
           {

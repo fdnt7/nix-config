@@ -206,8 +206,8 @@ in {
       "$sws_3" = "equal";
       "$sws_4" = "BackSpace";
 
-      "$term" = "foot";
-      "$term_alt" = "alacritty";
+      "$term" = "alacritty";
+      "$term_alt" = "foot";
 
       bindr = [
         "MOD2, Num_Lock , exec, uwsm app -- swayosd-client --num-lock"
@@ -234,7 +234,7 @@ in {
           "            , XF86AudioMute        , exec, uwsm app -- swayosd-client --output-volume mute-toggle" #fn+f1
           #fn+f2 o
           #fn+f3 o
-          "            , XF86Launch4, exec," #fn+f4
+          "            , XF86Launch4, exec    , exec, uwsm app --" #fn+f4
           #fn+f5 -
           "$mod Shift_L, s                    , exec, uwsm app -- grimblast --notify copysave area" #fn+f6
           "            , xf86monbrightnessup  , exec, uwsm app -- swayosd-client --brightness raise" #fn+f7

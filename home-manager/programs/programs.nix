@@ -9,7 +9,7 @@
     ./fd.nix
     ./firefox.nix
     ./fish.nix
-    ./foot.nix
+    #./foot.nix
     ./git.nix
     ./gpg.nix
     ./htop.nix
@@ -27,7 +27,7 @@
     ./nix-index.nix
 
     ./zed-editor/zed-editor.nix
-    #./alacritty/alacritty.nix
+    ./alacritty/alacritty.nix
     #./lf/lf.nix
     ./fastfetch/fastfetch.nix
     ./hypr/hypridle/hypridle.nix

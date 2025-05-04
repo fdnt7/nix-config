@@ -6,15 +6,15 @@
   plugs = pkgs.fetchFromGitHub {
     owner = "yazi-rs";
     repo = "plugins";
-    rev = "07258518f3bffe28d87977bc3e8a88e4b825291b";
-    hash = "sha256-axoMrOl0pdlyRgckFi4DiS+yBKAIHDhVeZQJINh8+wk=";
+    rev = "a1738e8088366ba73b33da5f45010796fb33221e";
+    hash = "sha256-eiLkIWviGzG9R0XP1Cik3Bg0s6lgk3nibN6bZvo8e9o=";
   };
 
   glow_plug = pkgs.fetchFromGitHub {
     owner = "Reledia";
     repo = "glow.yazi";
-    rev = "c76bf4fb612079480d305fe6fe570bddfe4f99d3";
-    hash = "sha256-DPud1Mfagl2z490f5L69ZPnZmVCa0ROXtFeDbEegBBU=";
+    rev = "2da96e3ffd9cd9d4dd53e0b2636f83ff69fe9af0";
+    hash = "sha256-4krck4U/KWmnl32HWRsblYW/biuqzDPysrEn76buRck=";
   };
 
   miller_plug = pkgs.fetchFromGitHub {
@@ -52,11 +52,12 @@
     rev = "169cafcb6f1b0aeef647c7598845e1e09651c3a8";
     hash = "sha256-taLlWoC57h8N8Yj2wD/dY+piVPgNk1F85+QIuJfQRoQ=";
   };
+
   mediainfo_plug = pkgs.fetchFromGitHub {
     owner = "boydaihungst";
     repo = "mediainfo.yazi";
-    rev = "50a37856e41feb20622de930411b73576c1de151";
-    hash = "sha256-KHZhJa9pg4wMAmyhHzmMxov2LuyhDjN3WeFm9Pw3Y6Y=";
+    rev = "436cb5f04d6e5e86ddc0386527254d87b7751ec8";
+    hash = "sha256-oFp8mJ62FsJX46mKQ7/o6qXPC9qx3+oSfqS0cKUZETI=";
   };
 in {
   home.packages = with pkgs; [
