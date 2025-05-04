@@ -51,7 +51,7 @@ in
       hash = "sha256-vDpmjlH2UBsRf2JkyN79gWESIEIfqe+RTGWrzJW+yXM=";
     };
 
-    cargoHash = "sha256-WBOITPDtb4sZf6v/9zT4Sb8FizJ0+eb/exE0Bglgasg=";
+    cargoHash = "sha256-O2AsRpE+B1ATfUCAWDwsa32L/MOxYH39r3OGKUePoMA=";
 
     nativeBuildInputs = [
       cmake

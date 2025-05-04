@@ -6,7 +6,7 @@
     gpg-agent = {
       enable = true;
       enableFishIntegration = true;
-      pinentryPackage = pkgs.pinentry-qt;
+      pinentry.package = pkgs.pinentry-qt;
     };
     ssh-agent.enable = true;
   };

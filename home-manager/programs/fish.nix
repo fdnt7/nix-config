@@ -116,6 +116,7 @@
       vcli = "vim $FLAKE/home-manager/programs/lf/icons";
       vcw = "vim $FLAKE/home-manager/programs/waybar/waybar.nix";
       vcws = "vim $FLAKE/home-manager/programs/waybar/style.css";
+      vcz = "vim $FLAKE/home-manager/programs/zed-editor/zed-editor.nix";
 
       vc = "vim $FLAKE/nixos/configuration.nix";
       vw = "vim $FLAKE/nixos/hardware-configuration.nix";
@@ -138,6 +139,8 @@
       np = "nix-shell -p";
       nd = "nix develop";
       ndi = "nix develop --impure";
+      ndidp = "nix develop --impure -c uwsm app -- devenv up";
+      "ndize." = "nix develop --impure -c zeditor .";
       nfu = "nix flake update";
 
       m = "man";

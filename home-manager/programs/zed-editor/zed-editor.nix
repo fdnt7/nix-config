@@ -10,7 +10,7 @@
   programs.zed-editor = {
     enable = true;
     #package = (pkgs.zed-editor.fhsWithPackages (pkgs: [pkgs.zlib pkgs.pkg-config pkgs.openssl]));
-    extensions = ["wakatime" "discord-presence" "catppuccin-blur"];
+    extensions = ["wakatime" "discord-presence" "catppuccin-blur" "sql"];
     userSettings = {
       # Zed settings
       #
