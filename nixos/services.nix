@@ -7,6 +7,7 @@
         variant = "";
       };
     };
-    # cloudflare-warp.enable = true;
+    #cloudflare-warp.enable = true;
+    tailscale.enable = true;
   };
 }

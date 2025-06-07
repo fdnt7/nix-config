@@ -1,6 +1,6 @@
 {
   pkgs,
-  inputs,
+  #inputs,
   ...
 }: let
 in {
@@ -8,7 +8,8 @@ in {
     (import ./scripts/exec-once.nix {inherit pkgs;})
     (import ./scripts/toggle-touchpad.nix {inherit pkgs;})
     (import ./scripts/swww-next.nix {inherit pkgs;})
-    (import ./scripts/lock.nix {inherit inputs pkgs;})
+    #(import ./scripts/lock.nix {inherit inputs pkgs;})
+    (import ./scripts/lock.nix {inherit pkgs;})
     pkgs.hyprpolkitagent
   ];
   xdg.configFile = {
@@ -32,7 +33,7 @@ in {
 
       input = {
         kb_layout = "us,th";
-        kb_options = "caps:escape_shifted_capslock,grp:win_space_toggle";
+        kb_options = "caps:escape,grp:win_space_toggle";
         #kb_options = "caps:swapescape,grp:win_escape_toggle";
         numlock_by_default = true;
         repeat_rate = 40;
@@ -124,7 +125,7 @@ in {
         disable_hyprland_logo = true;
       };
 
-      "$LAPTOP_TOUCHPAD_ENABLED" = true;
+      "$LAPTOP_TOUCHPAD_ENABLED" = false;
       device = {
         name = "asuf1204:00-2808:0202-touchpad";
         enabled = "$LAPTOP_TOUCHPAD_ENABLED";
@@ -142,6 +143,7 @@ in {
 
         "workspace 1, class:^(brave-browser(-nightly)?)$"
         "workspace 1, class:^(firefox)$"
+        "workspace 1, class:^(zen-beta)$"
         "workspace 1, class:^(Vivaldi-stable)$"
         "workspace 3, class:^(Code)$"
         "workspace 3, class:^(dev.zed.Zed)$"
@@ -206,12 +208,12 @@ in {
       "$sws_3" = "equal";
       "$sws_4" = "BackSpace";
 
-      "$term" = "alacritty";
+      "$term" = "foot";
       "$term_alt" = "foot";
 
       bindr = [
-        "MOD2, Num_Lock , exec, uwsm app -- swayosd-client --num-lock"
-        "CAPS, Caps_Lock, exec, uwsm app -- swayosd-client --caps-lock"
+        "MOD2, Num_Lock , exec, uwsm-app -- swayosd-client --num-lock"
+        "CAPS, Caps_Lock, exec, uwsm-app -- swayosd-client --caps-lock"
       ];
 
       binde = [
@@ -226,32 +228,32 @@ in {
 
       bind =
         [
-          "            , XF86AudioLowerVolume , exec, uwsm app -- swayosd-client --output-volume lower"
-          "            , XF86AudioRaiseVolume , exec, uwsm app -- swayosd-client --output-volume raise"
-          "            , XF86AudioMicMute     , exec, uwsm app -- swayosd-client --input-volume mute-toggle"
-          "            , XF86Launch3          , exec, uwsm app --"
+          "            , XF86AudioLowerVolume , exec, uwsm-app -- swayosd-client --output-volume lower"
+          "            , XF86AudioRaiseVolume , exec, uwsm-app -- swayosd-client --output-volume raise"
+          "            , XF86AudioMicMute     , exec, uwsm-app -- swayosd-client --input-volume mute-toggle"
+          "            , XF86Launch3          , exec, uwsm-app --"
 
-          "            , XF86AudioMute        , exec, uwsm app -- swayosd-client --output-volume mute-toggle" #fn+f1
+          "            , XF86AudioMute        , exec, uwsm-app -- swayosd-client --output-volume mute-toggle" #fn+f1
           #fn+f2 o
           #fn+f3 o
-          "            , XF86Launch4, exec    , exec, uwsm app --" #fn+f4
+          "            , XF86Launch4, exec    , exec, uwsm-app --" #fn+f4
           #fn+f5 -
-          "$mod Shift_L, s                    , exec, uwsm app -- grimblast --notify copysave area" #fn+f6
-          "            , xf86monbrightnessup  , exec, uwsm app -- swayosd-client --brightness raise" #fn+f7
-          "            , xf86monbrightnessdown, exec, uwsm app -- swayosd-client --brightness lower" #fn+f8
-          "$mod        , p                    , exec, uwsm app --" #fn+f9
-          "            , XF86TouchPadToggle   , exec, uwsm app -- toggle-touchpad" #fn+f10
+          "$mod Shift_L, s                    , exec, uwsm-app -- grimblast --notify copysave area" #fn+f6
+          "            , xf86monbrightnessup  , exec, uwsm-app -- swayosd-client --brightness raise" #fn+f7
+          "            , xf86monbrightnessdown, exec, uwsm-app -- swayosd-client --brightness lower" #fn+f8
+          "$mod        , p                    , exec, uwsm-app --" #fn+f9
+          "            , XF86TouchPadToggle   , exec, uwsm-app -- toggle-touchpad" #fn+f10
           #fn+f11 o
           #fn+f12 -
 
-          "    , Print, exec, uwsm app -- grimblast --notify copysave screen"
-          "$mod, Print, exec, uwsm app -- grimblast --notify copysave active"
+          "    , Print, exec, uwsm-app -- grimblast --notify copysave screen"
+          "$mod, Print, exec, uwsm-app -- grimblast --notify copysave active"
 
           "$mod SHIFT, q, exit"
           "$mod, w, killactive"
           "$mod, e, swapnext"
           "$mod SHIFT, e, swapnext, prev"
-          "$mod, r, exec, uwsm app -- rofi -show run -show-icons"
+          "$mod, r, exec, uwsm-app -- rofi -show run -show-icons"
           "$mod, t, pseudo"
           "$mod           , y, cyclenext, tiled"
           "$mod SHIFT     , y, cyclenext, prev tiled"
@@ -262,7 +264,7 @@ in {
           "$mod, bracketleft , alterzorder, bottom"
           "$mod, bracketright, alterzorder, top"
 
-          "$mod, a, exec, uwsm app -- rofi -show drun -show-icons"
+          "$mod, a, exec, uwsm-app -- rofi -show drun -show-icons"
           "$mod, s, togglesplit"
           "$mod, f, togglefloating"
           "$mod SHIFT, f, fullscreen"
@@ -280,22 +282,22 @@ in {
           "$mod CTRL SHIFT, j, moveintogroup, d"
           "$mod CTRL SHIFT, k, moveintogroup, u"
           "$mod CTRL SHIFT, l, moveintogroup, r"
-          "$mod, semicolon, exec, uwsm app -- lock"
-          "$mod CTRL, s, exec, uwsm app -- swww-next"
+          "$mod, semicolon, exec, uwsm-app -- lock"
+          "$mod CTRL, s, exec, uwsm-app -- swww-next"
 
           "$mod, c, centerwindow"
 
-          "$mod ALT, s, exec, uwsm app -- spotify"
-          "$mod ALT, f, exec, uwsm app -- dolphin"
-          "$mod ALT, m, exec, uwsm app -- mscore"
-          "$mod ALT, z, exec, uwsm app -- zed"
-          "$mod ALT, c, exec, uwsm app -- code"
-          "$mod ALT, v, exec, uwsm app -- pavucontrol"
-          "$mod ALT, j, exec, uwsm app -- jamesdsp"
-          "$mod ALT, x, exec, uwsm app -- xournalpp"
+          "$mod ALT, s, exec, uwsm-app -- spotify"
+          "$mod ALT, f, exec, uwsm-app -- dolphin"
+          "$mod ALT, m, exec, uwsm-app -- mscore"
+          "$mod ALT, z, exec, uwsm-app -- zed"
+          "$mod ALT, c, exec, uwsm-app -- code"
+          "$mod ALT, v, exec, uwsm-app -- pavucontrol"
+          "$mod ALT, j, exec, uwsm-app -- jamesdsp"
+          "$mod ALT, x, exec, uwsm-app -- xournalpp"
 
-          "$mod, Return , exec, $term"
-          "$mod, Shift_R, exec, $term_alt"
+          "$mod, Return , exec, uwsm-app -- $term"
+          "$mod, Shift_R, exec, uwsm-app -- $term_alt"
 
           "$mod, mouse_down, workspace, e+1"
           "$mod, mouse_up, workspace, e-1"
@@ -335,41 +337,41 @@ in {
       ];
     };
     extraConfig = ''
-      bind=$mod, n, exec, uwsm app -- swaync-client -op -sw
+      bind=$mod, n, exec, uwsm-app -- swaync-client -op -sw
       bind=$mod, n, submap, notify
       submap=notify
-        bind=    , c     , exec  , uwsm app -- swaync-client -C -sw
-        bind=    , c     , exec  , uwsm app -- swaync-client -cp -sw
+        bind=    , c     , exec  , uwsm-app -- swaync-client -C -sw
+        bind=    , c     , exec  , uwsm-app -- swaync-client -cp -sw
         bind=    , c     , submap, reset
-        bind=    , d     , exec  , uwsm app -- swaync-client -d -sw
-        bind=    , d     , exec  , uwsm app -- swaync-client -cp -sw
+        bind=    , d     , exec  , uwsm-app -- swaync-client -d -sw
+        bind=    , d     , exec  , uwsm-app -- swaync-client -cp -sw
         bind=    , d     , submap, reset
-        bind=$mod, n     , exec  , uwsm app -- swaync-client -cp -sw
+        bind=$mod, n     , exec  , uwsm-app -- swaync-client -cp -sw
         bind=$mod, n     , submap, reset
-        bind=    , escape, exec  , uwsm app -- swaync-client -cp -sw
+        bind=    , escape, exec  , uwsm-app -- swaync-client -cp -sw
         bind=    , escape, submap, reset
       submap=reset
 
       bind=$mod ALT, d, submap, discord
       submap=discord
-        bind=, v     , exec  , uwsm app -- vesktop
+        bind=, v     , exec  , uwsm-app -- vesktop
         bind=, v     , submap, reset
-        bind=, d     , exec  , uwsm app -- discord
+        bind=, d     , exec  , uwsm-app -- discord
         bind=, d     , submap, reset
-        bind=, s     , exec  , uwsm app -- discord-screenaudio
+        bind=, s     , exec  , uwsm-app -- discord-screenaudio
         bind=, s     , submap, reset
-        bind=, c     , exec  , uwsm app -- discordcanary
+        bind=, c     , exec  , uwsm-app -- discordcanary
         bind=, c     , submap, reset
         bind=, escape, submap, reset
       submap=reset
 
       bind=$mod ALT, b, submap, browser
       submap=browser
-        bind=, b     , exec  , uwsm app -- brave
+        bind=, b     , exec  , uwsm-app -- brave
         bind=, b     , submap, reset
-        bind=, f     , exec  , uwsm app -- firefox
-        bind=, f     , submap, reset
-        bind=, v     , exec  , uwsm app -- vivaldi
+        bind=, z     , exec  , uwsm-app -- zen
+        bind=, z     , submap, reset
+        bind=, v     , exec  , uwsm-app -- vivaldi
         bind=, v     , submap, reset
         bind=, escape, submap, reset
       submap=reset
@@ -385,7 +387,7 @@ in {
 
       bind=$mod, d, submap, develop
       submap=develop
-        bind=, l     , exec  , uwsm app -- nix-develop-lyra
+        bind=, l     , exec  , uwsm-app -- nix-develop-lyra
         bind=, l     , submap, reset
         bind=, escape, submap, reset
       submap=reset

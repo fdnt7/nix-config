@@ -1,11 +1,11 @@
 {
-  pkgs,
-  inputs,
+  #pkgs,
+  #inputs,
   ...
 }: {
   programs.hyprlock = {
     enable = true;
-    package = inputs.hyprlock.packages.${pkgs.system}.default;
+    #package = inputs.hyprlock.packages.${pkgs.system}.default;
     settings = {
       background = [
         {

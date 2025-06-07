@@ -2,7 +2,7 @@
   SWWW = "${pkgs.swww}/bin/swww";
 in
   pkgs.writeShellScriptBin "swww-next" ''
-    BACKGROUND=$(find $XDG_WALLPAPERS_DIR/Pixel/Animated -type f | shuf -n 1)
+    BACKGROUND=$(find $XDG_WALLPAPERS_DIR/Pixel/Animated -type f -name '*.gif' | shuf -n 1)
     BACKGROUND_LN=$XDG_STATE_HOME/swww-background
     ln -sfv $BACKGROUND $BACKGROUND_LN
 

@@ -7,9 +7,8 @@
     ./cava.nix
     ./eza.nix
     ./fd.nix
-    ./firefox.nix
     ./fish.nix
-    #./foot.nix
+    ./foot.nix
     ./git.nix
     ./gpg.nix
     ./htop.nix
@@ -25,9 +24,10 @@
     ./wezterm.nix
     ./zsh.nix
     ./nix-index.nix
+    ./zen.nix
 
     ./zed-editor/zed-editor.nix
-    ./alacritty/alacritty.nix
+    #./alacritty/alacritty.nix
     #./lf/lf.nix
     ./fastfetch/fastfetch.nix
     ./hypr/hypridle/hypridle.nix

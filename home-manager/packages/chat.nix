@@ -12,14 +12,15 @@
   freetype,
   glib,
   dbus,
+  wayland-scanner,
 }:
 stdenv.mkDerivation rec {
   pname = "chat";
-  version = "0.1.1";
+  version = "0.2.3";
 
   src = fetchurl {
     url = "https://github.com/hypergonial/chat-frontend/releases/download/v${version}/chat-frontend-v${version}-x86_64-unknown-linux-gnu.tar.gz";
-    sha256 = "sha256-W516+8Fvjb1JGPEPkgF75HnE9EGzjRk8wsbg2Tbbuwo=";
+    sha256 = "sha256-dGaAEeNfw7WxrruqpnoounYDqdFUbHWGb4ELOzoZzAw=";
   };
 
   nativeBuildInputs = [autoPatchelfHook];
@@ -37,6 +38,7 @@ stdenv.mkDerivation rec {
     freetype
     dbus
     glib
+    wayland-scanner
   ];
 
   installPhase = ''

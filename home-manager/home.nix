@@ -17,9 +17,9 @@
   home = {
     username = "fdnt";
     homeDirectory = "/home/fdnt";
-    sessionVariables.FLAKE = "${config.home.homeDirectory}/Documents/nix-config";
+    sessionVariables.NH_FLAKE = "${config.home.homeDirectory}/Documents/nix-config";
 
     # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-    stateVersion = "25.05";
+    stateVersion = "25.11";
   };
 }
