@@ -38,6 +38,7 @@
       swi = "swww img";
       hpc = "hyprctl clients";
       ze = "zeditor";
+      "ze." = "zeditor .";
 
       cg = "cargo";
       cga = "cargo add";
@@ -62,12 +63,12 @@
       ".f" = {
         position = "anywhere";
         setCursor = true;
-        expansion = "$FLAKE/%";
+        expansion = "$NH_FLAKE/%";
       };
       ".h" = {
         position = "anywhere";
         setCursor = true;
-        expansion = "$FLAKE/home-manager/%";
+        expansion = "$NH_FLAKE/home-manager/%";
       };
       ".d" = {
         position = "anywhere";
@@ -84,47 +85,47 @@
       vv = "sudoedit";
       "v." = {
         setCursor = true;
-        expansion = "vim $FLAKE/nixos/%";
+        expansion = "vim $NH_FLAKE/nixos/%";
       };
       "vc." = {
         setCursor = true;
-        expansion = "vim $FLAKE/home-manager/%";
+        expansion = "vim $NH_FLAKE/home-manager/%";
       };
-      vf = "vim $FLAKE/flake.nix";
-      vh = "vim $FLAKE/home-manager/home.nix";
-      vcx = "vim $FLAKE/home-manager/xdg.nix";
-      vcb = "vim $FLAKE/home-manager/programs/btop.nix";
-      vcv = "vim $FLAKE/home-manager/programs/nixvim.nix";
-      vcc = "vim $FLAKE/home-manager/programs/vscode.nix";
-      vcf = "vim $FLAKE/home-manager/programs/fish.nix";
-      vcg = "vim $FLAKE/home-manager/programs/git.nix";
-      vck = "vim $FLAKE/home-manager/programs/kitty.nix";
-      vca = "vim $FLAKE/home-manager/programs/alacritty.nix";
-      vcs = "vim $FLAKE/home-manager/programs/starship.nix";
-      vct = "vim $FLAKE/home-manager/programs/fastfetch/fastfetch.nix";
-      vco = "vim $FLAKE/home-manager/programs/foot.nix";
-      vcy = "vim $FLAKE/home-manager/programs/yazi/yazi.nix";
-      vcyi = "vim $FLAKE/home-manager/programs/yazi/init.lua";
-      vcyt = "vim $FLAKE/home-manager/programs/yazi/theme.toml";
-      vch = "vim $FLAKE/home-manager/programs/hypr/hyprland/hyprland.nix";
-      vchc = "vim $FLAKE/home-manager/programs/hypr/hyprcursor/hyprcursor.nix";
-      vchse = "vim $FLAKE/home-manager/programs/hypr/hyprland/scripts/exec-once.nix";
-      vchi = "vim $FLAKE/home-manager/programs/hypr/hypridle/hypridle.nix";
-      vchl = "vim $FLAKE/home-manager/programs/hypr/hyprlock/hyprlock.nix";
-      vcl = "vim $FLAKE/home-manager/programs/lf/lf.nix";
-      vclc = "vim $FLAKE/home-manager/programs/lf/colours";
-      vcli = "vim $FLAKE/home-manager/programs/lf/icons";
-      vcw = "vim $FLAKE/home-manager/programs/waybar/waybar.nix";
-      vcws = "vim $FLAKE/home-manager/programs/waybar/style.css";
-      vcz = "vim $FLAKE/home-manager/programs/zed-editor/zed-editor.nix";
+      vf = "vim $NH_FLAKE/flake.nix";
+      vh = "vim $NH_FLAKE/home-manager/home.nix";
+      vcx = "vim $NH_FLAKE/home-manager/xdg.nix";
+      vcb = "vim $NH_FLAKE/home-manager/programs/btop.nix";
+      vcv = "vim $NH_FLAKE/home-manager/programs/nixvim.nix";
+      vcc = "vim $NH_FLAKE/home-manager/programs/vscode.nix";
+      vcf = "vim $NH_FLAKE/home-manager/programs/fish.nix";
+      vcg = "vim $NH_FLAKE/home-manager/programs/git.nix";
+      vck = "vim $NH_FLAKE/home-manager/programs/kitty.nix";
+      vca = "vim $NH_FLAKE/home-manager/programs/alacritty.nix";
+      vcs = "vim $NH_FLAKE/home-manager/programs/starship.nix";
+      vct = "vim $NH_FLAKE/home-manager/programs/fastfetch/fastfetch.nix";
+      vco = "vim $NH_FLAKE/home-manager/programs/foot.nix";
+      vcy = "vim $NH_FLAKE/home-manager/programs/yazi/yazi.nix";
+      vcyi = "vim $NH_FLAKE/home-manager/programs/yazi/init.lua";
+      vcyt = "vim $NH_FLAKE/home-manager/programs/yazi/theme.toml";
+      vch = "vim $NH_FLAKE/home-manager/programs/hypr/hyprland/hyprland.nix";
+      vchc = "vim $NH_FLAKE/home-manager/programs/hypr/hyprcursor/hyprcursor.nix";
+      vchse = "vim $NH_FLAKE/home-manager/programs/hypr/hyprland/scripts/exec-once.nix";
+      vchi = "vim $NH_FLAKE/home-manager/programs/hypr/hypridle/hypridle.nix";
+      vchl = "vim $NH_FLAKE/home-manager/programs/hypr/hyprlock/hyprlock.nix";
+      vcl = "vim $NH_FLAKE/home-manager/programs/lf/lf.nix";
+      vclc = "vim $NH_FLAKE/home-manager/programs/lf/colours";
+      vcli = "vim $NH_FLAKE/home-manager/programs/lf/icons";
+      vcw = "vim $NH_FLAKE/home-manager/programs/waybar/waybar.nix";
+      vcws = "vim $NH_FLAKE/home-manager/programs/waybar/style.css";
+      vcz = "vim $NH_FLAKE/home-manager/programs/zed-editor/zed-editor.nix";
 
-      vc = "vim $FLAKE/nixos/configuration.nix";
-      vw = "vim $FLAKE/nixos/hardware-configuration.nix";
+      vc = "vim $NH_FLAKE/nixos/configuration.nix";
+      vw = "vim $NH_FLAKE/nixos/hardware-configuration.nix";
 
-      vhH = "vim $FLAKE/home-manager/home.nix && home-manager-switch-flake";
-      vcW = "vim $FLAKE/nixos/configuration.nix && nixos-rebuild-flake switch";
-      vcT = "vim $FLAKE/nixos/configuration.nix && nixos-rebuild-flake test";
-      vwT = "vim $FLAKE/nixos/hardware-configuration.nix && nixos-rebuild-flake test";
+      vhH = "vim $NH_FLAKE/home-manager/home.nix && home-manager-switch-flake";
+      vcW = "vim $NH_FLAKE/nixos/configuration.nix && nixos-rebuild-flake switch";
+      vcT = "vim $NH_FLAKE/nixos/configuration.nix && nixos-rebuild-flake test";
+      vwT = "vim $NH_FLAKE/nixos/hardware-configuration.nix && nixos-rebuild-flake test";
 
       cs = "nixos-rebuild-flake switch";
       ct = "nixos-rebuild-flake test";
@@ -139,7 +140,7 @@
       np = "nix-shell -p";
       nd = "nix develop";
       ndi = "nix develop --impure";
-      ndidp = "nix develop --impure -c uwsm app -- devenv up";
+      ndideu = "nix develop --impure -c devenv up -D";
       "ndize." = "nix develop --impure -c zeditor .";
       nfu = "nix flake update";
 
@@ -148,8 +149,8 @@
       mc = "man configuration.nix";
       mn = "man nixvim";
 
-      ds = "devenv shell";
-      dp = "uwsm app -- devenv up";
+      des = "devenv shell";
+      deu = "devenv up -D";
 
       w = "wget";
       r = "rg";
@@ -158,18 +159,34 @@
       g = "git";
       gm = "git merge";
       gp = "git push";
+      gpu = "git push -u origin";
       gpl = "git pull";
       gr = "git revert";
       gre = "git remote";
       grr = "git reset";
       gc = "git commit";
-      gch = "git checkout";
+      gh = "git checkout";
+      ghm = "git checkout main";
       gl = "git log";
       gd = "git diff";
       gs = "git status";
       gb = "git branch";
+      gbd = "git branch -d";
+      gbm = "git branch -m";
       ga = "git add";
       "ga." = "git add .";
+
+      d = "docker";
+      dcp = "docker compose";
+      dl = "docker logs";
+      dp = "docker ps";
+      dcpu = "docker compose up -d";
+      dcpd = "docker compose down";
+
+      pa = "process-compose attach";
+      pd = "process-compose down";
+
+      csp = "codespell";
 
       ":q" = "exit";
       ":wq" = "exit";

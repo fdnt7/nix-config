@@ -8,6 +8,7 @@
       signByDefault = true;
     };
     delta.enable = true;
+    lfs.enable = true;
   };
   catppuccin.delta.enable = true;
 }

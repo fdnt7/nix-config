@@ -45,8 +45,10 @@
     xournalpp
     libreoffice-qt-fresh
 
+    git-credential-manager
+
     (pkgs.callPackage ./packages/runapp.nix {})
-    (pkgs.callPackage ./packages/chat.nix {})
+    #(pkgs.callPackage ./packages/chat.nix {})
     (pkgs.callPackage ./packages/muse-sounds-manager-2.0.3.659.nix {})
     (import ./packages/musescore-appimage.nix {inherit pkgs;})
   ];

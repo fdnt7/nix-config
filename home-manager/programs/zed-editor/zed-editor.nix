@@ -10,17 +10,32 @@
   programs.zed-editor = {
     enable = true;
     #package = (pkgs.zed-editor.fhsWithPackages (pkgs: [pkgs.zlib pkgs.pkg-config pkgs.openssl]));
-    extensions = ["wakatime" "discord-presence" "catppuccin-blur" "sql"];
-    userSettings = {
-      # Zed settings
-      #
-      # For information on how to configure Zed, see the Zed
-      # documentation: https://zed.dev/docs/configuring-zed
-      #
-      # To see all of Zed's default settings without changing your
-      # custom settings, run the `open default settings` command
-      # from the command palette or from `Zed` application menu.
+    extensions = ["wakatime" "discord-presence" "catppuccin-blur" "sql" "nix"];
 
+    userKeymaps = [
+      {
+        context = "Workspace";
+        bindings = {
+          # "shift shift": "file_finder::Toggle"
+        };
+      }
+      {
+        context = "Editor";
+        bindings = {
+          # "j k": ["workspace::SendKeystrokes" "escape"]
+        };
+      }
+    ];
+
+    # Zed settings
+    #
+    # For information on how to configure Zed, see the Zed
+    # documentation: https://zed.dev/docs/configuring-zed
+    #
+    # To see all of Zed's default settings without changing your
+    # custom settings, run `zed: open default settings` from the
+    # command palette (cmd-shift-p / ctrl-shift-p)
+    userSettings = {
       collaboration_panel = {
         dock = "right";
       };
@@ -47,6 +62,11 @@
               features = "all";
             };
           };
+        };
+      };
+      diagnostics = {
+        inline = {
+          enabled = true;
         };
       };
     };

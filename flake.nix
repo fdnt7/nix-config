@@ -12,7 +12,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hardware.url = "github:NixOS/nixos-hardware/master";
+    #hardware.url = "github:NixOS/nixos-hardware/master";
 
     #nur = {
     #  url = "github:nix-community/NUR";
@@ -26,7 +26,7 @@
 
     nixvim = {
       url = "github:nix-community/nixvim";
-      #inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     #stylix.url = "github:danth/stylix";
@@ -40,12 +40,12 @@
     #  inputs.nixpkgs.follows = "nixpkgs";
     #};
 
-    hyprland.url = "github:hyprwm/Hyprland";
+    #hyprland.url = "github:hyprwm/Hyprland";
 
-    hyprlock = {
-      url = "github:hyprwm/hyprlock";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    #hyprlock = {
+    #  url = "github:hyprwm/hyprlock";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
 
     nix-your-shell = {
       url = "github:MercuryTechnologies/nix-your-shell";
@@ -57,7 +57,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    #neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      # IMPORTANT: we're using "libgbm" and is only available in unstable so ensure
+      # to have it up-to-date or simply don't specify the nixpkgs input
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {

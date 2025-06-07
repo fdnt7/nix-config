@@ -9,6 +9,7 @@
       pinentry.package = pkgs.pinentry-qt;
     };
     ssh-agent.enable = true;
+    trayscale.enable = true;
   };
 
   # Nicely reload system units when changing configs

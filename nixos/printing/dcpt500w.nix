@@ -18,7 +18,7 @@
 }: let
   version = "3.0.2-0";
   model = "dcpt500w";
-in rec {
+in {
   driver = stdenv.mkDerivation {
     pname = "${model}-lpr";
     inherit version;
