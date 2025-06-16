@@ -1,6 +1,6 @@
 {
   pkgs,
-  #inputs,
+  inputs,
   ...
 }: let
 in {
@@ -24,6 +24,11 @@ in {
       #variables = ["--all"];
       enable = false;
     };
+    plugins = with inputs.hyprland-plugins.packages.${pkgs.system}; [
+      hyprexpo
+      hyprscrolling
+      xtra-dispatchers
+    ];
     settings = {
       monitor = [
         "eDP-2,preferred,auto,1"
@@ -51,6 +56,7 @@ in {
         gaps_out = 5;
         border_size = 1;
         "col.active_border" = "rgb(AEFFFC) rgb(C4A3EF) rgb(F1C3ED) 30deg";
+        #layout = "scrolling";
         layout = "dwindle";
         #allow_tearing = true;
       };
@@ -335,6 +341,12 @@ in {
         "$mod, mouse:272, movewindow"
         "$mod, mouse:273, resizewindow"
       ];
+
+      plugin = {
+        hyprscrolling = {
+          fullscreen_on_one_column = true;
+        };
+      };
     };
     extraConfig = ''
       bind=$mod, n, exec, uwsm-app -- swaync-client -op -sw
