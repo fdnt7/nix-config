@@ -9,7 +9,9 @@
     #package = inputs.waybar.packages.${pkgs.system}.default;
     settings = {
       main = {
-        layer = "top";
+        #layer = "top";
+        layer = "overlay";
+        start_hidden = true;
         position = "bottom";
         height = 26;
         spacing = 8;

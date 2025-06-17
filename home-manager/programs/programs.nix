@@ -25,6 +25,7 @@
     ./zsh.nix
     ./nix-index.nix
     ./zen.nix
+    ./eww.nix
 
     ./zed-editor/zed-editor.nix
     #./alacritty/alacritty.nix
@@ -36,7 +37,7 @@
     ./hypr/hyprsunset.nix
     #./hypr/hyprcursor/hyprcursor.nix
     ./swaync/swaync.nix
-    ./waybar/waybar.nix
+    #./waybar/waybar.nix
     ./yazi/yazi.nix
   ];
 }

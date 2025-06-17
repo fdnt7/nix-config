@@ -6,43 +6,22 @@
   plugs = pkgs.fetchFromGitHub {
     owner = "yazi-rs";
     repo = "plugins";
-    rev = "63f9650e522336e0010261dcd0ffb0bf114cf912";
-    hash = "sha256-ZCLJ6BjMAj64/zM606qxnmzl2la4dvO/F5QFicBEYfU=";
-  };
-
-  glow_plug = pkgs.fetchFromGitHub {
-    owner = "Reledia";
-    repo = "glow.yazi";
-    rev = "2da96e3ffd9cd9d4dd53e0b2636f83ff69fe9af0";
-    hash = "sha256-4krck4U/KWmnl32HWRsblYW/biuqzDPysrEn76buRck=";
-  };
-
-  miller_plug = pkgs.fetchFromGitHub {
-    owner = "Reledia";
-    repo = "miller.yazi";
-    rev = "0a3d1316e38132ae9a6b91fbd69bab295cbbf2fe";
-    hash = "sha256-pZpx7V5ud5JhEkgkfVBSuM0CFIIUXZZ+pOX0xVlHf+0=";
-  };
-
-  hexyl_plug = pkgs.fetchFromGitHub {
-    owner = "Reledia";
-    repo = "hexyl.yazi";
-    rev = "016a09bcc249dd3ce06267d54cc039e73de9c647";
-    hash = "sha256-ly/cLKl2y3npoT2nX8ioGOFcRXI4UXbD9Es/5veUhOU=";
+    rev = "aeca767ec27bfbea66873d667a729791de18f364";
+    hash = "sha256-QkjXl8lGeqFgL2FGTs63xW0/hbZEpIyBCWnkdCgcv5s=";
   };
 
   exifaudio = pkgs.fetchFromGitHub {
     owner = "Sonico98";
     repo = "exifaudio.yazi";
-    rev = "7ff714155f538b6460fdc8e911a9240674ad9b89";
-    hash = "sha256-qRUAKlrYWV0qzI3SAQUYhnL3QR+0yiRc+0XbN/MyufI=";
+    rev = "e766cd273246612fe71fc18d2126619a41273c32";
+    hash = "sha256-aniuY14pXcoaW6YkUwt7hTl9mWjl5HoOPhHkuY4ooAw=";
   };
 
   ouch_plug = pkgs.fetchFromGitHub {
     owner = "ndtoan96";
     repo = "ouch.yazi";
-    rev = "10b462765f37502065555e83c68a72bb26870fe2";
-    hash = "sha256-mtXl76a54Deg4cyrD0wr++sD/5b/kCsnJ+ngM6OokTc=";
+    rev = "1ee69a56da3c4b90ec8716dd9dd6b82e7a944614";
+    hash = "sha256-4KZeDkMXlhUV0Zh+VGBtz9kFPGOWCexYVuKUSCN463o=";
   };
 
   torrent-preview_plug = pkgs.fetchFromGitHub {
@@ -68,8 +47,8 @@ in {
     fzf
 
     glow
-    miller
     hexyl
+    miller
     exiftool
     ouch
     transmission_4
@@ -90,10 +69,8 @@ in {
       jump-to-char = "${plugs}/jump-to-char.yazi";
       diff = "${plugs}/diff.yazi";
       git = "${plugs}/git.yazi";
+      piper = "${plugs}/piper.yazi";
 
-      glow = glow_plug;
-      miller = miller_plug;
-      hexyl = hexyl_plug;
       exifaudio = exifaudio;
       ouch = ouch_plug;
       torrent-preview = torrent-preview_plug;
@@ -170,11 +147,11 @@ in {
         prepend_previewers = [
           {
             name = "*.md";
-            run = "glow";
+            run = "piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark \"$1\"";
           }
           {
             mime = "text/csv";
-            run = "miller";
+            run = "piper -- mlr --icsv --opprint -C --key-color darkcyan --value-color grey70 cat \"$1\"";
           }
           {
             mime = "audio/*";
@@ -224,7 +201,7 @@ in {
         append_previewers = [
           {
             name = "*";
-            run = "hexyl";
+            run = "piper -- hexyl --border=none --terminal-width=$w \"$1\"";
           }
         ];
 
