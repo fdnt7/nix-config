@@ -10,6 +10,7 @@ in {
     (import ./scripts/swww-next.nix {inherit pkgs;})
     #(import ./scripts/lock.nix {inherit inputs pkgs;})
     (import ./scripts/lock.nix {inherit pkgs;})
+    #(import ./scripts/toggle-waybar.nix {inherit pkgs;})
     pkgs.hyprpolkitagent
   ];
   xdg.configFile = {
@@ -52,12 +53,14 @@ in {
       };
 
       general = {
-        gaps_in = 3;
-        gaps_out = 5;
+        #gaps_in = 3;
+        #gaps_out = 5;
+        gaps_in = 0;
+        gaps_out = 0;
         border_size = 1;
         "col.active_border" = "rgb(AEFFFC) rgb(C4A3EF) rgb(F1C3ED) 30deg";
-        #layout = "scrolling";
-        layout = "dwindle";
+        layout = "scrolling";
+        #layout = "dwindle";
         #allow_tearing = true;
       };
 
@@ -66,7 +69,7 @@ in {
         blur = {
           enabled = true;
           size = 8;
-          passes = 1;
+          passes = 3;
           special = false;
         };
 
@@ -110,7 +113,7 @@ in {
           "border, 1, 10, default"
           "borderangle, 1, 7.5, default"
           "fade, 1, 7, default"
-          "workspaces, 1, 3, default, slidefade 10%"
+          "workspaces, 1, 3, default, slidefadevert 10%"
           "specialWorkspace, 1, 4, default, slidefadevert 5%"
           "layers, 1, 2.5, default, fade"
           "fadeLayers, 1, 2.5, default"
@@ -223,13 +226,19 @@ in {
       ];
 
       binde = [
-        "$mod CTRL, l,resizeactive,10 0"
-        "$mod CTRL, h,resizeactive,-10 0"
-        "$mod CTRL, k,resizeactive,0 -10"
-        "$mod CTRL, j,resizeactive,0 10"
+        #"$mod CTRL, l,resizeactive,10 0"
+        #"$mod CTRL, h,resizeactive,-10 0"
+        #"$mod CTRL, k,resizeactive,0 -10"
+        #"$mod CTRL, j,resizeactive,0 10"
+        "$mod CTRL, h, layoutmsg, colresize -conf"
+        "$mod CTRL, j, layoutmsg, colresize -0.2"
+        "$mod CTRL, k, layoutmsg, colresize +0.2"
+        "$mod CTRL, l, layoutmsg, colresize +conf"
 
-        "$mod, Tab, changegroupactive, f"
-        "$mod SHIFT, Tab, changegroupactive, b"
+        #"$mod, Tab, changegroupactive, f"
+        #"$mod SHIFT, Tab, changegroupactive, b"
+        "$mod, Tab, layoutmsg, move +col"
+        "$mod SHIFT, Tab, layoutmsg, move -col"
       ];
 
       bind =
@@ -265,7 +274,10 @@ in {
           "$mod SHIFT     , y, cyclenext, prev tiled"
           "$mod CTRL      , y, cyclenext, floating"
           "$mod CTRL SHIFT, y, cyclenext, floating"
-          "$mod, u, moveoutofgroup"
+
+          #"$mod, u, moveoutofgroup"
+          "$mod, u, layoutmsg, promote"
+
           "$mod, i, pin"
           "$mod, bracketleft , alterzorder, bottom"
           "$mod, bracketright, alterzorder, top"
@@ -276,18 +288,32 @@ in {
           "$mod SHIFT, f, fullscreen"
           "$mod, g, togglegroup"
           "$mod SHIFT, g, lockactivegroup, toggle"
-          "$mod, h, movefocus, l"
-          "$mod, j, movefocus, d"
-          "$mod, k, movefocus, u"
-          "$mod, l, movefocus, r"
-          "$mod SHIFT, h, swapwindow, l"
-          "$mod SHIFT, j, swapwindow, d"
-          "$mod SHIFT, k, swapwindow, u"
-          "$mod SHIFT, l, swapwindow, r"
-          "$mod CTRL SHIFT, h, moveintogroup, l"
-          "$mod CTRL SHIFT, j, moveintogroup, d"
-          "$mod CTRL SHIFT, k, moveintogroup, u"
-          "$mod CTRL SHIFT, l, moveintogroup, r"
+
+          #"$mod, h, movefocus, l"
+          #"$mod, j, movefocus, d"
+          #"$mod, k, movefocus, u"
+          #"$mod, l, movefocus, r"
+          "$mod, h, layoutmsg, focus l"
+          "$mod, j, layoutmsg, focus d"
+          "$mod, k, layoutmsg, focus u"
+          "$mod, l, layoutmsg, focus r"
+
+          #"$mod SHIFT, h, swapwindow, l"
+          #"$mod SHIFT, j, swapwindow, d"
+          #"$mod SHIFT, k, swapwindow, u"
+          #"$mod SHIFT, l, swapwindow, r"
+          "$mod SHIFT, h, layoutmsg, movewindowto l"
+          "$mod SHIFT, j, layoutmsg, movewindowto d"
+          "$mod SHIFT, k, layoutmsg, movewindowto u"
+          "$mod SHIFT, l, layoutmsg, movewindowto r"
+
+          #"$mod CTRL SHIFT, h, moveintogroup, l"
+          #"$mod CTRL SHIFT, j, moveintogroup, d"
+          #"$mod CTRL SHIFT, k, moveintogroup, u"
+          #"$mod CTRL SHIFT, l, moveintogroup, r"
+          "$mod CTRL SHIFT, h, layoutmsg, fit tobeg"
+          "$mod CTRL SHIFT, l, layoutmsg, fit toend"
+
           "$mod, semicolon, exec, uwsm-app -- lock"
           "$mod CTRL, s, exec, uwsm-app -- swww-next"
 
@@ -320,6 +346,8 @@ in {
           "$mod      , $sws_4, togglespecialworkspace, chat"
           "$mod CTRL , $sws_4, movetoworkspace       , special:chat"
           "$mod SHIFT, $sws_4, movetoworkspacesilent, special:chat"
+
+          #", SUPER_L, exec, uwsm-app -- toggle-waybar"
         ]
         ++ (
           builtins.concatLists (builtins.genList (
@@ -339,70 +367,130 @@ in {
 
       bindm = [
         "$mod, mouse:272, movewindow"
+        #"$mod, mouse:272, layoutmsg, movewindowto"
+
         "$mod, mouse:273, resizewindow"
+      ];
+
+      bindrt = [
+        #"$mod, SUPER_L, exec, uwsm-app -- toggle-waybar"
       ];
 
       plugin = {
         hyprscrolling = {
           fullscreen_on_one_column = true;
+          focus_fit_method = 1;
         };
       };
     };
-    extraConfig = ''
-      bind=$mod, n, exec, uwsm-app -- swaync-client -op -sw
-      bind=$mod, n, submap, notify
-      submap=notify
-        bind=    , c     , exec  , uwsm-app -- swaync-client -C -sw
-        bind=    , c     , exec  , uwsm-app -- swaync-client -cp -sw
-        bind=    , c     , submap, reset
-        bind=    , d     , exec  , uwsm-app -- swaync-client -d -sw
-        bind=    , d     , exec  , uwsm-app -- swaync-client -cp -sw
-        bind=    , d     , submap, reset
-        bind=$mod, n     , exec  , uwsm-app -- swaync-client -cp -sw
-        bind=$mod, n     , submap, reset
-        bind=    , escape, exec  , uwsm-app -- swaync-client -cp -sw
-        bind=    , escape, submap, reset
-      submap=reset
+    extraConfig =
+      #''
+      # bind=$mod, n, exec, uwsm-app -- swaync-client -op -sw
+      # bind=$mod, n, submap, notify
+      # submap=notify
+      #   bind=    , c     , exec  , uwsm-app -- toggle-waybar; uwsm-app -- swaync-client -C -sw; uwsm-app -- swaync-client -cp -sw;
+      #   bind=    , c     , submap, reset
+      #   bind=    , d     , exec  , uwsm-app -- toggle-waybar; uwsm-app -- swaync-client -d -sw; uwsm-app -- swaync-client -cp -sw;
+      #   bind=    , d     , submap, reset
+      #   bind=$mod, n     , exec  , uwsm-app -- toggle-waybar; uwsm-app -- swaync-client -cp -sw;
+      #   bind=$mod, n     , submap, reset
+      #   bind=    , escape, exec  , uwsm-app -- toggle-waybar; uwsm-app -- swaync-client -cp -sw;
+      #   bind=    , escape, submap, reset
+      # submap=reset
+      # bind=$mod ALT, d, submap, discord
+      # submap=discord
+      #   bind=, v     , exec  , uwsm-app -- toggle-waybar; uwsm-app -- vesktop
+      #   bind=, v     , submap, reset
+      #   bind=, d     , exec  , uwsm-app -- toggle-waybar; uwsm-app -- discord
+      #   bind=, d     , submap, reset
+      #   bind=, s     , exec  , uwsm-app -- toggle-waybar; uwsm-app -- discord-screenaudio
+      #   bind=, s     , submap, reset
+      #   bind=, c     , exec  , uwsm-app -- toggle-waybar; uwsm-app -- discordcanary
+      #   bind=, c     , submap, reset
+      #   bind=, escape, exec  , uwsm-app -- toggle-waybar
+      #   bind=, escape, submap, reset
+      # submap=reset
+      # bind=$mod ALT, b, submap, browser
+      # submap=browser
+      #   bind=, b     , exec  , uwsm-app -- toggle-waybar; uwsm-app -- brave;
+      #   bind=, b     , submap, reset
+      #   bind=, z     , exec  , uwsm-app -- toggle-waybar; uwsm-app -- zen
+      #   bind=, z     , submap, reset
+      #   bind=, v     , exec  , uwsm-app -- toggle-waybar; uwsm-app -- vivaldi
+      #   bind=, v     , submap, reset
+      #   bind=, escape, exec  , uwsm-app -- toggle-waybar
+      #   bind=, escape, submap, reset
+      # submap=reset
+      # bind=$mod, q, submap, power
+      # submap=power
+      #   bind=, s     , exec  , poweroff
+      #   bind=, s     , submap, reset
+      #   bind=, r     , exec  , reboot
+      #   bind=, r     , submap, reset
+      #   bind=, escape, exec  , uwsm-app -- toggle-waybar
+      #   bind=, escape, submap, reset
+      # submap=reset
+      # bind=$mod, d, submap, develop
+      # submap=develop
+      #   bind=, l     , exec  , uwsm-app -- toggle-waybar; uwsm-app -- nix-develop-lyra
+      #   bind=, l     , submap, reset
+      #   bind=, escape, exec  , uwsm-app -- toggle-waybar
+      #   bind=, escape, submap, reset
+      # submap=reset
+      #''
+      ''
+        bind=$mod, n, exec, uwsm-app -- swaync-client -op -sw
+        bind=$mod, n, submap, notify
+        submap=notify
+          bind=    , c     , exec  , uwsm-app -- swaync-client -C -sw; uwsm-app -- swaync-client -cp -sw;
+          bind=    , c     , submap, reset
+          bind=    , d     , exec  , uwsm-app -- swaync-client -d -sw; uwsm-app -- swaync-client -cp -sw;
+          bind=    , d     , submap, reset
+          bind=$mod, n     , exec  , uwsm-app -- swaync-client -cp -sw;
+          bind=$mod, n     , submap, reset
+          bind=    , escape, exec  , uwsm-app -- swaync-client -cp -sw;
+          bind=    , escape, submap, reset
+        submap=reset
 
-      bind=$mod ALT, d, submap, discord
-      submap=discord
-        bind=, v     , exec  , uwsm-app -- vesktop
-        bind=, v     , submap, reset
-        bind=, d     , exec  , uwsm-app -- discord
-        bind=, d     , submap, reset
-        bind=, s     , exec  , uwsm-app -- discord-screenaudio
-        bind=, s     , submap, reset
-        bind=, c     , exec  , uwsm-app -- discordcanary
-        bind=, c     , submap, reset
-        bind=, escape, submap, reset
-      submap=reset
+        bind=$mod ALT, d, submap, discord
+        submap=discord
+          bind=, v     , exec  , uwsm-app -- vesktop
+          bind=, v     , submap, reset
+          bind=, d     , exec  , uwsm-app -- discord
+          bind=, d     , submap, reset
+          bind=, s     , exec  , uwsm-app -- discord-screenaudio
+          bind=, s     , submap, reset
+          bind=, c     , exec  , uwsm-app -- discordcanary
+          bind=, c     , submap, reset
+          bind=, escape, submap, reset
+        submap=reset
 
-      bind=$mod ALT, b, submap, browser
-      submap=browser
-        bind=, b     , exec  , uwsm-app -- brave
-        bind=, b     , submap, reset
-        bind=, z     , exec  , uwsm-app -- zen
-        bind=, z     , submap, reset
-        bind=, v     , exec  , uwsm-app -- vivaldi
-        bind=, v     , submap, reset
-        bind=, escape, submap, reset
-      submap=reset
+        bind=$mod ALT, b, submap, browser
+        submap=browser
+          bind=, b     , exec  , uwsm-app -- brave;
+          bind=, b     , submap, reset
+          bind=, z     , exec  , uwsm-app -- zen
+          bind=, z     , submap, reset
+          bind=, v     , exec  , uwsm-app -- vivaldi
+          bind=, v     , submap, reset
+          bind=, escape, submap, reset
+        submap=reset
 
-      bind=$mod, q, submap, power
-      submap=power
-        bind=, s     , exec  , poweroff
-        bind=, s     , submap, reset
-        bind=, r     , exec  , reboot
-        bind=, r     , submap, reset
-        bind=, escape, submap, reset
-      submap=reset
+        bind=$mod, q, submap, power
+        submap=power
+          bind=, s     , exec  , poweroff
+          bind=, s     , submap, reset
+          bind=, r     , exec  , reboot
+          bind=, r     , submap, reset
+          bind=, escape, submap, reset
+        submap=reset
 
-      bind=$mod, d, submap, develop
-      submap=develop
-        bind=, l     , exec  , uwsm-app -- nix-develop-lyra
-        bind=, l     , submap, reset
-        bind=, escape, submap, reset
-      submap=reset
-    '';
+        bind=$mod, d, submap, develop
+        submap=develop
+          bind=, l     , exec  , uwsm-app -- nix-develop-lyra
+          bind=, l     , submap, reset
+          bind=, escape, submap, reset
+        submap=reset
+      '';
   };
 }

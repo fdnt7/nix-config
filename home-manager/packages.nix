@@ -47,7 +47,7 @@
 
     git-credential-manager
     gimp3
-    kdePackages.dolphin
+    #kdePackages.dolphin
 
     (pkgs.callPackage ./packages/runapp.nix {})
     #(pkgs.callPackage ./packages/chat.nix {})
