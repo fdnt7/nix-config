@@ -3,7 +3,7 @@
     nh
     nix-output-monitor
     nvd
-    devenv
+    #devenv
     alejandra
 
     discord
@@ -24,7 +24,6 @@
 
     pavucontrol
     playerctl
-    jamesdsp
     audacity
 
     xdg-ninja
@@ -49,10 +48,11 @@
     gimp3
     #kdePackages.dolphin
 
-    (pkgs.callPackage ./packages/runapp.nix {})
+    #(pkgs.callPackage ./packages/runapp.nix {})
     #(pkgs.callPackage ./packages/chat.nix {})
-    (pkgs.callPackage ./packages/muse-sounds-manager-2.0.3.659.nix {})
-    (import ./packages/musescore-appimage.nix {inherit pkgs;})
+    #(pkgs.callPackage ./packages/muse-sounds-manager-2.0.3.659.nix {})
+    musescore
+    #(import ./packages/musescore-appimage.nix {inherit pkgs;})
   ];
 in {
   home.packages =

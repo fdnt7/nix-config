@@ -17,7 +17,7 @@
       _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java";
       DOCKER_CONFIG = "$XDG_CONFIG_HOME/docker";
       PSQL_HISTORY = "$XDG_DATA_HOME/psql_history";
-      #NIXOS_OZONE_WL = "1";
+      NIXOS_OZONE_WL = "1";
     };
     variables = {
       EDITOR = "nvim";

@@ -2,15 +2,20 @@
   pkgs,
   inputs,
   ...
-}: let
-in {
+}: {
   home.packages = [
     (import ./scripts/exec-once.nix {inherit pkgs;})
     (import ./scripts/toggle-touchpad.nix {inherit pkgs;})
     (import ./scripts/swww-next.nix {inherit pkgs;})
     #(import ./scripts/lock.nix {inherit inputs pkgs;})
     (import ./scripts/lock.nix {inherit pkgs;})
-    #(import ./scripts/toggle-waybar.nix {inherit pkgs;})
+    (import ./scripts/open-bar.nix {inherit pkgs;})
+    (import ./scripts/close-bar.nix {inherit pkgs;})
+    (import ./scripts/brightness-up.nix {inherit pkgs;})
+    (import ./scripts/brightness-down.nix {inherit pkgs;})
+    (import ./scripts/set-vol.nix {inherit pkgs;})
+    (import ./scripts/toggle-mute.nix {inherit pkgs;})
+    (import ./scripts/showleds.nix {inherit pkgs;})
     pkgs.hyprpolkitagent
   ];
   xdg.configFile = {
@@ -39,8 +44,9 @@ in {
 
       input = {
         kb_layout = "us,th";
-        kb_options = "caps:escape,grp:win_space_toggle";
+        #kb_options = "caps:escape,grp:win_space_toggle";
         #kb_options = "caps:swapescape,grp:win_escape_toggle";
+        kb_options = "caps:escape_shifted_capslock,grp:win_escape_toggle";
         numlock_by_default = true;
         repeat_rate = 40;
         repeat_delay = 200;
@@ -141,7 +147,9 @@ in {
       };
 
       workspace = [
-        "w[tv1], gapsout:0, gapsin:0"
+        # `no_gaps_when_only`
+        "w[t1], gapsout:0, gapsin:0"
+        "w[tg1], gapsout:0, gapsin:0"
         "f[1], gapsout:0, gapsin:0"
       ];
 
@@ -168,7 +176,6 @@ in {
         "float, class:^(swayimg_.*)$"
         "float, class:^(mscore4portable)$"
         "float, class:^(Muse Sounds Manager)$"
-        "float, class:^(jamesdsp)$"
         "float, class:^(pavucontrol)$"
         "float, class:^(mpv)$"
         "float, class:^(nm-connection-editor)$"
@@ -186,7 +193,6 @@ in {
         "workspace special:chat, class:^(de.shorsh.discord-screenaudio)$"
 
         "workspace special:music, class:^(Spotify)$"
-        "workspace special:music, class:^(jamesdsp)$"
         "workspace special:music, class:^(pavucontrol)$"
 
         "workspace special:scratch, class:^(Alacritty)$"
@@ -194,8 +200,11 @@ in {
         "workspace special:scratch, class:^(foot)$"
         "workspace special:scratch, class:^(kitty)$"
 
-        "bordersize 0, floating:0, onworkspace:w[tv1]"
-        "rounding 0, floating:0, onworkspace:w[tv1]"
+        # `no_gaps_when_only`
+        "bordersize 0, floating:0, onworkspace:w[t1]"
+        "rounding 0, floating:0, onworkspace:w[t1]"
+        "bordersize 0, floating:0, onworkspace:w[tg1]"
+        "rounding 0, floating:0, onworkspace:w[tg1]"
         "bordersize 0, floating:0, onworkspace:f[1]"
         "rounding 0, floating:0, onworkspace:f[1]"
       ];
@@ -209,6 +218,8 @@ in {
 
         "ignorealpha 0.5, swaync-control-center"
         "ignorealpha 0.5, swaync-notification-window"
+
+        "noanim, wob"
       ];
 
       "$mod" = "SUPER";
@@ -221,8 +232,8 @@ in {
       "$term_alt" = "foot";
 
       bindr = [
-        "MOD2, Num_Lock , exec, uwsm-app -- swayosd-client --num-lock"
-        "CAPS, Caps_Lock, exec, uwsm-app -- swayosd-client --caps-lock"
+        "MOD2, Num_Lock , exec, uwsm-app -- showleds n"
+        "CAPS, Caps_Lock, exec, uwsm-app -- showleds c"
       ];
 
       binde = [
@@ -239,23 +250,24 @@ in {
         #"$mod SHIFT, Tab, changegroupactive, b"
         "$mod, Tab, layoutmsg, move +col"
         "$mod SHIFT, Tab, layoutmsg, move -col"
+
+        "            , XF86AudioLowerVolume , exec, set-vol sink d"
+        "            , XF86AudioRaiseVolume , exec, set-vol sink u"
+        "            , xf86monbrightnessdown, exec, brightness-down" #fn+f7
+        "            , xf86monbrightnessup  , exec, brightness-up" #fn+f8
       ];
 
       bind =
         [
-          "            , XF86AudioLowerVolume , exec, uwsm-app -- swayosd-client --output-volume lower"
-          "            , XF86AudioRaiseVolume , exec, uwsm-app -- swayosd-client --output-volume raise"
-          "            , XF86AudioMicMute     , exec, uwsm-app -- swayosd-client --input-volume mute-toggle"
+          "            , XF86AudioMicMute     , exec, uwsm-app -- toggle-mute src"
           "            , XF86Launch3          , exec, uwsm-app --"
 
-          "            , XF86AudioMute        , exec, uwsm-app -- swayosd-client --output-volume mute-toggle" #fn+f1
+          "            , XF86AudioMute        , exec, uwsm-app -- toggle-mute sink" #fn+f1
           #fn+f2 o
           #fn+f3 o
-          "            , XF86Launch4, exec    , exec, uwsm-app --" #fn+f4
+          "            , XF86Launch4          , exec, uwsm-app --" #fn+f4
           #fn+f5 -
           "$mod Shift_L, s                    , exec, uwsm-app -- grimblast --notify copysave area" #fn+f6
-          "            , xf86monbrightnessup  , exec, uwsm-app -- swayosd-client --brightness raise" #fn+f7
-          "            , xf86monbrightnessdown, exec, uwsm-app -- swayosd-client --brightness lower" #fn+f8
           "$mod        , p                    , exec, uwsm-app --" #fn+f9
           "            , XF86TouchPadToggle   , exec, uwsm-app -- toggle-touchpad" #fn+f10
           #fn+f11 o
@@ -325,7 +337,6 @@ in {
           "$mod ALT, z, exec, uwsm-app -- zed"
           "$mod ALT, c, exec, uwsm-app -- code"
           "$mod ALT, v, exec, uwsm-app -- pavucontrol"
-          "$mod ALT, j, exec, uwsm-app -- jamesdsp"
           "$mod ALT, x, exec, uwsm-app -- xournalpp"
 
           "$mod, Return , exec, uwsm-app -- $term"
@@ -347,7 +358,7 @@ in {
           "$mod CTRL , $sws_4, movetoworkspace       , special:chat"
           "$mod SHIFT, $sws_4, movetoworkspacesilent, special:chat"
 
-          #", SUPER_L, exec, uwsm-app -- toggle-waybar"
+          ", SUPER_L, exec, uwsm-app -- open-bar"
         ]
         ++ (
           builtins.concatLists (builtins.genList (
@@ -373,7 +384,7 @@ in {
       ];
 
       bindrt = [
-        #"$mod, SUPER_L, exec, uwsm-app -- toggle-waybar"
+        "$mod, SUPER_L, exec, uwsm-app -- close-bar"
       ];
 
       plugin = {
@@ -383,114 +394,59 @@ in {
         };
       };
     };
-    extraConfig =
-      #''
-      # bind=$mod, n, exec, uwsm-app -- swaync-client -op -sw
-      # bind=$mod, n, submap, notify
-      # submap=notify
-      #   bind=    , c     , exec  , uwsm-app -- toggle-waybar; uwsm-app -- swaync-client -C -sw; uwsm-app -- swaync-client -cp -sw;
-      #   bind=    , c     , submap, reset
-      #   bind=    , d     , exec  , uwsm-app -- toggle-waybar; uwsm-app -- swaync-client -d -sw; uwsm-app -- swaync-client -cp -sw;
-      #   bind=    , d     , submap, reset
-      #   bind=$mod, n     , exec  , uwsm-app -- toggle-waybar; uwsm-app -- swaync-client -cp -sw;
-      #   bind=$mod, n     , submap, reset
-      #   bind=    , escape, exec  , uwsm-app -- toggle-waybar; uwsm-app -- swaync-client -cp -sw;
-      #   bind=    , escape, submap, reset
-      # submap=reset
-      # bind=$mod ALT, d, submap, discord
-      # submap=discord
-      #   bind=, v     , exec  , uwsm-app -- toggle-waybar; uwsm-app -- vesktop
-      #   bind=, v     , submap, reset
-      #   bind=, d     , exec  , uwsm-app -- toggle-waybar; uwsm-app -- discord
-      #   bind=, d     , submap, reset
-      #   bind=, s     , exec  , uwsm-app -- toggle-waybar; uwsm-app -- discord-screenaudio
-      #   bind=, s     , submap, reset
-      #   bind=, c     , exec  , uwsm-app -- toggle-waybar; uwsm-app -- discordcanary
-      #   bind=, c     , submap, reset
-      #   bind=, escape, exec  , uwsm-app -- toggle-waybar
-      #   bind=, escape, submap, reset
-      # submap=reset
-      # bind=$mod ALT, b, submap, browser
-      # submap=browser
-      #   bind=, b     , exec  , uwsm-app -- toggle-waybar; uwsm-app -- brave;
-      #   bind=, b     , submap, reset
-      #   bind=, z     , exec  , uwsm-app -- toggle-waybar; uwsm-app -- zen
-      #   bind=, z     , submap, reset
-      #   bind=, v     , exec  , uwsm-app -- toggle-waybar; uwsm-app -- vivaldi
-      #   bind=, v     , submap, reset
-      #   bind=, escape, exec  , uwsm-app -- toggle-waybar
-      #   bind=, escape, submap, reset
-      # submap=reset
-      # bind=$mod, q, submap, power
-      # submap=power
-      #   bind=, s     , exec  , poweroff
-      #   bind=, s     , submap, reset
-      #   bind=, r     , exec  , reboot
-      #   bind=, r     , submap, reset
-      #   bind=, escape, exec  , uwsm-app -- toggle-waybar
-      #   bind=, escape, submap, reset
-      # submap=reset
-      # bind=$mod, d, submap, develop
-      # submap=develop
-      #   bind=, l     , exec  , uwsm-app -- toggle-waybar; uwsm-app -- nix-develop-lyra
-      #   bind=, l     , submap, reset
-      #   bind=, escape, exec  , uwsm-app -- toggle-waybar
-      #   bind=, escape, submap, reset
-      # submap=reset
-      #''
-      ''
-        bind=$mod, n, exec, uwsm-app -- swaync-client -op -sw
-        bind=$mod, n, submap, notify
-        submap=notify
-          bind=    , c     , exec  , uwsm-app -- swaync-client -C -sw; uwsm-app -- swaync-client -cp -sw;
-          bind=    , c     , submap, reset
-          bind=    , d     , exec  , uwsm-app -- swaync-client -d -sw; uwsm-app -- swaync-client -cp -sw;
-          bind=    , d     , submap, reset
-          bind=$mod, n     , exec  , uwsm-app -- swaync-client -cp -sw;
-          bind=$mod, n     , submap, reset
-          bind=    , escape, exec  , uwsm-app -- swaync-client -cp -sw;
-          bind=    , escape, submap, reset
-        submap=reset
-
-        bind=$mod ALT, d, submap, discord
-        submap=discord
-          bind=, v     , exec  , uwsm-app -- vesktop
-          bind=, v     , submap, reset
-          bind=, d     , exec  , uwsm-app -- discord
-          bind=, d     , submap, reset
-          bind=, s     , exec  , uwsm-app -- discord-screenaudio
-          bind=, s     , submap, reset
-          bind=, c     , exec  , uwsm-app -- discordcanary
-          bind=, c     , submap, reset
-          bind=, escape, submap, reset
-        submap=reset
-
-        bind=$mod ALT, b, submap, browser
-        submap=browser
-          bind=, b     , exec  , uwsm-app -- brave;
-          bind=, b     , submap, reset
-          bind=, z     , exec  , uwsm-app -- zen
-          bind=, z     , submap, reset
-          bind=, v     , exec  , uwsm-app -- vivaldi
-          bind=, v     , submap, reset
-          bind=, escape, submap, reset
-        submap=reset
-
-        bind=$mod, q, submap, power
-        submap=power
-          bind=, s     , exec  , poweroff
-          bind=, s     , submap, reset
-          bind=, r     , exec  , reboot
-          bind=, r     , submap, reset
-          bind=, escape, submap, reset
-        submap=reset
-
-        bind=$mod, d, submap, develop
-        submap=develop
-          bind=, l     , exec  , uwsm-app -- nix-develop-lyra
-          bind=, l     , submap, reset
-          bind=, escape, submap, reset
-        submap=reset
-      '';
+    extraConfig = ''
+      bind=$mod, n, exec, uwsm-app -- swaync-client -op -sw
+      bind=$mod, n, submap, notify
+      submap=notify
+        bind=    , c     , exec  , uwsm-app -- close-bar; uwsm-app -- swaync-client -C -sw; uwsm-app -- swaync-client -cp -sw;
+        bind=    , c     , submap, reset
+        bind=    , d     , exec  , uwsm-app -- close-bar; uwsm-app -- swaync-client -d -sw; uwsm-app -- swaync-client -cp -sw;
+        bind=    , d     , submap, reset
+        bind=$mod, n     , exec  , uwsm-app -- close-bar; uwsm-app -- swaync-client -cp -sw;
+        bind=$mod, n     , submap, reset
+        bind=    , escape, exec  , uwsm-app -- close-bar; uwsm-app -- swaync-client -cp -sw;
+        bind=    , escape, submap, reset
+      submap=reset
+      bind=$mod ALT, d, submap, discord
+      submap=discord
+        bind=, v     , exec  , uwsm-app -- close-bar; uwsm-app -- vesktop
+        bind=, v     , submap, reset
+        bind=, d     , exec  , uwsm-app -- close-bar; uwsm-app -- discord
+        bind=, d     , submap, reset
+        bind=, s     , exec  , uwsm-app -- close-bar; uwsm-app -- discord-screenaudio
+        bind=, s     , submap, reset
+        bind=, c     , exec  , uwsm-app -- close-bar; uwsm-app -- discordcanary
+        bind=, c     , submap, reset
+        bind=, escape, exec  , uwsm-app -- close-bar
+        bind=, escape, submap, reset
+      submap=reset
+      bind=$mod ALT, b, submap, browser
+      submap=browser
+        bind=, b     , exec  , uwsm-app -- close-bar; uwsm-app -- brave;
+        bind=, b     , submap, reset
+        bind=, z     , exec  , uwsm-app -- close-bar; uwsm-app -- zen
+        bind=, z     , submap, reset
+        bind=, v     , exec  , uwsm-app -- close-bar; uwsm-app -- vivaldi
+        bind=, v     , submap, reset
+        bind=, escape, exec  , uwsm-app -- close-bar
+        bind=, escape, submap, reset
+      submap=reset
+      bind=$mod, q, submap, power
+      submap=power
+        bind=, s     , exec  , poweroff
+        bind=, s     , submap, reset
+        bind=, r     , exec  , reboot
+        bind=, r     , submap, reset
+        bind=, escape, exec  , uwsm-app -- close-bar
+        bind=, escape, submap, reset
+      submap=reset
+      bind=$mod, d, submap, develop
+      submap=develop
+        bind=, l     , exec  , uwsm-app -- close-bar; uwsm-app -- nix-develop-lyra
+        bind=, l     , submap, reset
+        bind=, escape, exec  , uwsm-app -- close-bar
+        bind=, escape, submap, reset
+      submap=reset
+    '';
   };
 }

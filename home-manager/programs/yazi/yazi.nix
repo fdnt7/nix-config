@@ -6,15 +6,15 @@
   plugs = pkgs.fetchFromGitHub {
     owner = "yazi-rs";
     repo = "plugins";
-    rev = "aeca767ec27bfbea66873d667a729791de18f364";
-    hash = "sha256-QkjXl8lGeqFgL2FGTs63xW0/hbZEpIyBCWnkdCgcv5s=";
+    rev = "86d28e4fb4f25f36cc501b8cb0badb37a6b14263";
+    hash = "sha256-m/gJTDm0cVkIdcQ1ZJliPqBhNKoCW1FciLkuq7D1mxo=";
   };
 
   exifaudio = pkgs.fetchFromGitHub {
     owner = "Sonico98";
     repo = "exifaudio.yazi";
-    rev = "e766cd273246612fe71fc18d2126619a41273c32";
-    hash = "sha256-aniuY14pXcoaW6YkUwt7hTl9mWjl5HoOPhHkuY4ooAw=";
+    rev = "4506f9d5032e714c0689be09d566dd877b9d464e";
+    hash = "sha256-RWCqWBpbmU3sh/A+LBJPXL/AY292blKb/zZXGvIA5/o=";
   };
 
   ouch_plug = pkgs.fetchFromGitHub {
@@ -34,8 +34,8 @@
   mediainfo_plug = pkgs.fetchFromGitHub {
     owner = "boydaihungst";
     repo = "mediainfo.yazi";
-    rev = "a7d1aa69a1a107e64540c17f19ac94be1366769f";
-    hash = "sha256-HUD8Sv1C4gzZRvSEIYqcmm+A0mBYDuwZHCNH26kipS0=";
+    rev = "a15cdfac6bf23e53fc04a82bc15732257fc789aa";
+    hash = "sha256-mvl45GaNaFxZntGJa+sZCrR0lDpHanxAE9FQPPpCMaY=";
   };
 in {
   home.packages = with pkgs; [

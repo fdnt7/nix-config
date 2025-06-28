@@ -13,6 +13,7 @@
     ./gpg.nix
     ./htop.nix
     #./kitty.nix
+    ./helix.nix
     ./mpv.nix
     ./nixvim.nix
     ./obs.nix
@@ -26,6 +27,8 @@
     ./nix-index.nix
     ./zen.nix
     ./eww.nix
+    ./wob.nix
+    ./mako.nix
 
     ./zed-editor/zed-editor.nix
     #./alacritty/alacritty.nix
@@ -36,7 +39,7 @@
     ./hypr/hyprlock/hyprlock.nix
     ./hypr/hyprsunset.nix
     #./hypr/hyprcursor/hyprcursor.nix
-    ./swaync/swaync.nix
+    #./swaync/swaync.nix
     #./waybar/waybar.nix
     ./yazi/yazi.nix
   ];
