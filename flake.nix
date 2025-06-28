@@ -7,8 +7,8 @@
 
     # Home manager
     home-manager = {
-      url = "github:nix-community/home-manager";
-      #url = "github:nix-community/home-manager/release-23.11";
+      #url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/951f0b30c535a46817aa5ef4c66ddc4445f3e324";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -67,6 +67,13 @@
       url = "github:0xc000022070/zen-browser-flake";
       # IMPORTANT: we're using "libgbm" and is only available in unstable so ensure
       # to have it up-to-date or simply don't specify the nixpkgs input
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    solaar = {
+      url = "https://flakehub.com/f/Svenum/Solaar-Flake/*.tar.gz"; # For latest stable version
+      #url = "https://flakehub.com/f/Svenum/Solaar-Flake/0.1.1.tar.gz"; # uncomment line for solaar version 1.1.13
+      #url = "github:Svenum/Solaar-Flake/main"; # Uncomment line for latest unstable version
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

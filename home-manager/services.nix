@@ -1,7 +1,6 @@
 {pkgs, ...}: {
   services = {
     playerctld.enable = false;
-    swayosd.enable = true;
     network-manager-applet.enable = false;
     gpg-agent = {
       enable = true;

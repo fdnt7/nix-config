@@ -1,13 +1,24 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [inputs.solaar.nixosModules.default ./mullvad-tailscale-split-tunnel.nix];
   services = {
-    udev.packages = [pkgs.swayosd];
     xserver = {
       xkb = {
         layout = "us";
         variant = "";
       };
     };
-    #cloudflare-warp.enable = true;
+
     tailscale.enable = true;
+    mullvad-vpn = {
+      enable = true;
+      package = pkgs.mullvad-vpn;
+    };
+    mullvad-tailscale-split-tunnel.enable = true;
+
+    solaar.enable = true;
   };
 }

@@ -1,6 +1,4 @@
-{pkgs, ...}: {
-  environment.systemPackages = [pkgs.alsa-utils];
-
+{...}: {
   services.pulseaudio.enable = false;
   services.pipewire = {
     enable = true;
