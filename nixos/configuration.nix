@@ -12,7 +12,7 @@
 
     ./boot.nix
     ./nix.nix
-    ./fonts/fonts.nix
+    ./fonts
     ./sound.nix
     ./environment.nix
     ./networking.nix
@@ -20,10 +20,13 @@
     ./locale.nix
     ./programs.nix
     ./security.nix
-    ./virtualisation/virtualisation.nix
+    ./virtualisation
     ./services.nix
-    ./sddm/sddm.nix
+    ./sddm
     ./xdg.nix
+    ./bluetooth.nix
+
+    ./home-manager.nix
   ];
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

@@ -6,10 +6,7 @@
     #devenv
     alejandra
 
-    discord
-    discord-canary
-    discord-screenaudio
-    vesktop
+    #discord-screenaudio
 
     grim
     slurp
@@ -44,7 +41,7 @@
     xournalpp
     libreoffice-qt-fresh
 
-    git-credential-manager
+    git-credential-manager # for git.hypergonial.com
     gimp3
     #kdePackages.dolphin
 
@@ -53,6 +50,9 @@
     #(pkgs.callPackage ./packages/muse-sounds-manager-2.0.3.659.nix {})
     musescore
     #(import ./packages/musescore-appimage.nix {inherit pkgs;})
+    wireshark
+    socat # for hyprland ipc
+    tutanota-desktop
   ];
 in {
   home.packages =

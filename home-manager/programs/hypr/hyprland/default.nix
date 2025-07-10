@@ -3,19 +3,8 @@
   inputs,
   ...
 }: {
+  imports = [(import ./scripts {inherit pkgs;})];
   home.packages = [
-    (import ./scripts/exec-once.nix {inherit pkgs;})
-    (import ./scripts/toggle-touchpad.nix {inherit pkgs;})
-    (import ./scripts/swww-next.nix {inherit pkgs;})
-    #(import ./scripts/lock.nix {inherit inputs pkgs;})
-    (import ./scripts/lock.nix {inherit pkgs;})
-    (import ./scripts/open-bar.nix {inherit pkgs;})
-    (import ./scripts/close-bar.nix {inherit pkgs;})
-    (import ./scripts/brightness-up.nix {inherit pkgs;})
-    (import ./scripts/brightness-down.nix {inherit pkgs;})
-    (import ./scripts/set-vol.nix {inherit pkgs;})
-    (import ./scripts/toggle-mute.nix {inherit pkgs;})
-    (import ./scripts/showleds.nix {inherit pkgs;})
     pkgs.hyprpolkitagent
   ];
   xdg.configFile = {
@@ -31,7 +20,7 @@
       enable = false;
     };
     plugins = with inputs.hyprland-plugins.packages.${pkgs.system}; [
-      hyprexpo
+      #hyprexpo # broken as of hyprland revision b5433bb75324a95dd27eb5492141565466c2cdd6
       hyprscrolling
       xtra-dispatchers
     ];
@@ -45,8 +34,8 @@
       input = {
         kb_layout = "us,th";
         #kb_options = "caps:escape,grp:win_space_toggle";
-        #kb_options = "caps:swapescape,grp:win_escape_toggle";
-        kb_options = "caps:escape_shifted_capslock,grp:win_escape_toggle";
+        #kb_options = "caps:swapescape,grp:win_space_toggle";
+        kb_options = "caps:escape_shifted_capslock,grp:win_space_toggle";
         numlock_by_default = true;
         repeat_rate = 40;
         repeat_delay = 200;
@@ -210,14 +199,17 @@
       ];
 
       layerrule = [
-        "blur, swaync-control-center"
-        "blur, swaync-notification-window"
+        #"blur, swaync-control-center"
+        #"blur, swaync-notification-window"
 
-        "ignorezero, swaync-control-center"
-        "ignorezero, swaync-notification-window"
+        "blur, notifications"
 
-        "ignorealpha 0.5, swaync-control-center"
-        "ignorealpha 0.5, swaync-notification-window"
+        #"ignorezero, swaync-control-center"
+        #"ignorezero, swaync-notification-window"
+        "ignorezero, notifications"
+
+        #"ignorealpha 0.5, swaync-control-center"
+        #"ignorealpha 0.5, swaync-notification-window"
 
         "noanim, wob"
       ];
@@ -230,11 +222,6 @@
 
       "$term" = "foot";
       "$term_alt" = "foot";
-
-      bindr = [
-        "MOD2, Num_Lock , exec, uwsm-app -- showleds n"
-        "CAPS, Caps_Lock, exec, uwsm-app -- showleds c"
-      ];
 
       binde = [
         #"$mod CTRL, l,resizeactive,10 0"
@@ -253,8 +240,8 @@
 
         "            , XF86AudioLowerVolume , exec, set-vol sink d"
         "            , XF86AudioRaiseVolume , exec, set-vol sink u"
-        "            , xf86monbrightnessdown, exec, brightness-down" #fn+f7
-        "            , xf86monbrightnessup  , exec, brightness-up" #fn+f8
+        "            , xf86monbrightnessdown, exec, br d" #fn+f7
+        "            , xf86monbrightnessup  , exec, br u" #fn+f8
       ];
 
       bind =
@@ -385,6 +372,10 @@
 
       bindrt = [
         "$mod, SUPER_L, exec, uwsm-app -- close-bar"
+
+        "MOD2, Num_Lock , exec, uwsm-app -- showleds n"
+        #"CAPS, Caps_Lock, exec, uwsm-app -- showleds c" # doesn't work due to caps:escape_shifted_capslock
+        "CAPS SHIFT, Shift_L, exec, uwsm-app -- showleds c" # only seems to work sometimes
       ];
 
       plugin = {
