@@ -14,6 +14,7 @@
       #dns = "default";
     };
     # nameservers = ["1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one"];
+    enableIPv6 = true;
   };
 
   # This setups a SSH server. Very important if you're setting up a headless system.

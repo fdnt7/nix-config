@@ -29,18 +29,19 @@
     ./eww.nix
     ./wob.nix
     ./mako.nix
+    ./discord
 
-    ./zed-editor/zed-editor.nix
-    #./alacritty/alacritty.nix
+    ./zed-editor
+    #./alacritty
     #./lf/lf.nix
-    ./fastfetch/fastfetch.nix
-    ./hypr/hypridle/hypridle.nix
-    ./hypr/hyprland/hyprland.nix
-    ./hypr/hyprlock/hyprlock.nix
+    ./fastfetch
+    ./hypr/hypridle
+    ./hypr/hyprland
+    ./hypr/hyprlock
     ./hypr/hyprsunset.nix
-    #./hypr/hyprcursor/hyprcursor.nix
-    #./swaync/swaync.nix
-    #./waybar/waybar.nix
-    ./yazi/yazi.nix
+    #./hypr/hyprcursor
+    #./swaync
+    #./waybar
+    ./yazi
   ];
 }

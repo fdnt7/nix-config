@@ -6,8 +6,8 @@
   plugs = pkgs.fetchFromGitHub {
     owner = "yazi-rs";
     repo = "plugins";
-    rev = "86d28e4fb4f25f36cc501b8cb0badb37a6b14263";
-    hash = "sha256-m/gJTDm0cVkIdcQ1ZJliPqBhNKoCW1FciLkuq7D1mxo=";
+    rev = "b8860253fc44e500edeb7a09db648a829084facd";
+    hash = "sha256-29K8PmBoqAMcQhDIfOVnbJt2FU4BR6k23Es9CqyEloo=";
   };
 
   exifaudio = pkgs.fetchFromGitHub {
@@ -20,22 +20,22 @@
   ouch_plug = pkgs.fetchFromGitHub {
     owner = "ndtoan96";
     repo = "ouch.yazi";
-    rev = "1ee69a56da3c4b90ec8716dd9dd6b82e7a944614";
-    hash = "sha256-4KZeDkMXlhUV0Zh+VGBtz9kFPGOWCexYVuKUSCN463o=";
+    rev = "bb941c4891b21762f98318a6ad484827726019e6";
+    hash = "sha256-g/ZHArXksRo49k9UBHap0CXzIdycQigjbdCzDK1VaLY=";
   };
 
   torrent-preview_plug = pkgs.fetchFromGitHub {
     owner = "kirasok";
     repo = "torrent-preview.yazi";
-    rev = "4ca5996a8264457cbefff8e430acfca4900a0453";
-    hash = "sha256-vaeOdNa56wwzBV6DgJjprRlrAcz2yGUYsOveTJKFv6M=";
+    rev = "f46528243c458de3ffce38c44607d5a0cde67559";
+    hash = "sha256-VhJvNRKHxVla4v2JJeSnP0MOMBFSm4k7gfqjrHOMVlo=";
   };
 
   mediainfo_plug = pkgs.fetchFromGitHub {
     owner = "boydaihungst";
     repo = "mediainfo.yazi";
-    rev = "a15cdfac6bf23e53fc04a82bc15732257fc789aa";
-    hash = "sha256-mvl45GaNaFxZntGJa+sZCrR0lDpHanxAE9FQPPpCMaY=";
+    rev = "cc12f3f097cc57e41186697bd45d0e1598dc81ae";
+    hash = "sha256-CTynpmB101ylCiHKbwX5nVrt5OMhgAu48GVxXsNqd9s=";
   };
 in {
   home.packages = with pkgs; [

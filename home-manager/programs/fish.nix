@@ -122,16 +122,8 @@
       vc = "vim $NH_FLAKE/nixos/configuration.nix";
       vw = "vim $NH_FLAKE/nixos/hardware-configuration.nix";
 
-      vhH = "vim $NH_FLAKE/home-manager/home.nix && home-manager-switch-flake";
-      vcW = "vim $NH_FLAKE/nixos/configuration.nix && nixos-rebuild-flake switch";
-      vcT = "vim $NH_FLAKE/nixos/configuration.nix && nixos-rebuild-flake test";
-      vwT = "vim $NH_FLAKE/nixos/hardware-configuration.nix && nixos-rebuild-flake test";
-
-      cs = "nixos-rebuild-flake switch";
-      ct = "nixos-rebuild-flake test";
-      cb = "nixos-rebuild-flake boot";
+      a = "rebuild";
       u = "nix-flake-update";
-      h = "home-manager-switch-flake";
       c = "nh clean all -k 3";
       o = "nix store optimise";
 

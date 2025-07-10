@@ -7,8 +7,7 @@
 
     # Home manager
     home-manager = {
-      #url = "github:nix-community/home-manager";
-      url = "github:nix-community/home-manager/951f0b30c535a46817aa5ef4c66ddc4445f3e324";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -71,17 +70,19 @@
     };
 
     solaar = {
-      url = "https://flakehub.com/f/Svenum/Solaar-Flake/*.tar.gz"; # For latest stable version
+      #url = "https://flakehub.com/f/Svenum/Solaar-Flake/*.tar.gz"; # For latest stable version
       #url = "https://flakehub.com/f/Svenum/Solaar-Flake/0.1.1.tar.gz"; # uncomment line for solaar version 1.1.13
-      #url = "github:Svenum/Solaar-Flake/main"; # Uncomment line for latest unstable version
+      url = "github:Svenum/Solaar-Flake/main"; # Uncomment line for latest unstable version
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nixcord.url = "github:kaylorben/nixcord";
   };
 
   outputs = {
     self,
     nixpkgs,
-    home-manager,
+    # home-manager,
     ...
   } @ inputs: let
     inherit (self) outputs;
@@ -98,15 +99,15 @@
       };
     };
 
-    # Standalone home-manager configuration entrypoint
-    # Available through 'home-manager --flake .#your-username@your-hostname'
-    homeConfigurations = {
-      "fdnt@cuties-only" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs;};
-        # > Our main home-manager configuration file <
-        modules = [./home-manager/home.nix];
-      };
-    };
+    # # Standalone home-manager configuration entrypoint
+    # # Available through 'home-manager --flake .#your-username@your-hostname'
+    # homeConfigurations = {
+    #   "fdnt@cuties-only" = home-manager.lib.homeManagerConfiguration {
+    #     pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+    #     extraSpecialArgs = {inherit inputs outputs;};
+    #     # > Our main home-manager configuration file <
+    #     modules = [./home-manager/home.nix];
+    #   };
+    # };
   };
 }

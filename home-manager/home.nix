@@ -5,13 +5,12 @@
     ./qt.nix
     ./theming.nix
     ./gaming.nix
-    ./services.nix
-    ./packages.nix
     ./dconf.nix
-
-    ./programs/programs.nix
-    ./scripts/scripts.nix
-    ./fonts/fonts.nix
+    ./services
+    ./packages
+    ./programs
+    ./scripts
+    ./fonts
   ];
 
   home = {

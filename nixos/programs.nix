@@ -22,5 +22,6 @@
     };
     gamescope.enable = true;
     gamemode.enable = true;
+    wireshark.enable = true;
   };
 }

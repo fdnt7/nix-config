@@ -1,4 +1,7 @@
-{pkgs, ...}: {
+{
+  #pkgs,
+  ...
+}: {
   environment = {
     sessionVariables = {
       XDG_DATA_HOME = "$HOME/.local/share";
@@ -17,22 +20,24 @@
       _JAVA_OPTIONS = "-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java";
       DOCKER_CONFIG = "$XDG_CONFIG_HOME/docker";
       PSQL_HISTORY = "$XDG_DATA_HOME/psql_history";
+      PYTHON_HISTORY = "$XDG_STATE_HOME/python_history";
+
       NIXOS_OZONE_WL = "1";
     };
     variables = {
       EDITOR = "nvim";
     };
-    systemPackages = with pkgs; [
-      lxqt.lxqt-policykit
-      # lf
-      # ctpv
-      starship
-      tree
-      home-manager
-      #      libsForQt5.qt5.qtquickcontrols2
-      #      libsForQt5.qt5.qtgraphicaleffects
-      nix-diff
-    ];
+    #systemPackages = with pkgs; [
+    #  lxqt.lxqt-policykit
+    #  # lf
+    #  # ctpv
+    #  starship
+    #  tree
+    #  home-manager
+    #  #      libsForQt5.qt5.qtquickcontrols2
+    #  #      libsForQt5.qt5.qtgraphicaleffects
+    #  nix-diff
+    #];
     pathsToLink = ["/share/zsh"];
     #enableAllTerminfo = true;
   };
