@@ -1,0 +1,66 @@
+(deflisten workspace :initial ""
+  "scripts/workspace.sh")
+
+(defpoll time :interval "1s"
+  "scripts/time.sh")
+
+(deflisten static-0 "scripts/static-0.sh")
+
+(deflisten static-1 "scripts/static-1.sh")
+
+(deflisten submap :initial ""
+  "scripts/submap.sh")
+
+(deflisten kb-layout :initial ""
+  "scripts/kb-layout.sh")
+
+(defpoll weather :interval "1.5h"
+  "scripts/weather.sh")
+
+(deflisten title :initial ""
+  "scripts/title.sh")
+
+(defpoll top :interval "1s"
+  "scripts/top.sh")
+
+(defwindow bar
+           :monitor 0
+           :geometry (geometry :x "0%"
+                               :y "0%"
+                               :width "100%"
+                               :height "24px"
+                               :anchor "bottom center")
+           :stacking "fg"
+           :reserve (struts :distance "40px" :side "top")
+           :windowtype "dock"
+           :wm-ignore false
+  (centerbox :orientation "h"
+    (box :halign "start"
+         :space-evenly false
+         :spacing 8
+      (label :text workspace
+             :class "workspace")
+      (label :text title
+             :class "title"))
+    (box :halign "center"
+      (label :text submap
+             :class "submap"))
+    (box :halign "end"
+         :space-evenly false
+	       :spacing 8
+      (systray :class "systray"
+               :icon-size 16
+               :spacing 2
+               :space-evenly true)
+      (label :text weather
+             :class "weather")
+      (label :text kb-layout
+             :class "kb-layout")
+      (label :text static-1
+             :class "static-1")
+      (label :text top
+             :class "top")
+      (label :text static-0
+             :class "static-0")
+      (label :text time
+             :class "time"))))

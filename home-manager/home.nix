@@ -9,7 +9,7 @@
     ./services
     ./packages
     ./programs
-    ./scripts
+    ./bin
     ./fonts
   ];
 

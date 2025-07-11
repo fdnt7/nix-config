@@ -109,7 +109,7 @@
       vcyt = "vim $NH_FLAKE/home-manager/programs/yazi/theme.toml";
       vch = "vim $NH_FLAKE/home-manager/programs/hypr/hyprland/hyprland.nix";
       vchc = "vim $NH_FLAKE/home-manager/programs/hypr/hyprcursor/hyprcursor.nix";
-      vchse = "vim $NH_FLAKE/home-manager/programs/hypr/hyprland/scripts/exec-once.nix";
+      vchse = "vim $NH_FLAKE/home-manager/programs/hypr/hyprland/bin/exec-once.nix";
       vchi = "vim $NH_FLAKE/home-manager/programs/hypr/hypridle/hypridle.nix";
       vchl = "vim $NH_FLAKE/home-manager/programs/hypr/hyprlock/hyprlock.nix";
       vcl = "vim $NH_FLAKE/home-manager/programs/lf/lf.nix";
@@ -126,6 +126,7 @@
       u = "nix-flake-update";
       c = "nh clean all -k 3";
       o = "nix store optimise";
+      x = "chmod +x";
 
       p = "nh search";
       n = "nix-shell";
@@ -150,13 +151,19 @@
 
       g = "git";
       gm = "git merge";
+      gms = "git merge --squash";
       gp = "git push";
+      gpf = "git push --force-with-lease";
       gpu = "git push -u origin";
       gpl = "git pull";
       gr = "git revert";
       gre = "git remote";
-      grr = "git reset";
+      grs = "git reset";
+      grsh = "git reset --hard";
+      grm = "git remove";
+      grb = "git rebase";
       gc = "git commit";
+      gca = "git commit --amend";
       gh = "git checkout";
       ghm = "git checkout main";
       gl = "git log";
