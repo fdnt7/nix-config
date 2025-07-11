@@ -10,5 +10,6 @@
     (import ./set-vol.nix {inherit pkgs;})
     (import ./toggle-mute.nix {inherit pkgs;})
     (import ./showleds.nix {inherit pkgs;})
+    (import ./nix-develop-lyra.nix {inherit pkgs;})
   ];
 }

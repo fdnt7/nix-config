@@ -1,5 +1,5 @@
 {pkgs}: let
-  GETLEDS = "${import ./../../../../scripts/getleds.nix {inherit pkgs;}}/bin/getleds";
+  GETLEDS = "${import ./../../../../bin/getleds.nix {inherit pkgs;}}/bin/getleds";
 in
   pkgs.writeShellScriptBin "showleds" ''
     # Capture both output and error from getleds

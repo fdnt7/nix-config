@@ -3,13 +3,13 @@
   inputs,
   ...
 }: {
-  imports = [(import ./scripts {inherit pkgs;})];
+  imports = [(import ./bin {inherit pkgs;})];
   home.packages = [
     pkgs.hyprpolkitagent
   ];
-  xdg.configFile = {
-    #"hypr/hyprland/icons".source = ./icons;
-  };
+  #xdg.configFile = {
+  #  "hypr/hyprland/icons".source = ./icons;
+  #};
   wayland.windowManager.hyprland = {
     enable = true;
     package = null;
@@ -20,7 +20,7 @@
       enable = false;
     };
     plugins = with inputs.hyprland-plugins.packages.${pkgs.system}; [
-      #hyprexpo # broken as of hyprland revision b5433bb75324a95dd27eb5492141565466c2cdd6
+      hyprexpo
       hyprscrolling
       xtra-dispatchers
     ];
@@ -181,7 +181,7 @@
         "workspace special:chat, class:^(discord)$"
         "workspace special:chat, class:^(de.shorsh.discord-screenaudio)$"
 
-        "workspace special:music, class:^(Spotify)$"
+        "workspace special:music, class:^(spotify)$"
         "workspace special:music, class:^(pavucontrol)$"
 
         "workspace special:scratch, class:^(Alacritty)$"

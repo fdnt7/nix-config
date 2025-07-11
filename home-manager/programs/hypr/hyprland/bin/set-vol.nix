@@ -1,5 +1,5 @@
 {pkgs}: let
-  VOL = "${import ../../../../scripts/vol.nix {inherit pkgs;}}/bin/vol";
+  VOL = "${import ../../../../bin/vol.nix {inherit pkgs;}}/bin/vol";
 in
   pkgs.writeShellScriptBin "set-vol" ''
     # Check if both arguments are provided

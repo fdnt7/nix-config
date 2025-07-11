@@ -18,15 +18,14 @@
     ./nixvim.nix
     ./obs.nix
     ./rofi.nix
-    ./spicetify.nix
-    #./spotify-adblock.nix
+    ./spotify
     ./starship.nix
     ./vscode.nix
     ./wezterm.nix
     ./zsh.nix
     ./nix-index.nix
     ./zen.nix
-    ./eww.nix
+    ./eww
     ./wob.nix
     ./mako.nix
     ./discord
@@ -43,5 +42,6 @@
     #./swaync
     #./waybar
     ./yazi
+    ./uwsm
   ];
 }
