@@ -47,6 +47,18 @@
           #jsonls.enable = true;
           pyright = {
             enable = true;
+            settings = {
+              #pyright = {
+              #  disableOrganizeImports = true;
+              #};
+              python.analysis = {
+                #ignore = ["*"];
+                typeCheckingMode = "strict";
+              };
+            };
+          };
+          ruff = {
+            enable = true;
           };
 
           #cssls.enable = true;
@@ -134,6 +146,7 @@
               "trim_whitespace"
               "trim_newlines"
             ];
+            python = ["ruff format"];
           };
           format_on_save = {
             lsp_format = "fallback";
@@ -160,6 +173,11 @@
             };
           };
         };
+      };
+
+      tiny-inline-diagnostic = {
+        enable = true;
+        settings = {multilines.enabled = true;};
       };
     };
     autoCmd = [

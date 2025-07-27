@@ -1,6 +1,6 @@
 {
   pkgs,
-  inputs,
+  #inputs,
   ...
 }: {
   home.packages = [pkgs.libappindicator pkgs.wttrbar];
@@ -11,7 +11,7 @@
       main = {
         #layer = "top";
         layer = "overlay";
-        start_hidden = true;
+        #start_hidden = true;
         position = "bottom";
         height = 26;
         spacing = 8;
@@ -36,35 +36,35 @@
           "battery"
           "network"
           "privacy"
-          "custom/amixer#i"
-          "custom/amixer#o"
+          #"custom/amixer#i"
+          #"custom/amixer#o"
           "clock"
-          "custom/swaync"
+          #"custom/swaync"
         ];
 
         tray = {
           spacing = 3;
         };
 
-        "custom/amixer#o" = {
-          exec = "amixer get Master | sed -nre 's/.*\\[off\\].*/  -%/p; s/.*\\[(.*%)\\].*/  \\1/p'";
-          on-click = "amixer set Master toggle";
-          on-scroll-up = "amixer set Master 1%+";
-          on-scroll-down = "amixer set Master 1%-";
-          signal = 11;
-          interval = 1;
-          tooltip = false;
-        };
-
-        "custom/amixer#i" = {
-          exec = "amixer get Capture | sed -nre 's/.*Capture .+\\[off\\].*/  -%/p; s/.*Capture .+\\[(.*%)\\].*/ \\1/p'";
-          on-click = "amixer set Capture toggle";
-          on-scroll-up = "amixer set Capture 1%+";
-          on-scroll-down = "amixer set Capture 1%-";
-          signal = 11;
-          interval = 1;
-          tooltip = false;
-        };
+        #"custom/amixer#o" = {
+        #  exec = "amixer get Master | sed -nre 's/.*\\[off\\].*/  -%/p; s/.*\\[(.*%)\\].*/  \\1/p'";
+        #  on-click = "amixer set Master toggle";
+        #  on-scroll-up = "amixer set Master 1%+";
+        #  on-scroll-down = "amixer set Master 1%-";
+        #  signal = 11;
+        #  interval = 1;
+        #  tooltip = false;
+        #};
+        #
+        #"custom/amixer#i" = {
+        #  exec = "amixer get Capture | sed -nre 's/.*Capture .+\\[off\\].*/  -%/p; s/.*Capture .+\\[(.*%)\\].*/ \\1/p'";
+        #  on-click = "amixer set Capture toggle";
+        #  on-scroll-up = "amixer set Capture 1%+";
+        #  on-scroll-down = "amixer set Capture 1%-";
+        #  signal = 11;
+        #  interval = 1;
+        #  tooltip = false;
+        #};
 
         "custom/wttr" = {
           format = "{}°";
@@ -205,26 +205,26 @@
           format = "󰇝";
         };
 
-        "custom/swaync" = {
-          tooltip = false;
-          format = "{icon} {}";
-          format-icons = {
-            notification = "󰂚<span foreground='#FF77A7'><sup></sup></span>";
-            none = "󰂚";
-            dnd-notification = "󰂛<span foreground='#FF78A7'><sup></sup></span>";
-            dnd-none = "󰂛";
-            inhibited-notification = "󰂚<span foreground='#FF78A7'><sup></sup></span>";
-            inhibited-none = "󰂚";
-            dnd-inhibited-notification = "󰂛<span foreground='#FF78A7'><sup></sup></span>";
-            dnd-inhibited-none = "󰂛";
-          };
-          return-type = "json";
-          exec-if = "which swaync-client";
-          exec = "swaync-client -swb";
-          on-click = "swaync-client -t -sw";
-          on-click-right = "swaync-client -d -sw";
-          escape = true;
-        };
+        #"custom/swaync" = {
+        #  tooltip = false;
+        #  format = "{icon} {}";
+        #  format-icons = {
+        #    notification = "󰂚<span foreground='#FF77A7'><sup></sup></span>";
+        #    none = "󰂚";
+        #    dnd-notification = "󰂛<span foreground='#FF78A7'><sup></sup></span>";
+        #    dnd-none = "󰂛";
+        #    inhibited-notification = "󰂚<span foreground='#FF78A7'><sup></sup></span>";
+        #    inhibited-none = "󰂚";
+        #    dnd-inhibited-notification = "󰂛<span foreground='#FF78A7'><sup></sup></span>";
+        #    dnd-inhibited-none = "󰂛";
+        #  };
+        #  return-type = "json";
+        #  exec-if = "which swaync-client";
+        #  exec = "swaync-client -swb";
+        #  on-click = "swaync-client -t -sw";
+        #  on-click-right = "swaync-client -d -sw";
+        #  escape = true;
+        #};
       };
     };
 

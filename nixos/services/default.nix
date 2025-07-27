@@ -1,9 +1,5 @@
-{
-  pkgs,
-  inputs,
-  ...
-}: {
-  imports = [inputs.solaar.nixosModules.default ./mullvad-tailscale-split-tunnel.nix];
+{inputs, ...}: {
+  imports = [inputs.solaar.nixosModules.default ./vpn.nix];
   services = {
     xserver = {
       xkb = {
@@ -11,13 +7,6 @@
         variant = "";
       };
     };
-
-    tailscale.enable = true;
-    mullvad-vpn = {
-      enable = true;
-      package = pkgs.mullvad-vpn;
-    };
-    mullvad-tailscale-split-tunnel.enable = true;
 
     solaar.enable = true;
   };

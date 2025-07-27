@@ -21,6 +21,7 @@
       DOCKER_CONFIG = "$XDG_CONFIG_HOME/docker";
       PSQL_HISTORY = "$XDG_DATA_HOME/psql_history";
       PYTHON_HISTORY = "$XDG_STATE_HOME/python_history";
+      WINEPREFIX = "$XDG_DATA_HOME/wine";
 
       NIXOS_OZONE_WL = "1";
     };

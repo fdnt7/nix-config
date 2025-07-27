@@ -34,9 +34,9 @@
     #./alacritty
     #./lf/lf.nix
     ./fastfetch
-    ./hypr/hypridle
+    ./hypr/hypridle.nix
     ./hypr/hyprland
-    ./hypr/hyprlock
+    ./hypr/hyprlock.nix
     ./hypr/hyprsunset.nix
     #./hypr/hyprcursor
     #./swaync
