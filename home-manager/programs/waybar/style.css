@@ -12,9 +12,9 @@ window#waybar {
   color: #FFECFF;
 }
 
-#custom-amixer {
+/*#custom-amixer {
   color: #B3DEFF;
-}
+}*/
 
 #network {
   color: #E4ECFF;
@@ -27,7 +27,7 @@ window#waybar {
 #memory {
   color: #B3DEFF;
 }
-#cpu { 
+#cpu {
   color: #89B4FA;
 }
 

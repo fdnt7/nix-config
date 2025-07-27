@@ -3,7 +3,7 @@
   inputs,
   ...
 }: {
-  imports = [(import ./bin {inherit pkgs;})];
+  imports = [(import ./bin {inherit inputs pkgs;})];
   home.packages = [
     pkgs.hyprpolkitagent
   ];
@@ -33,9 +33,9 @@
 
       input = {
         kb_layout = "us,th";
-        #kb_options = "caps:escape,grp:win_space_toggle";
+        kb_options = "caps:escape,grp:win_space_toggle"; # allows zed's shift+end keybind
         #kb_options = "caps:swapescape,grp:win_space_toggle";
-        kb_options = "caps:escape_shifted_capslock,grp:win_space_toggle";
+        #kb_options = "caps:escape_shifted_capslock,grp:win_space_toggle"; #
         numlock_by_default = true;
         repeat_rate = 40;
         repeat_delay = 200;
@@ -172,6 +172,9 @@
         "noblur, class:^(Xdg-desktop-portal-gtk)$"
         "noblur, class:^(MuseScore4)$"
         "noblur, class:^()$, title:^()$"
+        "noblur, class:^(line.exe)$"
+
+        "noshadow, class:^(line.exe)$"
 
         "noborder, class:^(Xdg-desktop-portal-gtk)$"
 
@@ -375,7 +378,7 @@
 
         "MOD2, Num_Lock , exec, uwsm-app -- showleds n"
         #"CAPS, Caps_Lock, exec, uwsm-app -- showleds c" # doesn't work due to caps:escape_shifted_capslock
-        "CAPS SHIFT, Shift_L, exec, uwsm-app -- showleds c" # only seems to work sometimes
+        #"CAPS SHIFT, Shift_L, exec, uwsm-app -- showleds c" # only seems to work sometimes
       ];
 
       plugin = {

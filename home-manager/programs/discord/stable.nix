@@ -1,4 +1,11 @@
-{inputs, ...}: {
+# vim:fileencoding=utf-8:foldmethod=marker
+{
+  #pkgs,
+  inputs,
+  ...
+}: {
+  #: nixcord is currently broken: https://github.com/NixOS/nixpkgs/issues/426301 {{{
+
   imports = [
     inputs.nixcord.homeModules.nixcord
   ];
@@ -29,9 +36,20 @@
         imageZoom.enable = true;
         memberCount.enable = true;
         mentionAvatars.enable = true;
-        messageClickActions.enable = true;
+        messageClickActions = {
+          enable = true;
+          enableDoubleClickToEdit = false;
+          enableDoubleClickToReply = false;
+        };
         messageLatency.enable = true;
-        messageLogger.enable = true;
+        messageLogger = {
+          enable = true;
+          collapseDeleted = true;
+          deleteStyle = "overlay";
+          ignoreBots = true;
+          ignoreSelf = true;
+          inlineEdits = false;
+        };
         newGuildSettings.enable = true;
         noOnboardingDelay.enable = true;
         noUnblockToJump.enable = true;
@@ -69,4 +87,13 @@
     };
     vesktop.enable = true;
   };
+
+  #: }}}
+
+  # home.packages = [
+  #   (pkgs.discord.override {
+  #     withOpenASAR = true;
+  #     #withVencord = true;
+  #   })
+  # ];
 }

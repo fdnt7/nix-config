@@ -1,5 +1,8 @@
-{pkgs}: let
-  HYPRCTL = "${pkgs.hyprland}/bin/hyprctl";
+{
+  inputs,
+  pkgs,
+}: let
+  HYPRCTL = "${inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland}/bin/hyprctl";
 in
   pkgs.writeShellScriptBin "toggle-touchpad" ''
     export STATUS_FILE="$XDG_RUNTIME_DIR/touchpad.status"

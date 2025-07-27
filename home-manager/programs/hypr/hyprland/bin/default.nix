@@ -1,7 +1,10 @@
-{pkgs}: {
+{
+  inputs,
+  pkgs,
+}: {
   home.packages = [
     (import ./exec-once.nix {inherit pkgs;})
-    (import ./toggle-touchpad.nix {inherit pkgs;})
+    (import ./toggle-touchpad.nix {inherit inputs pkgs;})
     (import ./swww-next.nix {inherit pkgs;})
     #(import ./lock.nix {inherit inputs pkgs;})
     (import ./lock.nix {inherit pkgs;})

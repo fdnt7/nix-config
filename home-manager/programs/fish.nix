@@ -28,14 +28,15 @@
       #l = "lf";
       s = "sudo";
       py = "python";
-      ipy = "ipython";
-      rs = "evcxr";
+      #ipy = "ipython";
+      #rs = "evcxr";
       pg = "psql";
       ht = "htop";
       bt = "btop";
-      co = "code";
+      #co = "code";
       pk = "pkill";
-      swi = "swww img";
+      sw = "swww";
+      #swi = "swww img";
       hpc = "hyprctl clients";
       ze = "zeditor";
       "ze." = "zeditor .";
@@ -102,22 +103,22 @@
       vck = "vim $NH_FLAKE/home-manager/programs/kitty.nix";
       vca = "vim $NH_FLAKE/home-manager/programs/alacritty.nix";
       vcs = "vim $NH_FLAKE/home-manager/programs/starship.nix";
-      vct = "vim $NH_FLAKE/home-manager/programs/fastfetch/fastfetch.nix";
+      vct = "vim $NH_FLAKE/home-manager/programs/fastfetch/default.nix";
       vco = "vim $NH_FLAKE/home-manager/programs/foot.nix";
-      vcy = "vim $NH_FLAKE/home-manager/programs/yazi/yazi.nix";
+      vcy = "vim $NH_FLAKE/home-manager/programs/yazi/default.nix";
       vcyi = "vim $NH_FLAKE/home-manager/programs/yazi/init.lua";
       vcyt = "vim $NH_FLAKE/home-manager/programs/yazi/theme.toml";
-      vch = "vim $NH_FLAKE/home-manager/programs/hypr/hyprland/hyprland.nix";
-      vchc = "vim $NH_FLAKE/home-manager/programs/hypr/hyprcursor/hyprcursor.nix";
+      vch = "vim $NH_FLAKE/home-manager/programs/hypr/hyprland/default.nix";
+      #vchc = "vim $NH_FLAKE/home-manager/programs/hypr/hyprcursor/default.nix";
       vchse = "vim $NH_FLAKE/home-manager/programs/hypr/hyprland/bin/exec-once.nix";
-      vchi = "vim $NH_FLAKE/home-manager/programs/hypr/hypridle/hypridle.nix";
-      vchl = "vim $NH_FLAKE/home-manager/programs/hypr/hyprlock/hyprlock.nix";
-      vcl = "vim $NH_FLAKE/home-manager/programs/lf/lf.nix";
-      vclc = "vim $NH_FLAKE/home-manager/programs/lf/colours";
-      vcli = "vim $NH_FLAKE/home-manager/programs/lf/icons";
-      vcw = "vim $NH_FLAKE/home-manager/programs/waybar/waybar.nix";
-      vcws = "vim $NH_FLAKE/home-manager/programs/waybar/style.css";
-      vcz = "vim $NH_FLAKE/home-manager/programs/zed-editor/zed-editor.nix";
+      vchi = "vim $NH_FLAKE/home-manager/programs/hypr/hypridle/default.nix";
+      vchl = "vim $NH_FLAKE/home-manager/programs/hypr/hyprlock/default.nix";
+      #vcl = "vim $NH_FLAKE/home-manager/programs/lf/default.nix";
+      #vclc = "vim $NH_FLAKE/home-manager/programs/lf/colours";
+      #vcli = "vim $NH_FLAKE/home-manager/programs/lf/icons";
+      #vcw = "vim $NH_FLAKE/home-manager/programs/waybar/default.nix";
+      #vcws = "vim $NH_FLAKE/home-manager/programs/waybar/style.css";
+      vcz = "vim $NH_FLAKE/home-manager/programs/zed-editor/default.nix";
 
       vc = "vim $NH_FLAKE/nixos/configuration.nix";
       vw = "vim $NH_FLAKE/nixos/hardware-configuration.nix";
@@ -132,9 +133,9 @@
       n = "nix-shell";
       np = "nix-shell -p";
       nd = "nix develop";
-      ndi = "nix develop --impure";
-      ndideu = "nix develop --impure -c devenv up -D";
-      "ndize." = "nix develop --impure -c zeditor .";
+      ndi = "nix develop --no-pure-eval";
+      ndideu = "nix develop --no-pure-eval -c devenv up -D";
+      "ndize." = "nix develop --no-pure-eval -c zeditor .";
       nfu = "nix flake update";
 
       m = "man";
@@ -164,6 +165,7 @@
       grb = "git rebase";
       gc = "git commit";
       gca = "git commit --amend";
+      gcl = "git clone";
       gh = "git checkout";
       ghm = "git checkout main";
       gl = "git log";
@@ -196,7 +198,7 @@
       egrep = "egrep --color=auto";
       fgrep = "fgrep --color=auto";
       #man = "batman"; # bat-extras broken
-      evcxr = "irust";
+      #evcxr = "irust";
       #psql = "pgcli";
       df = "df -hPT";
       mount = "mount | column -t";

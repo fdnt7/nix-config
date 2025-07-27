@@ -1,1 +1,5 @@
+# right now, `card1` refers to the dGPU and `card2` to the iGPU.
+#
+# this may change: run `lspci -d ::03xx` and `ls -l /dev/dri/by-path`
+# to re-evaluate the paths if the current one becomes invalid.
 export AQ_DRM_DEVICES="/dev/dri/card2:/dev/dri/card1"
