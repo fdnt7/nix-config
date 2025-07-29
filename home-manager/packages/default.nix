@@ -21,7 +21,7 @@
 
     pavucontrol
     playerctl
-    audacity
+    #audacity
 
     xdg-ninja
     ripgrep
@@ -52,7 +52,8 @@
     #(import ./packages/musescore-appimage.nix {inherit pkgs;})
     wireshark
     socat # for hyprland ipc
-    tutanota-desktop
+    # tutanota-desktop
+    # pciutils
   ];
 in {
   home.packages =

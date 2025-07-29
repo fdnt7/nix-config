@@ -16,6 +16,7 @@
       relativenumber = true;
       termguicolors = true;
       shiftwidth = 2;
+      textwidth = 70;
     };
 
     colorschemes.catppuccin = {

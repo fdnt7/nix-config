@@ -21,7 +21,7 @@
     ./programs.nix
     ./security.nix
     ./virtualisation
-    ./sddm
+    #./sddm
     ./services
     ./xdg.nix
     ./bluetooth.nix
