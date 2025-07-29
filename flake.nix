@@ -3,7 +3,14 @@
 
   inputs = {
     # Nixpkgs
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    #
+    # rev 17f6bd177404d6d43017595c5264756764444ab8 (the latest
+    # revision of nixos-unstable right now) made hyprland crash on
+    # launch, so pinning to 7fd36ee
+    #
+    # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # nixpkgs.url = "github:nixos/nixpkgs/17f6bd177404d6d43017595c5264756764444ab8";
+    nixpkgs.url = "github:nixos/nixpkgs/7fd36ee82c0275fb545775cc5e4d30542899511d";
 
     # Home manager
     home-manager = {

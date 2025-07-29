@@ -43,6 +43,13 @@
         "https://hyprland.cachix.org"
         "https://nix-community.cachix.org"
       ];
+      trusted-substituters = [
+        "https://devenv.cachix.org"
+        "https://yazi.cachix.org"
+        "https://catppuccin.cachix.org"
+        "https://hyprland.cachix.org"
+        "https://nix-community.cachix.org"
+      ];
       trusted-public-keys = [
         "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
         "yazi.cachix.org-1:Dcdz63NZKfvUCbDGngQDAZq6kOroIrFoyO064uvLh8k="

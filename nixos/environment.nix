@@ -22,6 +22,7 @@
       PSQL_HISTORY = "$XDG_DATA_HOME/psql_history";
       PYTHON_HISTORY = "$XDG_STATE_HOME/python_history";
       WINEPREFIX = "$XDG_DATA_HOME/wine";
+      DOTNET_CLI_HOME = "$XDG_DATA_HOME/dotnet";
 
       NIXOS_OZONE_WL = "1";
     };

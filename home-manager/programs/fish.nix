@@ -14,14 +14,19 @@
   catppuccin.fish.enable = true;
   programs.fish = {
     enable = true;
+    loginShellInit = ''
+      if uwsm check may-start
+        exec uwsm start hyprland-uwsm.desktop
+      end
+    '';
     interactiveShellInit = ''
-           fastfetch --config small
-           nix-your-shell fish | source
-           if test -z "$IN_NIX_SHELL"
-      abbr f fastfetch
-           else
-      abbr f fastfetch --config kangel
-           end
+      fastfetch --config small
+      nix-your-shell fish | source
+      if test -z "$IN_NIX_SHELL"
+        abbr f fastfetch
+      else
+        abbr f fastfetch --config kangel
+      end
     '';
     shellAbbrs = {
       l = "yy";
@@ -219,9 +224,11 @@
     };
     shellInit = ''
       set fish_greeting
-      zoxide init fish | source
       #eval (batpipe) # bat-extras broken
     '';
-    shellInitLast = "${pkgs.starship}/bin/starship init fish | source";
+    shellInitLast = ''
+      zoxide init fish | source
+      ${pkgs.starship}/bin/starship init fish | source
+    '';
   };
 }
