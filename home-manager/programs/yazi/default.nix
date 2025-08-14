@@ -146,7 +146,7 @@ in {
       plugin = {
         prepend_previewers = [
           {
-            name = "*.md";
+            url = "*.md";
             run = "piper -- CLICOLOR_FORCE=1 glow -w=$w -s=dark \"$1\"";
           }
           {
@@ -200,7 +200,7 @@ in {
         ];
         append_previewers = [
           {
-            name = "*";
+            url = "*";
             run = "piper -- hexyl --border=none --terminal-width=$w \"$1\"";
           }
         ];
@@ -208,13 +208,13 @@ in {
         prepend_fetchers = [
           {
             id = "git";
-            name = "*";
+            url = "*";
             run = "git";
           }
 
           {
             id = "git";
-            name = "*/";
+            url = "*/";
             run = "git";
           }
         ];

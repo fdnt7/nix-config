@@ -12,7 +12,7 @@
     ./git.nix
     ./gpg.nix
     ./htop.nix
-    #./kitty.nix
+    ./kitty.nix
     ./helix.nix
     ./mpv.nix
     ./nixvim.nix
@@ -31,17 +31,18 @@
     ./discord
 
     ./zed-editor
-    #./alacritty
-    #./lf/lf.nix
+    ./alacritty
+    #./lf/lf.nix # not a module yet
     ./fastfetch
     ./hypr/hypridle.nix
     ./hypr/hyprland
     ./hypr/hyprlock.nix
     ./hypr/hyprsunset.nix
-    #./hypr/hyprcursor
-    #./swaync
-    #./waybar
+    #./hypr/hyprcursor # not a module yet
+    ./swaync
+    ./waybar
     ./yazi
     ./uwsm
+    ./mullvad-vpn.nix
   ];
 }

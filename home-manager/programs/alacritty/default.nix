@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   programs.alacritty = {
-    enable = true;
+    enable = false;
     package = pkgs.callPackage ./alacritty-sixel.nix {};
     settings = {
       window = {

@@ -10,7 +10,10 @@
   #xdg.configFile = {
   #  "hypr/hyprland/icons".source = ./icons;
   #};
-  wayland.windowManager.hyprland = {
+  wayland.windowManager.hyprland = let
+    bar = "${import ./bin/bar.nix {inherit pkgs;}}/bin/bar";
+    bar0 = "${bar} 0";
+  in {
     enable = true;
     package = null;
     portalPackage = null;
@@ -20,9 +23,15 @@
       enable = false;
     };
     plugins = with inputs.hyprland-plugins.packages.${pkgs.system}; [
-      hyprexpo
+      #borders-plus-plus
+      #csgo-vulkan-fix
+      #hyprbars
+      #hyprexpo
+      #hyprfocus
       hyprscrolling
-      xtra-dispatchers
+      #hyprtrails
+      #hyprwinwrap
+      #xtra-dispatchers
     ];
     settings = {
       monitor = [
@@ -348,7 +357,7 @@
           "$mod CTRL , $sws_4, movetoworkspace       , special:chat"
           "$mod SHIFT, $sws_4, movetoworkspacesilent, special:chat"
 
-          ", SUPER_L, exec, uwsm-app -- open-bar"
+          ", SUPER_L, exec, ${bar} 1"
         ]
         ++ (
           builtins.concatLists (builtins.genList (
@@ -374,7 +383,7 @@
       ];
 
       bindrt = [
-        "$mod, SUPER_L, exec, uwsm-app -- close-bar"
+        "$mod, SUPER_L, exec, ${bar0}"
 
         "MOD2, Num_Lock , exec, uwsm-app -- showleds n"
         #"CAPS, Caps_Lock, exec, uwsm-app -- showleds c" # doesn't work due to caps:escape_shifted_capslock
@@ -392,37 +401,37 @@
       bind=$mod, n, exec, uwsm-app -- swaync-client -op -sw
       bind=$mod, n, submap, notify
       submap=notify
-        bind=    , c     , exec  , uwsm-app -- close-bar; uwsm-app -- swaync-client -C -sw; uwsm-app -- swaync-client -cp -sw;
+        bind=    , c     , exec  , ${bar0}; uwsm-app -- swaync-client -C -sw; uwsm-app -- swaync-client -cp -sw;
         bind=    , c     , submap, reset
-        bind=    , d     , exec  , uwsm-app -- close-bar; uwsm-app -- swaync-client -d -sw; uwsm-app -- swaync-client -cp -sw;
+        bind=    , d     , exec  , ${bar0}; uwsm-app -- swaync-client -d -sw; uwsm-app -- swaync-client -cp -sw;
         bind=    , d     , submap, reset
-        bind=$mod, n     , exec  , uwsm-app -- close-bar; uwsm-app -- swaync-client -cp -sw;
+        bind=$mod, n     , exec  , ${bar0}; uwsm-app -- swaync-client -cp -sw;
         bind=$mod, n     , submap, reset
-        bind=    , escape, exec  , uwsm-app -- close-bar; uwsm-app -- swaync-client -cp -sw;
+        bind=    , escape, exec  , ${bar0}; uwsm-app -- swaync-client -cp -sw;
         bind=    , escape, submap, reset
       submap=reset
       bind=$mod ALT, d, submap, discord
       submap=discord
-        bind=, v     , exec  , uwsm-app -- close-bar; uwsm-app -- vesktop
+        bind=, v     , exec  , ${bar0}; uwsm-app -- vesktop
         bind=, v     , submap, reset
-        bind=, d     , exec  , uwsm-app -- close-bar; uwsm-app -- discord
+        bind=, d     , exec  , ${bar0}; uwsm-app -- discord
         bind=, d     , submap, reset
-        bind=, s     , exec  , uwsm-app -- close-bar; uwsm-app -- discord-screenaudio
+        bind=, s     , exec  , ${bar0}; uwsm-app -- discord-screenaudio
         bind=, s     , submap, reset
-        bind=, c     , exec  , uwsm-app -- close-bar; uwsm-app -- discordcanary
+        bind=, c     , exec  , ${bar0}; uwsm-app -- discordcanary
         bind=, c     , submap, reset
-        bind=, escape, exec  , uwsm-app -- close-bar
+        bind=, escape, exec  , ${bar0}
         bind=, escape, submap, reset
       submap=reset
       bind=$mod ALT, b, submap, browser
       submap=browser
-        bind=, b     , exec  , uwsm-app -- close-bar; uwsm-app -- brave;
+        bind=, b     , exec  , ${bar0}; uwsm-app -- brave;
         bind=, b     , submap, reset
-        bind=, z     , exec  , uwsm-app -- close-bar; uwsm-app -- zen
+        bind=, z     , exec  , ${bar0}; uwsm-app -- zen
         bind=, z     , submap, reset
-        bind=, v     , exec  , uwsm-app -- close-bar; uwsm-app -- vivaldi
+        bind=, v     , exec  , ${bar0}; uwsm-app -- vivaldi
         bind=, v     , submap, reset
-        bind=, escape, exec  , uwsm-app -- close-bar
+        bind=, escape, exec  , ${bar0}
         bind=, escape, submap, reset
       submap=reset
       bind=$mod, q, submap, power
@@ -431,14 +440,14 @@
         bind=, s     , submap, reset
         bind=, r     , exec  , reboot
         bind=, r     , submap, reset
-        bind=, escape, exec  , uwsm-app -- close-bar
+        bind=, escape, exec  , ${bar0}
         bind=, escape, submap, reset
       submap=reset
       bind=$mod, d, submap, develop
       submap=develop
-        bind=, l     , exec  , uwsm-app -- close-bar; uwsm-app -- nix-develop-lyra
+        bind=, l     , exec  , ${bar0}; uwsm-app -- nix-develop-lyra
         bind=, l     , submap, reset
-        bind=, escape, exec  , uwsm-app -- close-bar
+        bind=, escape, exec  , ${bar0}
         bind=, escape, submap, reset
       submap=reset
     '';

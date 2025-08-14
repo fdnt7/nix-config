@@ -53,7 +53,7 @@ with lib; let
 
     # Path to a file to track the last notification level.
     # This prevents spamming notifications every minute.
-    STATE_FILE="/tmp/battery-notifier-state-''${UID:-$(id -u)}"
+    STATE_FILE="$XDG_RUNTIME_DIR/battery-notifier-state-''${UID:-$(id -u)}"
 
     # Read the last notified level, default to 100 if not set.
     LAST_NOTIFIED_LEVEL=$(cat "$STATE_FILE" 2>/dev/null || echo 100)

@@ -176,6 +176,10 @@
       gl = "git log";
       gd = "git diff";
       gs = "git status";
+      gst = "git stash";
+      gstl = "git stash list";
+      gstp = "git stash pop";
+      gsh = "git show";
       gb = "git branch";
       gbd = "git branch -d";
       gbm = "git branch -m";

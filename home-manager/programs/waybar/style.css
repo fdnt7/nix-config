@@ -1,51 +1,21 @@
 * {
-  font-family: JetBrainsMono Nerd Font;
+  all: unset; /* Unsets everything so you can style everything from scratch */
+  font-family: "JetBrainsMono Nerd Font", monospace;
   font-size: 12px;
 }
 
 window#waybar {
-  background-color: black;
-  color: white;
+  background-color: rgba(0,0,0,1);
 }
 
-#clock {
-  color: #FFECFF;
+#battery.charging {
+  color: rgba(0,255,0,1);
 }
 
-/*#custom-amixer {
-  color: #B3DEFF;
-}*/
-
-#network {
-  color: #E4ECFF;
+#battery.warning {
+  color: rgba(255,255,0,1);
 }
 
-#battery {
-  color: #FFECFF;
-}
-
-#memory {
-  color: #B3DEFF;
-}
-#cpu {
-  color: #89B4FA;
-}
-
-#temperature {
-  color: #E4ECFF;
-}
-
-#keyboard-state {
-  color: #FFECFF;
-}
-#language {
-  color: #F5C2E7;
-}
-
-#submap {
-  color: #BEFFFF;
-}
-
-#custom-separator {
-  color: #82859A;
+#battery.critical {
+  color: rgba(255,0,0,1);
 }

@@ -1,27 +1,28 @@
 {pkgs, ...}: let
   with_pkgs = with pkgs; [
     nh
-    nix-output-monitor
-    nvd
+    #nix-output-monitor
+    #nvd
     #devenv
     alejandra
 
     #discord-screenaudio
 
-    grim
-    slurp
+    #grim
+    #slurp
     wl-clipboard
-    libnotify
+    #libnotify
     grimblast
 
-    libheif
-    resvg
-    nufraw-thumbnailer
-    taglib
+    #libheif
+    #resvg
+    #nufraw-thumbnailer
+    #taglib
 
-    pavucontrol
-    playerctl
+    #pavucontrol
+    #playerctl
     #audacity
+    tenacity
 
     xdg-ninja
     ripgrep
@@ -50,7 +51,7 @@
     #(pkgs.callPackage ./packages/muse-sounds-manager-2.0.3.659.nix {})
     musescore
     #(import ./packages/musescore-appimage.nix {inherit pkgs;})
-    wireshark
+    # wireshark # for comp-sys-lab
     socat # for hyprland ipc
     # tutanota-desktop
     # pciutils

@@ -51,7 +51,7 @@ muted=$(vol sink -m)
 
 # Check if muted
 if [ "$muted" = "1" ]; then
-    c="󰝟 -%"
+    c="󰝟  - %"
 else
     # Choose icon based on volume level
     if [ "$volume" -eq 0 ]; then

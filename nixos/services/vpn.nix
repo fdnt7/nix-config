@@ -1,11 +1,8 @@
-{pkgs, ...}: {
+{...}: {
   imports = [./mullvad-tailscale.nix];
   services = {
     tailscale.enable = true;
-    mullvad-vpn = {
-      enable = true;
-      package = pkgs.mullvad-vpn;
-    };
+    mullvad-vpn.enable = true;
     resolved.enable = true;
     mullvad-tailscale.enable = true;
   };

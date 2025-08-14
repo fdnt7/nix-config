@@ -1,6 +1,6 @@
 {...}: {
   services.swaync = {
-    enable = true;
+    enable = false;
     settings = {
       "$schema" = "/run/current-system/sw/etc/xdg/swaync/configSchema.json";
       "positionX" = "right";

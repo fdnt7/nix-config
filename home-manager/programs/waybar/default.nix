@@ -1,19 +1,24 @@
 {
+  inputs,
   pkgs,
-  #inputs,
+  lib,
   ...
 }: {
-  home.packages = [pkgs.libappindicator pkgs.wttrbar];
   programs.waybar = {
     enable = true;
-    #package = inputs.waybar.packages.${pkgs.system}.default;
+    package =
+      inputs.waybar.packages.${pkgs.stdenv.hostPlatform.system}.waybar;
     settings = {
-      main = {
+      main = let
+        baseIcons = ["▁" "▂" "▃" "▄" "▅" "▆" "▇" "█"];
+        paddingIcon = " ";
+        paddedBaseIcons = [paddingIcon] ++ baseIcons;
+      in {
         #layer = "top";
-        layer = "overlay";
-        #start_hidden = true;
+        mode = "overlay";
+        start_hidden = true;
         position = "bottom";
-        height = 26;
+        height = 24;
         spacing = 8;
         modules-left = [
           "hyprland/workspaces"
@@ -21,81 +26,67 @@
         ];
 
         modules-center = [
+          "hyprland/submap"
         ];
 
         modules-right = [
-          "tray"
-          "custom/separator"
-          "custom/wttr"
-          "hyprland/submap"
-          "hyprland/language"
-          "keyboard-state"
-          "temperature"
-          "cpu"
-          "memory"
-          "battery"
-          "network"
           "privacy"
-          #"custom/amixer#i"
-          #"custom/amixer#o"
+          "tray"
+          "custom/wttr"
+          "hyprland/language"
+          #"keyboard-state"
+          "custom/lock"
+          "custom/touchpad"
+          "temperature"
+          "memory"
+          "cpu"
+          #"network"
+          "backlight"
+          "custom/vol"
+          "battery"
           "clock"
-          #"custom/swaync"
         ];
 
-        tray = {
-          spacing = 3;
+        "custom/vol" = let
+          VOL = "${import ./scripts/vol.nix {inherit pkgs;}}";
+        in {
+          format = "{}";
+          exec = "${VOL}";
+          interval = 2;
         };
 
-        #"custom/amixer#o" = {
-        #  exec = "amixer get Master | sed -nre 's/.*\\[off\\].*/  -%/p; s/.*\\[(.*%)\\].*/  \\1/p'";
-        #  on-click = "amixer set Master toggle";
-        #  on-scroll-up = "amixer set Master 1%+";
-        #  on-scroll-down = "amixer set Master 1%-";
-        #  signal = 11;
-        #  interval = 1;
-        #  tooltip = false;
-        #};
-        #
-        #"custom/amixer#i" = {
-        #  exec = "amixer get Capture | sed -nre 's/.*Capture .+\\[off\\].*/  -%/p; s/.*Capture .+\\[(.*%)\\].*/ \\1/p'";
-        #  on-click = "amixer set Capture toggle";
-        #  on-scroll-up = "amixer set Capture 1%+";
-        #  on-scroll-down = "amixer set Capture 1%-";
-        #  signal = 11;
-        #  interval = 1;
-        #  tooltip = false;
-        #};
+        backlight = {
+          format = "{icon}  {percent:>3}%";
+          format-icons = ["󰃚" "󰃛" "󰃜" "󰃝" "󰃞" "󰃟" "󰃠"];
+        };
+
+        tray = {
+          spacing = 2;
+        };
 
         "custom/wttr" = {
-          format = "{}°";
-          tooltip = true;
-          interval = 3600;
-          exec = "wttrbar";
-          return-type = "json";
+          format = "{}";
+          interval = 5400;
+          exec = "echo $(curl \"wttr.in/Bangkok,TH?format=%c%t\" | tr -d '+CFK')";
         };
 
-        cava = {
-          format-icons = ["▁" "▂" "▃" "▄" "▅" "▆" "▇" "█"];
-          bar_delimiter = 0;
-          method = "pipewire";
-          framerate = 24;
-          bars = 4;
-        };
-
-        "hyprland/workspaces" = {
+        "hyprland/workspaces" = let
+          numericalIcons = builtins.listToAttrs (builtins.map (n: {
+            name = builtins.toString n;
+            value = builtins.toString n + " ";
+          }) (builtins.genList (n: n + 1) 9)); # Generates a list [1, 2, ..., 9]
+        in {
           format = "{icon}";
-          format-icons = {
-            "1" = "1";
-            "2" = "2";
-            "3" = "3";
-            "4" = "4";
-            "5" = "5";
-            "6" = "6";
-            "7" = "7";
-            "8" = "8";
-            "9" = "9";
-            "10" = "0";
-          };
+          format-icons =
+            numericalIcons
+            // {
+              "10" = "0 ";
+              "chat" = "󰌍 ";
+              "music" = "= ";
+              "minimised" = "- ";
+              "scratch" = "` ";
+            };
+          show-special = true;
         };
 
         "hyprland/window" = {
@@ -104,19 +95,13 @@
         };
 
         "hyprland/submap" = {
-          format = "  {}";
+          format = "󰍍 {}";
         };
 
         "hyprland/language" = {
           format = "  {}";
-          #format-en = "🇺🇸";
           format-en = "us";
-          #format-th = "🇹🇭";
           format-th = "th";
-        };
-
-        temperature = {
-          format = " {temperatureC}°";
         };
 
         network = {
@@ -139,92 +124,100 @@
           on-click = "nm-connection-editor";
         };
 
-        battery = {
-          format-discharging = "{icon} {capacity}%";
-          format-charging = "{icon}󱐋 {capacity}%";
-          format-full = "󱟢 100%";
-          format-unknown = "󰂑 ?%";
-          format-icons = ["󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
+        battery = let
+          FMT = "{icon} {capacity:>3}%";
+        in {
+          # power supply status reference:
+          # https://www.kernel.org/doc/Documentation/ABI/testing/sysfs-class-power
+
+          # because status "Not charging" seems to be unsupported, it
+          # falls back to `format`, which is not wanted. ideally, it
+          # should display as an empty string. so, the fallback
+          # `format` is made as such also.
+          format = "";
+          format-unknown = "";
+          format-charging = FMT;
+          format-discharging = FMT;
+          format-not-charging = "";
+          format-full = "";
+          format-icons = ["󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
           states = {
-            warning = 30;
-            critical = 15;
+            warning = 20;
+            critical = 10;
           };
         };
 
-        clock = {
-          format = "󰃭 {:%Y/%m/%d 󰥔 %R}";
-          format-alt = " {:%F %T}";
-          tooltip-format = "<tt><small>{calendar}</small></tt>";
-          calendar = {
-            mode = "month";
-            mode-mon-col = 3;
-            weeks-pos = "right";
-            on-scroll = 1;
-            format = {
-              months = "<span color='#ffead3'><b>{}</b></span>";
-              days = "<span color='#ecc6d9'><b>{}</b></span>";
-              weeks = "<span color='#99ffdd'><b>W{}</b></span>";
-              weekdays = "<span color='#ffcc66'><b>{}</b></span>";
-              today = "<span color='#ff6699'><b><u>{}</u></b></span>";
-            };
-          };
-          actions = {
-            on-click-right = "mode";
-            on-click-forward = "tz_up";
-            on-click-backward = "tz_down";
-            on-scroll-up = "shift_down";
-            on-scroll-down = "shift_up";
-          };
-        };
+        temperature = let
+          # Define your temperature thresholds
+          startTemp = 35; # 🌡️ The temperature (C) at which the real icons should start
+          criticalTemp = 95; # 🔥 The critical temperature (C)
 
-        cpu = {
-          format = "  {usage}%";
+          # Calculate the number of padding icons needed
+          numPaddingIcons =
+            builtins.ceil ((startTemp * (lib.lists.length baseIcons) * 1.0) / (criticalTemp - startTemp));
+
+          # Generate the final list of icons
+          finalIcons = (lib.lists.replicate numPaddingIcons paddingIcon) ++ baseIcons;
+        in {
+          format = "{icon} {temperatureC:>2}°";
+          interval = 1;
+          critical-threshold = criticalTemp;
+          format-icons = finalIcons; # Use the dynamically generated list
         };
 
         memory = {
-          format = "  {percentage}%";
+          format = "{icon} {percentage:>3}%";
+          interval = 1;
+          format-icons = paddedBaseIcons;
         };
 
-        keyboard-state = {
-          numlock = true;
-          capslock = true;
-          scrolllock = true;
-          format = {
-            numlock = "󰞙 {icon} ";
-            capslock = "󰘲 {icon} ";
-            scrolllock = "󰹹 {icon} ";
-          };
-          format-icons = {
-            locked = "x";
-            unlocked = "-";
-          };
+        cpu = {
+          format = "{icon} {usage:>3}%";
+          interval = 1;
+          format-icons = paddedBaseIcons;
         };
 
-        "custom/separator" = {
-          tooltip = false;
-          format = "󰇝";
-        };
+        # waybar's own keyboard state module is unresponsive; it
+        # doesn't seem to be able to reliably update the
+        # locked/unlocked states ...
 
-        #"custom/swaync" = {
-        #  tooltip = false;
-        #  format = "{icon} {}";
-        #  format-icons = {
-        #    notification = "󰂚<span foreground='#FF77A7'><sup></sup></span>";
-        #    none = "󰂚";
-        #    dnd-notification = "󰂛<span foreground='#FF78A7'><sup></sup></span>";
-        #    dnd-none = "󰂛";
-        #    inhibited-notification = "󰂚<span foreground='#FF78A7'><sup></sup></span>";
-        #    inhibited-none = "󰂚";
-        #    dnd-inhibited-notification = "󰂛<span foreground='#FF78A7'><sup></sup></span>";
-        #    dnd-inhibited-none = "󰂛";
+        #keyboard-state = {
+        #  numlock = true;
+        #  capslock = true;
+        #  scrolllock = true;
+        #  format = {
+        #    numlock = "󰞙 {icon} ";
+        #    capslock = "󰘲 {icon} ";
+        #    scrolllock = "󰞒 {icon} ";
         #  };
-        #  return-type = "json";
-        #  exec-if = "which swaync-client";
-        #  exec = "swaync-client -swb";
-        #  on-click = "swaync-client -t -sw";
-        #  on-click-right = "swaync-client -d -sw";
-        #  escape = true;
+        #  format-icons = {
+        #    locked = "x";
+        #    unlocked = "-";
+        #  };
         #};
+
+        # ... so, using a custom-made one instead.
+
+        "custom/lock" = let
+          LOCK = "${import ./scripts/lock.nix {inherit pkgs;}}";
+        in {
+          format = "{}";
+          exec = "${LOCK}";
+          interval = 2;
+        };
+
+        "custom/touchpad" = let
+          TOUCHPAD = "${import ./scripts/touchpad.nix {inherit pkgs;}}";
+        in {
+          format = "{}";
+          exec = "${TOUCHPAD}";
+          interval = 2;
+        };
+
+        clock = {
+          format = "󰔚 {:%F %T}";
+          interval = 1;
+        };
       };
     };
 
