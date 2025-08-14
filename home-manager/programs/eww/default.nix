@@ -1,6 +1,6 @@
 {...}: {
   programs.eww = {
-    enable = true;
+    enable = false;
     enableFishIntegration = true;
     configDir = ./config;
   };

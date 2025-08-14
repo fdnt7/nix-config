@@ -1,13 +1,11 @@
 {pkgs}: let
   SWWW-DAEMON = "${pkgs.swww}/bin/swww-daemon";
-  OPEN-BAR = "${import ../bin/open-bar.nix {inherit pkgs;}}/bin/open-bar";
-  CLOSE-BAR = "${import ../bin/close-bar.nix {inherit pkgs;}}/bin/close-bar";
-  SWWW-NEXT = "${import ../bin/swww-next.nix {inherit pkgs;}}/bin/swww-next";
+  bar = "${import ../bin/bar.nix {inherit pkgs;}}/bin/bar";
+  #toggleBar = "pkill -SIGUSR1 waybar";
 in
   pkgs.writeShellScriptBin "exec-once" ''
-    ${OPEN-BAR} &
-    sleep 2.5 && mullvad-vpn &
-    sleep 10 && ${CLOSE-BAR} &
     ${SWWW-DAEMON} &
-    ${SWWW-NEXT} &
+    sleep 2.5 && mullvad-vpn &
+
+    sleep 1.5 && ${bar} 1 && sleep 10 && ${bar} 0
   ''

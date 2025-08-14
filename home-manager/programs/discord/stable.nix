@@ -33,7 +33,7 @@
         fixYoutubeEmbeds.enable = true;
         forceOwnerCrown.enable = true;
         friendsSince.enable = true;
-        imageZoom.enable = true;
+        # imageZoom.enable = true; # discord's native zoom is superior
         memberCount.enable = true;
         mentionAvatars.enable = true;
         messageClickActions = {

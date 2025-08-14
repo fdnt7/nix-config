@@ -9,6 +9,9 @@
     };
     delta.enable = true;
     lfs.enable = true;
+    extraConfig = {
+      init.defaultBranch = "main";
+    };
   };
   catppuccin.delta.enable = true;
 }

@@ -1,1 +1,1 @@
-echo $(curl "wttr.in/Bangkok?format=%c%t" | tr -d '+CFK')
+echo $(curl "wttr.in/Bangkok,TH?format=%c%t" | tr -d '+CFK')
