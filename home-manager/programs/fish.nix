@@ -47,12 +47,15 @@
       "ze." = "zeditor .";
 
       cg = "cargo";
+      cgn = "cargo new";
+      cgi = "cargo init";
       cga = "cargo add";
       cgc = "cargo check";
       cgcl = "cargo clippy";
       cgl = "cargo clean";
       cgf = "cargo fmt";
       cgr = "cargo run";
+      cgrr = "cargo run --release";
       cgu = "cargo update";
       cguu = "cargo upgrade";
       cgd = "cargo doc";
@@ -156,35 +159,48 @@
       t = "time";
 
       g = "git";
+      gf = "git fetch";
+      gl = "git log";
+      gd = "git diff";
+
+      ga = "git add";
+      "ga." = "git add .";
+
       gm = "git merge";
       gms = "git merge --squash";
+
       gp = "git push";
       gpf = "git push --force-with-lease";
-      gpu = "git push -u origin";
+      gpu = "git push -u";
       gpl = "git pull";
-      gr = "git revert";
-      gre = "git remote";
+
+      grv = "git revert";
       grs = "git reset";
       grsh = "git reset --hard";
-      grm = "git remove";
+      grm = "git rm";
       grb = "git rebase";
+      grmo = "git remote";
+      grmog = "git remote get-url";
+      grmos = "git remote set-url";
+      grmor = "git remote remove";
+      grmoa = "git remote add";
+
       gc = "git commit";
       gca = "git commit --amend";
       gcl = "git clone";
       gh = "git checkout";
       ghm = "git checkout main";
-      gl = "git log";
-      gd = "git diff";
+
       gs = "git status";
       gst = "git stash";
       gstl = "git stash list";
       gstp = "git stash pop";
       gsh = "git show";
+      gsw = "git switch";
+
       gb = "git branch";
       gbd = "git branch -d";
       gbm = "git branch -m";
-      ga = "git add";
-      "ga." = "git add .";
 
       d = "docker";
       dcp = "docker compose";

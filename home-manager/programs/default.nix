@@ -44,5 +44,6 @@
     ./yazi
     ./uwsm
     ./mullvad-vpn.nix
+    ./direnv.nix
   ];
 }

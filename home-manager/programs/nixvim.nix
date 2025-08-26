@@ -58,15 +58,15 @@
               };
             };
           };
-          ruff = {
-            enable = true;
-          };
+          ruff.enable = true;
 
           #cssls.enable = true;
 
           lua_ls.enable = true;
 
           clangd.enable = true;
+
+          gopls.enable = true;
         };
       };
 
