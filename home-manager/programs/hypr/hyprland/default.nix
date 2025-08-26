@@ -154,7 +154,11 @@
       windowrulev2 = [
         "suppressevent maximize, class:.*"
 
-        "pin, class:^(pinentry-qt)$"
+        "pin, class:^(org.gnupg.pinentry-qt)$"
+
+        # for whatever reasons, both `Xdg-...` and `xdg-` exists ...
+        "pin, class:^(Xdg-desktop-portal-gtk)$"
+        "pin, class:^(xdg-desktop-portal-gtk)$"
 
         "workspace 1, class:^(brave-browser(-nightly)?)$"
         "workspace 1, class:^(firefox)$"
@@ -178,13 +182,22 @@
         "float, class:^(mpv)$"
         "float, class:^(nm-connection-editor)$"
 
+        # this doesn't automatically float for whatever reasons but
+        # the capitalised `Xdg-...` does.
+        "float, class:^(xdg-desktop-portal-gtk)$"
+
+        # ... ditto
+        "noblur, class:^(xdg-desktop-portal-gtk)$"
         "noblur, class:^(Xdg-desktop-portal-gtk)$"
+
         "noblur, class:^(MuseScore4)$"
         "noblur, class:^()$, title:^()$"
         "noblur, class:^(line.exe)$"
 
         "noshadow, class:^(line.exe)$"
 
+        # ... ditto
+        "noborder, class:^(xdg-desktop-portal-gtk)$"
         "noborder, class:^(Xdg-desktop-portal-gtk)$"
 
         "workspace special:minimised, class:^(steam)$"
@@ -259,7 +272,10 @@
       bind =
         [
           "            , XF86AudioMicMute     , exec, uwsm-app -- toggle-mute src"
-          "            , XF86Launch3          , exec, uwsm-app --"
+
+          # waybar gets out-of-sync between hidden/shown states very
+          # often, so this remedies it as a reset bind.
+          "            , XF86Launch3          , exec, uwsm-app -- pkill -SIGUSR1 waybar"
 
           "            , XF86AudioMute        , exec, uwsm-app -- toggle-mute sink" #fn+f1
           #fn+f2 o
@@ -275,7 +291,8 @@
           "    , Print, exec, uwsm-app -- grimblast --notify copysave screen"
           "$mod, Print, exec, uwsm-app -- grimblast --notify copysave active"
 
-          "$mod SHIFT, q, exit"
+          "$mod SHIFT, q, exec, uwsm-app -- qr"
+
           "$mod, w, killactive"
           "$mod, e, swapnext"
           "$mod SHIFT, e, swapnext, prev"
@@ -284,7 +301,7 @@
           "$mod           , y, cyclenext, tiled"
           "$mod SHIFT     , y, cyclenext, prev tiled"
           "$mod CTRL      , y, cyclenext, floating"
-          "$mod CTRL SHIFT, y, cyclenext, floating"
+          "$mod CTRL SHIFT, y, cyclenext, prev floating"
 
           #"$mod, u, moveoutofgroup"
           "$mod, u, layoutmsg, promote"
@@ -335,7 +352,7 @@
           "$mod ALT, m, exec, uwsm-app -- mscore"
           "$mod ALT, z, exec, uwsm-app -- zed"
           "$mod ALT, c, exec, uwsm-app -- code"
-          "$mod ALT, v, exec, uwsm-app -- pavucontrol"
+          "$mod ALT, v, exec, uwsm-app -- mullvad-gui"
           "$mod ALT, x, exec, uwsm-app -- xournalpp"
 
           "$mod, Return , exec, uwsm-app -- $term"
@@ -356,6 +373,10 @@
           "$mod      , $sws_4, togglespecialworkspace, chat"
           "$mod CTRL , $sws_4, movetoworkspace       , special:chat"
           "$mod SHIFT, $sws_4, movetoworkspacesilent, special:chat"
+
+          "$mod, v, exec, uwsm-app -- vpn"
+
+          "$mod, o, exec, uwsm-app -- uwsm-app -- xdg-open $(wl-paste)"
 
           ", SUPER_L, exec, ${bar} 1"
         ]
@@ -398,18 +419,6 @@
       };
     };
     extraConfig = ''
-      bind=$mod, n, exec, uwsm-app -- swaync-client -op -sw
-      bind=$mod, n, submap, notify
-      submap=notify
-        bind=    , c     , exec  , ${bar0}; uwsm-app -- swaync-client -C -sw; uwsm-app -- swaync-client -cp -sw;
-        bind=    , c     , submap, reset
-        bind=    , d     , exec  , ${bar0}; uwsm-app -- swaync-client -d -sw; uwsm-app -- swaync-client -cp -sw;
-        bind=    , d     , submap, reset
-        bind=$mod, n     , exec  , ${bar0}; uwsm-app -- swaync-client -cp -sw;
-        bind=$mod, n     , submap, reset
-        bind=    , escape, exec  , ${bar0}; uwsm-app -- swaync-client -cp -sw;
-        bind=    , escape, submap, reset
-      submap=reset
       bind=$mod ALT, d, submap, discord
       submap=discord
         bind=, v     , exec  , ${bar0}; uwsm-app -- vesktop
@@ -423,6 +432,7 @@
         bind=, escape, exec  , ${bar0}
         bind=, escape, submap, reset
       submap=reset
+
       bind=$mod ALT, b, submap, browser
       submap=browser
         bind=, b     , exec  , ${bar0}; uwsm-app -- brave;
@@ -434,8 +444,11 @@
         bind=, escape, exec  , ${bar0}
         bind=, escape, submap, reset
       submap=reset
+
       bind=$mod, q, submap, power
       submap=power
+        bind=, q     , exit
+        bind=, q     , submap, reset
         bind=, s     , exec  , poweroff
         bind=, s     , submap, reset
         bind=, r     , exec  , reboot
@@ -443,6 +456,7 @@
         bind=, escape, exec  , ${bar0}
         bind=, escape, submap, reset
       submap=reset
+
       bind=$mod, d, submap, develop
       submap=develop
         bind=, l     , exec  , ${bar0}; uwsm-app -- nix-develop-lyra
