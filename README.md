@@ -1,3 +1,6 @@
+> [!IMPORTANT]
+> This repository has been moved and merged into a [new repository](https://github.com/fdnt7/nixcfgs).
+
 # NixOS Configuration
 
 ❄️ My NixOS Configuration Files.
