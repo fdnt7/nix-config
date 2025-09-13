@@ -189,6 +189,7 @@
       gca = "git commit --amend";
       gcl = "git clone";
       gh = "git checkout";
+      ghb = "git checkout -b";
       ghm = "git checkout main";
 
       gs = "git status";

@@ -130,10 +130,6 @@
         #special_scale_factor = 0.95;
       };
 
-      gestures = {
-        workspace_swipe = true;
-      };
-
       misc = {
         disable_hyprland_logo = true;
       };
@@ -179,8 +175,9 @@
         "float, class:^(mscore4portable)$"
         "float, class:^(Muse Sounds Manager)$"
         "float, class:^(pavucontrol)$"
-        "float, class:^(mpv)$"
+        #"float, class:^(mpv)$"
         "float, class:^(nm-connection-editor)$"
+        "float, class:^(.blueman-manager-wrapped)$"
 
         # this doesn't automatically float for whatever reasons but
         # the capitalised `Xdg-...` does.

@@ -3,7 +3,7 @@
     nh
     #nix-output-monitor
     #nvd
-    #devenv
+    devenv
     alejandra
 
     #discord-screenaudio

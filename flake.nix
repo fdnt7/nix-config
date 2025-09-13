@@ -79,6 +79,7 @@
     };
 
     nixcord.url = "github:kaylorben/nixcord";
+    #nixcord.url = "git+file:///home/fdnt/Code/nixcord";
   };
 
   outputs = {

@@ -63,8 +63,6 @@ in {
     plugins = {
       full-border = "${plugs}/full-border.yazi";
       chmod = "${plugs}/chmod.yazi";
-      max-preview = "${plugs}/max-preview.yazi";
-      hide-preview = "${plugs}/hide-preview.yazi";
       smart-filter = "${plugs}/smart-filter.yazi";
       jump-to-char = "${plugs}/jump-to-char.yazi";
       diff = "${plugs}/diff.yazi";
@@ -223,7 +221,7 @@ in {
         image_bound = [0 0];
       };
     };
-    theme = fromTOML (builtins.readFile ./theme.toml);
+    #theme = fromTOML (builtins.readFile ./theme.toml);
   };
   catppuccin.glamour.enable = true;
   catppuccin.fzf.enable = true;

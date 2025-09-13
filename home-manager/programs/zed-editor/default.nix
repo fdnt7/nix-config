@@ -10,7 +10,15 @@
   programs.zed-editor = {
     enable = true;
     #package = (pkgs.zed-editor.fhsWithPackages (pkgs: [pkgs.zlib pkgs.pkg-config pkgs.openssl]));
-    extensions = ["wakatime" "discord-presence" "catppuccin-blur" "sql" "nix" "rose-pine-theme"];
+    extensions = [
+      "wakatime"
+      "discord-presence"
+      "catppuccin-blur"
+      "sql"
+      "nix"
+      "rose-pine-theme"
+      "typst"
+    ];
 
     userKeymaps = [
       {
@@ -61,6 +69,12 @@
             cargo = {
               features = "all";
             };
+          };
+        };
+        tinymist = {
+          settings = {
+            exportPdf = "onSave";
+            outputPath = "$dir/$name";
           };
         };
       };

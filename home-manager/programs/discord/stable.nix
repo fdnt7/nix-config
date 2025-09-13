@@ -4,8 +4,6 @@
   inputs,
   ...
 }: {
-  #: nixcord is currently broken: https://github.com/NixOS/nixpkgs/issues/426301 {{{
-
   imports = [
     inputs.nixcord.homeModules.nixcord
   ];
@@ -24,7 +22,7 @@
         clearURLs.enable = true;
         copyEmojiMarkdown.enable = true;
         dontRoundMyTimestamps.enable = true;
-        emoteCloner.enable = true;
+        expressionCloner.enable = true;
         experiments.enable = true;
         fakeNitro.enable = true;
         favoriteEmojiFirst.enable = true;
@@ -33,6 +31,7 @@
         fixYoutubeEmbeds.enable = true;
         forceOwnerCrown.enable = true;
         friendsSince.enable = true;
+        hideMedia.enable = true;
         # imageZoom.enable = true; # discord's native zoom is superior
         memberCount.enable = true;
         mentionAvatars.enable = true;
@@ -87,8 +86,6 @@
     };
     vesktop.enable = true;
   };
-
-  #: }}}
 
   # home.packages = [
   #   (pkgs.discord.override {
